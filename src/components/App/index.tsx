@@ -1,11 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+import Dummy from "../Dummy";
+
 const App = (): React.ReactElement => {
   return (
     <Test>
-      happy
-      {new Date().toLocaleDateString()}
+      <Dummy top={20} left={20} />
     </Test>
   );
 };
