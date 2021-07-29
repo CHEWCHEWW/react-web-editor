@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 import { ComponentLocation } from "../types/ui";
 
@@ -48,7 +48,7 @@ const useDraggable = ({ left, top }: ComponentLocation): UseDraggableReturns => 
     }));
   };
 
-  const handleDragMove = (ev: MouseEvent) => {
+  const handleDragMove = useCallback((ev: MouseEvent) => {
     const { currentX, currentY, isDragging } = componentInfomation;
 
     if (!isDragging || !currentX || !currentY) {
@@ -67,7 +67,7 @@ const useDraggable = ({ left, top }: ComponentLocation): UseDraggableReturns => 
         top,
       },
     }));
-  };
+  }, [componentInfomation]);
 
   const handleDragEnd = (): void => {
     setComponentInformation((prev) => ({
