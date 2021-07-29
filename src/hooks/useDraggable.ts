@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 
-interface UseDraggableProps {
-  left: number
-  top: number
-}
+import { ComponentLocation } from "../types/ui";
 
 interface ComponentInfomation {
   currentX: number
   currentY: number
   isDragging: boolean
-  location: UseDraggableProps
+  location: ComponentLocation
 }
 
-const useDraggable = ({ left, top }: UseDraggableProps) => {
+interface UseDraggableReturns {
+  handleDragEnd: () => void
+  handleDragMove: (ev: MouseEvent) => void 
+  handleDragStart: (ev: React.MouseEvent<HTMLDivElement>) => void
+  componentLocation: ComponentLocation,
+  isDragging: boolean,
+}
+
+const useDraggable = ({ left, top }: ComponentLocation): UseDraggableReturns => {
   const [componentInfomation, setComponentInformation] = useState<ComponentInfomation>({
     currentX: left,
     currentY: top,
@@ -32,8 +37,8 @@ const useDraggable = ({ left, top }: UseDraggableProps) => {
       },
     } = componentInfomation;
 
-    const currentX: number = clientX - left;
-    const currentY: number = clientY - top;
+    const currentX = clientX - left;
+    const currentY = clientY - top;
     
     setComponentInformation((prev) => ({
       ...prev,
@@ -43,7 +48,7 @@ const useDraggable = ({ left, top }: UseDraggableProps) => {
     }));
   };
 
-  const handleDragMove = (ev: React.MouseEvent<HTMLDivElement>): void => {
+  const handleDragMove = (ev: MouseEvent) => {
     const { currentX, currentY, isDragging } = componentInfomation;
 
     if (!isDragging || !currentX || !currentY) {
@@ -52,8 +57,8 @@ const useDraggable = ({ left, top }: UseDraggableProps) => {
 
     const { clientX, clientY } = ev;
 
-    const left: number = clientX - currentX;
-    const top: number = clientY - currentY;
+    const left = clientX - currentX;
+    const top = clientY - currentY;
     
     setComponentInformation((prev) => ({
       ...prev,
