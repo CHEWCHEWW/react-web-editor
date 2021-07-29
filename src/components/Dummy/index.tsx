@@ -36,7 +36,7 @@ const Dummy: React.FC<ComponentLocation> = ({ left, top }): React.ReactElement =
     }));
     
     return () => document.removeEventListener("mousemove", handleDragMove);
-  }, [handleDragMove]);
+  }, [handleDragMove, componentLocation, isDragging]);
   
   return (
     <Div 
