@@ -1,83 +1,48 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
-interface UseDraggableProps {
-  left: number
-  top: number
-}
+import { ComponentLocation } from "../../types/ui";
+import useDraggable from "../../hooks/useDraggable";
 
-interface ComponentInfomation {
-  currentX: number
-  currentY: number
-  isDragging: boolean
-  location: UseDraggableProps
-}
+const Dummy: React.FC<ComponentLocation> = ({ left, top }): React.ReactElement => {
+  const {
+    handleDragStart,
+    handleDragEnd,
+    handleDragMove,
+    componentLocation,
+    isDragging,
+  } = useDraggable({ left, top });
 
-const Dummy: React.FC<UseDraggableProps> = ({ left = 20, top = 20 }): React.ReactElement => {
-  const [componentInfomation, setComponentInformation] = useState<ComponentInfomation>({
-    currentX: left,
-    currentY: top,
-    isDragging: false,
-    location: {
+  const [componentInformation, setComponentInformation] = useState({
+    style: {
       left,
       top,
-    }
+    },
   });
-  
-  const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
-    const { clientX, clientY } = ev;
-    const { 
-      location: { 
-        left, 
-        top,
-      },
-    } = componentInfomation;
 
-    const currentX: number = clientX - left;
-    const currentY: number = clientY - top;
-    
-    setComponentInformation((prev) => ({
-      ...prev,
-      isDragging: true,
-      currentX,
-      currentY,
-    }));
-  };
-
-  const handleDragMove = (ev: React.MouseEvent<HTMLDivElement>): void => {
-    const { currentX, currentY, isDragging } = componentInfomation;
-
-    if (!isDragging || !currentX || !currentY) {
+  useEffect(() => {
+    if (!isDragging) {
       return;
     }
 
-    const { clientX, clientY } = ev;
-
-    const left: number = clientX - currentX;
-    const top: number = clientY - currentY;
-    console.log(left, top);
+    document.addEventListener("mousemove", handleDragMove);
+    
     setComponentInformation((prev) => ({
       ...prev,
-      location: {
-        left,
-        top,
+      style: {
+        ...prev.style,
+        ...componentLocation,
       },
     }));
-  };
-
-  const handleDragEnd = (): void => {
-    setComponentInformation((prev) => ({
-      ...prev,
-      isDragging: false,
-    }));
-  };
-
+    
+    return () => document.removeEventListener("mousemove", handleDragMove);
+  }, [handleDragMove]);
+  
   return (
     <Div 
       onMouseDown={handleDragStart} 
-      onMouseMove={handleDragMove} 
       onMouseUp={handleDragEnd}
-      style={componentInfomation.location}
+      style={componentInformation.style}
     >
     </Div>
   );
@@ -87,6 +52,7 @@ const Div = styled.div`
   width: 30px;
   height: 30px;
   background-color: blue;
+  position: absolute;
 `;
 
 export default Dummy;
