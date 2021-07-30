@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
 import { ComponentStyle } from "../../types/ui";
@@ -41,6 +41,89 @@ const ResizeDummy: React.FC<UseResizeProps> = ({
     },
   });
 
+  useEffect(() => {
+    const handleMouseMove = (ev: MouseEvent): void => {
+      ev.stopPropagation();
+      
+      const { clientX, clientY } = ev;
+      const {
+        style: {
+          width, 
+          height, 
+          top, 
+          left, 
+        },
+        currentX, 
+        currentY,
+        direction,
+      } = componentInformation;
+      
+      const deltaX = clientX - currentX;
+      const deltaY = clientY - currentY;
+
+      let newLeft: number = left;
+      let newTop: number = top;
+      let newWidth: number = width;
+      let newHeight: number = height;
+
+      switch (direction) {
+        case DIRECTION.TOP_LEFT:
+          newLeft += deltaX;
+          newTop += deltaY;
+          newWidth -= deltaX;
+          newHeight -= deltaY;
+
+          break;
+        case DIRECTION.TOP_RIGHT:
+          newTop += deltaY;
+          newWidth += deltaX;
+          newHeight -= deltaY;
+
+          break;
+        case DIRECTION.BOTTOM_LEFT: 
+          newLeft += deltaX;
+          newWidth -= deltaX;
+          newHeight += deltaY;
+
+          break;
+        case DIRECTION.BOTTOM_RIGHT:
+          newWidth += deltaX;
+          newHeight += deltaY;
+
+          break;
+        default:
+          break;
+      }
+      
+      if (newWidth < minWidth || newHeight < minHeight) {
+        return;
+      }
+
+      setComponentInformation((prev) => ({
+        ...prev,
+        style: {
+          width: newWidth,
+          height: newHeight,
+          left: newLeft,
+          top: newTop,
+        },
+        currentX: clientX,
+        currentY: clientY,
+      }));
+    };
+
+    if (!componentInformation.isResizing) {
+      return;
+    }
+
+    document.addEventListener("mousemove", handleMouseMove);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, [componentInformation, minHeight, minWidth]);
+
+
   const handleMouseDown = (ev: React.MouseEvent<HTMLDivElement>): void => {
     ev.preventDefault();
     
@@ -64,76 +147,6 @@ const ResizeDummy: React.FC<UseResizeProps> = ({
     }));
   };
 
-  const handleMouseMove = (ev: React.MouseEvent<HTMLDivElement>): void => {
-    ev.stopPropagation();
-    
-    const { clientX, clientY } = ev;
-    const {
-      style: {
-        width, 
-        height, 
-        top, 
-        left, 
-      },
-      currentX, 
-      currentY,
-      direction,
-    } = componentInformation;
-    
-    const deltaX = clientX - currentX;
-    const deltaY = clientY - currentY;
-
-    let newLeft: number = left;
-    let newTop: number = top;
-    let newWidth: number = width;
-    let newHeight: number = height;
-
-    switch (direction) {
-      case DIRECTION.TOP_LEFT:
-        newLeft += deltaX;
-        newTop += deltaY;
-        newWidth -= deltaX;
-        newHeight -= deltaY;
-
-        break;
-      case DIRECTION.TOP_RIGHT:
-        newTop += deltaY;
-        newWidth += deltaX;
-        newHeight -= deltaY;
-
-        break;
-      case DIRECTION.BOTTOM_LEFT: 
-        newLeft += deltaX;
-        newWidth -= deltaX;
-        newHeight += deltaY;
-
-        break;
-      case DIRECTION.BOTTOM_RIGHT:
-        newWidth += deltaX;
-        newHeight += deltaY;
-
-        break;
-      default:
-        break;
-    }
-    
-    if (newWidth < minWidth || newHeight < minHeight) {
-      return;
-    }
-
-    setComponentInformation((prev) => ({
-      ...prev,
-      style: {
-        width: newWidth,
-        height: newHeight,
-        left: newLeft,
-        top: newTop,
-      },
-      currentX: clientX,
-      currentY: clientY,
-    }));
-  };
-
   const handleMouseUp = (): void => {
     setComponentInformation((prev) => ({
       ...prev,
@@ -153,7 +166,6 @@ const ResizeDummy: React.FC<UseResizeProps> = ({
       top={componentInformation.style.top}
       left={componentInformation.style.left}
       onMouseUp={handleMouseUp}
-      onMouseMove={handleMouseMove}
     >
       <ResizeHandlersWrapper>
         {DIRECTIIONS.map((item) => (
