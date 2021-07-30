@@ -26,10 +26,7 @@ const ResizeDummy: React.FC<ResizeProps> = ({
     handleMouseDown,
     handleMouseUp,
     isResizing,
-  } = useResize({
-    componentStyle,
-    onResize: setComponentStyle,
-  });
+  } = useResize({ componentStyle, onResize: setComponentStyle });
 
   useEffect(() => {
     if (!isResizing) {
@@ -37,11 +34,13 @@ const ResizeDummy: React.FC<ResizeProps> = ({
     }
 
     document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
 
     return () => {
       document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [handleMouseMove, isResizing]);
+  }, [handleMouseMove, isResizing, handleMouseUp]);
 
   return (
     <Wrapper
