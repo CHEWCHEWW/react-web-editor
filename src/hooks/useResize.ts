@@ -59,10 +59,6 @@ const useResize = ({ componentStyle, onResize }: UseResizeProps): UseResizeRetur
       return;
     }
 
-    if (width === newWidth && height === newHeight && newLeft === left && newTop === top ) {
-      return;
-    }
-
     onResize((prev) => ({
       ...prev,
       width: newWidth,
