@@ -116,7 +116,7 @@ const ResizeDummy: React.FC<UseResizeProps> = ({
       default:
         break;
     }
-    console.log(newWidth, newHeight);
+    
     if (newWidth < minWidth || newHeight < minHeight) {
       return;
     }
@@ -148,10 +148,10 @@ const ResizeDummy: React.FC<UseResizeProps> = ({
 
   return (
     <Wrapper
-      width={width}
-      height={height}
-      top={top}
-      left={left}
+      width={componentInformation.style.width}
+      height={componentInformation.style.height}
+      top={componentInformation.style.top}
+      left={componentInformation.style.left}
       onMouseUp={handleMouseUp}
       onMouseMove={handleMouseMove}
     >
@@ -175,6 +175,7 @@ const Wrapper = styled.div.attrs<ComponentStyle>(
   })
 )<ComponentStyle>`
   position: absolute;
+  background-color: skyblue;
 `;
 
 const ResizeHandlersWrapper = styled.div`
