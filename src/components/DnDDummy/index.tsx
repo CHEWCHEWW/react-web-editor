@@ -1,20 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-interface ListContent {
-  number: string
-  title: string
-}
+import { DragListContent } from "../../types/ui";
+import useDragAndDrop from "../..//hooks/useDragAndDrop";
 
-interface MouseEventInfo {
-  startPoint: number | null
-  endPoint: number | null
-  isDragging: boolean
-  originalOrder: ListContent[]
-  updatedOrder: ListContent[]
-}
-
-const items: ListContent[] = [
+const items: DragListContent[] = [
   { number: "1", title: "happy" },
   { number: "2", title: "dummy" },
   { number: "3", title: "dum" },
@@ -23,75 +13,19 @@ const items: ListContent[] = [
 ];
 
 const DnDDummy = (): React.ReactElement => {
-  const [list, setList] = useState<ListContent[]>(items);
-  const [currentState, setCurrentState] = useState<MouseEventInfo>({
-    startPoint: null,
-    endPoint: null,
-    isDragging: false,
-    originalOrder: [],
-    updatedOrder: [],
-  });
-
-  const handleDragStart = (ev: React.MouseEvent): void => {
-    const initialPosition = Number(ev.currentTarget.id);
-
-    setCurrentState((prev) => ({
-      ...prev,
-      startPoint: initialPosition,
-      isDragging: true,
-      originalOrder: list,
-    }));
-  };
-
-  const handleDragOver = (ev: React.MouseEvent): void => {
-    ev.preventDefault();
-    // 컴포넌트로 전환 후 타입 지정 필요, enum 컨벤션 찾아보기
-    const oldList = currentState.originalOrder;
-    const draggedFrom = currentState.startPoint;
-    const draggedTo = Number(ev.currentTarget.id);
-
-    if (!draggedFrom && draggedFrom !== 0) {
-      return;
-    }
-    
-    const draggedItem = oldList[draggedFrom];
-    const remainingItems = oldList.filter((_, index) => index !== draggedFrom);
-
-    const newList = [
-      ...remainingItems.slice(0, draggedTo),
-      draggedItem,
-      ...remainingItems.slice(draggedTo)
-    ];
-    
-    if (draggedTo !== currentState.endPoint) {
-      setCurrentState((prev) => ({
-        ...prev,
-        updatedOrder: newList,
-        endPoint: draggedTo,
-      }));
-    }
-  };
-
-  const handleDropDown = (): void => {
-    setList(currentState.updatedOrder);
-    setCurrentState((prev) => ({
-      ...prev,
-      startPoint: null,
-      endPoint: null,
-    }));
-  };
-
-  const handleDragLeave = (): void => {
-    setCurrentState((prev) => ({
-      ...prev,
-      endPoint: null,
-    }));
-  };
+  const { 
+    handleDragStart, 
+    handleDragOver, 
+    handleDropDown, 
+    handleDragLeave, 
+    dragList,
+    endPoint,
+  } = useDragAndDrop({ items });
 
   return (
     <section>
-      <ul>
-        {list.map((item, index) => (
+      <Wrapper>
+        {dragList.map((item, index) => (
           <Block 
             key={index}
             id={String(index)}
@@ -100,21 +34,29 @@ const DnDDummy = (): React.ReactElement => {
             onDragOver={handleDragOver}
             onDrop={handleDropDown}
             onDragLeave={handleDragLeave}
-            className={currentState.endPoint === index ? "isDropDown" : ""}
+            className={endPoint === index ? "isDropDown" : ""}
           >
             <span>{item.number}</span>
             <p>{item.title}</p>
           </Block>
         ))}
-      </ul>
+      </Wrapper>
     </section>
   );
 };
 
-const Block = styled.li`
+const Wrapper = styled.div`
+  display: flex;
+`;
+
+const Block = styled.div`
   display: flex;
   align-items: center;
   cursor: move;
+  width: 100px;
+  height: 100px;
+  background-color: pink;
+  margin: 0 auto;
 
   &.isDropDown {
     color: white;
