@@ -1,49 +1,179 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-import { ComponentLocation } from "../../types/ui";
-import { DIRECTIIONS } from "../../constants/location";
+import { ComponentStyle } from "../../types/ui";
+import { DIRECTIIONS, DIRECTION } from "../../constants/location";
 
-interface ComponentStyleInformation extends ComponentLocation {
-  width: number
-  height: number
+interface ComponentInformation {
+  style: ComponentStyle
+  isResizing: boolean
+  direction: string
+  isClicked: boolean
+  currentX: number
+  currentY: number
 }
 
-const ResizeDummy: React.FC<ComponentStyleInformation> = ({
+interface UseResizeProps extends ComponentStyle {
+  minWidth: number
+  minHeight: number
+  children?: React.ReactElement
+}
+
+const ResizeDummy: React.FC<UseResizeProps> = ({
   width,
   height,
   top,
   left,
+  minWidth = 1,
+  minHeight = 1,
 }): React.ReactElement => {
+  const [componentInformation, setComponentInformation] = useState<ComponentInformation>({
+    isClicked: false,
+    isResizing: false,
+    direction: "",
+    currentX: 0,
+    currentY: 0,
+    style: {
+      width,
+      height,
+      left,
+      top,
+    },
+  });
+
+  const handleMouseDown = (ev: React.MouseEvent<HTMLDivElement>): void => {
+    ev.preventDefault();
+    
+    const { 
+      currentTarget: {
+        className,
+      },
+      clientX, 
+      clientY,
+    } = ev;
+  
+    setComponentInformation((prev) => ({
+      ...prev,
+      isResizing: true,
+      direction: className,
+      style: {
+        ...prev.style,
+      },
+      currentX: clientX,
+      currentY: clientY, 
+    }));
+  };
+
+  const handleMouseMove = (ev: React.MouseEvent<HTMLDivElement>): void => {
+    ev.stopPropagation();
+    
+    const { clientX, clientY } = ev;
+    const {
+      style: {
+        width, 
+        height, 
+        top, 
+        left, 
+      },
+      currentX, 
+      currentY,
+      direction,
+    } = componentInformation;
+    
+    const deltaX = clientX - currentX;
+    const deltaY = clientY - currentY;
+
+    let newLeft: number = left;
+    let newTop: number = top;
+    let newWidth: number = width;
+    let newHeight: number = height;
+
+    switch (direction) {
+      case DIRECTION.TOP_LEFT:
+        newLeft += deltaX;
+        newTop += deltaY;
+        newWidth -= deltaX;
+        newHeight -= deltaY;
+
+        break;
+      case DIRECTION.TOP_RIGHT:
+        newTop += deltaY;
+        newWidth += deltaX;
+        newHeight -= deltaY;
+
+        break;
+      case DIRECTION.BOTTOM_LEFT: 
+        newLeft += deltaX;
+        newWidth -= deltaX;
+        newHeight += deltaY;
+
+        break;
+      case DIRECTION.BOTTOM_RIGHT:
+        newWidth += deltaX;
+        newHeight += deltaY;
+
+        break;
+      default:
+        break;
+    }
+    console.log(newWidth, newHeight);
+    if (newWidth < minWidth || newHeight < minHeight) {
+      return;
+    }
+
+    setComponentInformation((prev) => ({
+      ...prev,
+      style: {
+        width: newWidth,
+        height: newHeight,
+        left: newLeft,
+        top: newTop,
+      },
+      currentX: clientX,
+      currentY: clientY,
+    }));
+  };
+
+  const handleMouseUp = (): void => {
+    setComponentInformation((prev) => ({
+      ...prev,
+      style: {
+        ...prev.style,
+      },
+      direction: "",
+      isResizing: false,
+      isClicked: true,
+    }));
+  };
+
   return (
     <Wrapper
       width={width}
       height={height}
       top={top}
       left={left}
+      onMouseUp={handleMouseUp}
+      onMouseMove={handleMouseMove}
     >
       <ResizeHandlersWrapper>
         {DIRECTIIONS.map((item) => (
-          <div key={item} className={item} />
+          <div key={item} className={item} onMouseDown={handleMouseDown} />
         ))}
       </ResizeHandlersWrapper>
     </Wrapper>
   );
 };
 
-const Wrapper =
-  styled.div.attrs <
-  ComponentStyleInformation >
-  (({ width, height, left, top }) => ({
+const Wrapper = styled.div.attrs<ComponentStyle>(
+  ({ width, height, left, top }) => ({
     style: {
       top: `${top}px`,
       left: `${left}px`,
       width: `${width}px`,
       height: `${height}px`,
     },
-  })) <
-  ComponentStyleInformation >
-  `
+  })
+)<ComponentStyle>`
   position: absolute;
 `;
 
