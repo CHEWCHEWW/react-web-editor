@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { DragListContent } from "../../types/ui";
@@ -12,7 +12,7 @@ const items: DragListContent[] = [
   { number: "5", title: "happyppy" }
 ];
 
-const DnDDummy = (): React.ReactElement => {
+const DnDDummy: React.FC = (): React.ReactElement => {
   const { 
     handleDragStart, 
     handleDragOver, 
