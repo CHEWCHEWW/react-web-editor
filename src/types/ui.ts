@@ -14,3 +14,9 @@ export interface DragListContent {
   content?: string
   type?: string
 }
+
+export interface ResizeProps extends ComponentStyle {
+  minWidth: number
+  minHeight: number
+  children?: React.ReactElement
+}

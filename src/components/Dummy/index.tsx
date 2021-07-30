@@ -13,11 +13,9 @@ const Dummy: React.FC<ComponentLocation> = ({ left, top }): React.ReactElement =
     isDragging,
   } = useDraggable({ left, top });
 
-  const [componentInformation, setComponentInformation] = useState({
-    style: {
-      left,
-      top,
-    },
+  const [componentInformation, setComponentInformation] = useState<ComponentLocation>({
+    left,
+    top,
   });
 
   useEffect(() => {
@@ -29,10 +27,7 @@ const Dummy: React.FC<ComponentLocation> = ({ left, top }): React.ReactElement =
     
     setComponentInformation((prev) => ({
       ...prev,
-      style: {
-        ...prev.style,
-        ...componentLocation,
-      },
+      ...componentLocation,
     }));
     
     return () => document.removeEventListener("mousemove", handleDragMove);
@@ -42,7 +37,7 @@ const Dummy: React.FC<ComponentLocation> = ({ left, top }): React.ReactElement =
     <Div 
       onMouseDown={handleDragStart} 
       onMouseUp={handleDragEnd}
-      style={componentInformation.style}
+      style={componentInformation}
     >
     </Div>
   );
