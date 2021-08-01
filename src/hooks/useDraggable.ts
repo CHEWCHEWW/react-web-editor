@@ -10,14 +10,12 @@ interface ComponentInfomation {
   currentX: number
   currentY: number
   isDragging: boolean
-  // location: ComponentLocation
 }
 
 interface UseDraggableReturns {
   handleDragEnd: () => void
   handleDragMove: (ev: MouseEvent) => void 
   handleDragStart: (ev: React.MouseEvent<HTMLDivElement>) => void
-  // componentLocation: ComponentLocation,
   isDragging: boolean,
 }
 
@@ -30,12 +28,6 @@ const useDraggable = ({ left, top, onDrag }: UseDraggableProps): UseDraggableRet
   
   const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
     const { clientX, clientY } = ev;
-    // const { 
-    //   location: { 
-    //     left, 
-    //     top,
-    //   },
-    // } = componentInfomation;
 
     const currentX = clientX - left;
     const currentY = clientY - top;

@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
-import { ComponentStyle, ResizeProps } from "../../types/ui";
+import { ComponentStyle, EditorProps } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
+import useDraggable from "../../hooks/useDraggable";
 import useResize from "../../hooks/useResize";
 
-const ResizeDummy: React.FC<ResizeProps> = ({
+const Editor: React.FC<EditorProps> = ({ 
   width,
   height,
   top,
   left,
-  minWidth = 1,
-  minHeight = 1,
+  minWidth,
+  minHeight,
+  children,
 }): React.ReactElement => {
-  const [componentStyle, setComponentStyle] = useState<ResizeProps>({
+  const [componentStyle, setComponentStyle] = useState<EditorProps>({
     width,
     height,
     top,
@@ -21,12 +23,34 @@ const ResizeDummy: React.FC<ResizeProps> = ({
     minWidth,
     minHeight,
   });
+
   const {
     handleMouseMove,
     handleMouseDown,
     handleMouseUp,
     isResizing,
   } = useResize({ componentStyle, onResize: setComponentStyle });
+
+  const {
+    handleDragStart,
+    handleDragEnd,
+    handleDragMove,
+    isDragging,
+  } = useDraggable({ 
+    left: componentStyle.left, 
+    top: componentStyle.top, 
+    onDrag: setComponentStyle 
+  });
+
+  useEffect(() => {
+    if (!isDragging) {
+      return;
+    }
+
+    document.addEventListener("mousemove", handleDragMove);
+
+    return () => document.removeEventListener("mousemove", handleDragMove);
+  }, [handleDragMove, isDragging]);
 
   useEffect(() => {
     if (!isResizing) {
@@ -50,14 +74,27 @@ const ResizeDummy: React.FC<ResizeProps> = ({
       left={componentStyle.left}
       onMouseUp={handleMouseUp}
     >
+      <DraggableHandler
+        onMouseDown={handleDragStart}
+        onMouseUp={handleDragEnd}
+      />
       <ResizeHandlersWrapper>
         {DIRECTIIONS.map((item) => (
           <div key={item} className={item} onMouseDown={handleMouseDown} />
         ))}
       </ResizeHandlersWrapper>
+      {children}
     </Wrapper>
   );
 };
+
+const DraggableHandler = styled.div`
+  width: 100%;
+  height: 100%;
+  border: 1px solid red;
+  position: absolute;
+  cursor: move;
+`;
 
 const Wrapper = styled.div.attrs<ComponentStyle>(
   ({ width, height, left, top }) => ({
@@ -107,4 +144,4 @@ const ResizeHandlersWrapper = styled.div`
   }
 `;
 
-export default ResizeDummy;
+export default Editor;

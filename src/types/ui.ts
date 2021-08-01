@@ -20,3 +20,14 @@ export interface ResizeProps extends ComponentStyle {
   minHeight: number
   children?: React.ReactElement
 }
+
+export interface EditorProps {
+  width: number
+  height: number
+  top: number
+  left: number
+  minWidth: number
+  minHeight: number
+}
+
+export type Dispatcher<S> = React.Dispatch<React.SetStateAction<S>>;
