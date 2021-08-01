@@ -23,6 +23,7 @@ const Editor: React.FC<EditorProps> = ({
     minWidth,
     minHeight,
   });
+  const [isClicked, setIsClicked] = useState(false);
 
   const {
     handleMouseMove,
@@ -66,6 +67,10 @@ const Editor: React.FC<EditorProps> = ({
     };
   }, [handleMouseMove, isResizing, handleMouseUp]);
 
+  const handleComponentClick = (): void => {
+    setIsClicked((prev) => !prev);
+  };
+
   return (
     <Wrapper
       width={componentStyle.width}
@@ -73,16 +78,21 @@ const Editor: React.FC<EditorProps> = ({
       top={componentStyle.top}
       left={componentStyle.left}
       onMouseUp={handleMouseUp}
+      onClick={handleComponentClick}
     >
-      <DraggableHandler
-        onMouseDown={handleDragStart}
-        onMouseUp={handleDragEnd}
-      />
-      <ResizeHandlersWrapper>
-        {DIRECTIIONS.map((item) => (
-          <div key={item} className={item} onMouseDown={handleMouseDown} />
-        ))}
-      </ResizeHandlersWrapper>
+      {isClicked && 
+        <>
+          <DraggableHandler
+            onMouseDown={handleDragStart}
+            onMouseUp={handleDragEnd}
+          />
+          <ResizeHandlersWrapper>
+            {DIRECTIIONS.map((item) => (
+              <div key={item} className={item} onMouseDown={handleMouseDown} />
+            ))}
+          </ResizeHandlersWrapper>
+        </>
+      }
       {children}
     </Wrapper>
   );
