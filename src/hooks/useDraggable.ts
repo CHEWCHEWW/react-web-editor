@@ -1,41 +1,41 @@
 import React, { useCallback, useState } from "react";
 
-import { ComponentLocation } from "../types/ui";
+import { ComponentLocation, Dispatcher, EditorProps } from "../types/ui";
+
+interface UseDraggableProps extends ComponentLocation {
+  onDrag: Dispatcher<EditorProps>
+}
 
 interface ComponentInfomation {
   currentX: number
   currentY: number
   isDragging: boolean
-  location: ComponentLocation
+  // location: ComponentLocation
 }
 
 interface UseDraggableReturns {
   handleDragEnd: () => void
   handleDragMove: (ev: MouseEvent) => void 
   handleDragStart: (ev: React.MouseEvent<HTMLDivElement>) => void
-  componentLocation: ComponentLocation,
+  // componentLocation: ComponentLocation,
   isDragging: boolean,
 }
 
-const useDraggable = ({ left, top }: ComponentLocation): UseDraggableReturns => {
+const useDraggable = ({ left, top, onDrag }: UseDraggableProps): UseDraggableReturns => {
   const [componentInfomation, setComponentInformation] = useState<ComponentInfomation>({
     currentX: left,
     currentY: top,
     isDragging: false,
-    location: {
-      left,
-      top,
-    }
   });
   
   const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
     const { clientX, clientY } = ev;
-    const { 
-      location: { 
-        left, 
-        top,
-      },
-    } = componentInfomation;
+    // const { 
+    //   location: { 
+    //     left, 
+    //     top,
+    //   },
+    // } = componentInfomation;
 
     const currentX = clientX - left;
     const currentY = clientY - top;
@@ -59,15 +59,13 @@ const useDraggable = ({ left, top }: ComponentLocation): UseDraggableReturns => 
 
     const left = clientX - currentX;
     const top = clientY - currentY;
-    
-    setComponentInformation((prev) => ({
+
+    onDrag((prev) => ({
       ...prev,
-      location: {
-        left,
-        top,
-      },
+      left,
+      top,
     }));
-  }, [componentInfomation]);
+  }, [onDrag, componentInfomation]);
 
   const handleDragEnd = (): void => {
     setComponentInformation((prev) => ({
@@ -80,7 +78,6 @@ const useDraggable = ({ left, top }: ComponentLocation): UseDraggableReturns => 
     handleDragEnd, 
     handleDragMove, 
     handleDragStart,
-    componentLocation: componentInfomation.location,
     isDragging: componentInfomation.isDragging,
   };
 };
