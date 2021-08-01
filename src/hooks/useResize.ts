@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 
 import { changeComponentLocationByHandler } from "../utils/ui";
-import { ResizeProps } from "../types/ui";
+import { ResizeProps, Dispatcher } from "../types/ui";
 
 interface ComponentInformation {
   isResizing: boolean
@@ -10,8 +10,6 @@ interface ComponentInformation {
   currentX: number
   currentY: number
 }
-
-type Dispatcher<S> = React.Dispatch<React.SetStateAction<S>>;
 
 interface UseResizeProps {
   componentStyle: ResizeProps
