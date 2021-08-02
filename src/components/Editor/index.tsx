@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import CoordinatesTag from "../CoordinatesTag";
 import { ComponentStyle, EditorProps } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
+import GuideLine from "../GuideLine";
 import useDraggable from "../../hooks/useDraggable";
 import useResize from "../../hooks/useResize";
 
@@ -82,6 +84,7 @@ const Editor: React.FC<EditorProps> = ({
     >
       {isClicked && 
         <>
+          <CoordinatesTag top={componentStyle.top} left={componentStyle.left} />
           <DraggableHandler
             onMouseDown={handleDragStart}
             onMouseUp={handleDragEnd}
@@ -91,6 +94,12 @@ const Editor: React.FC<EditorProps> = ({
               <div key={item} className={item} onMouseDown={handleMouseDown} />
             ))}
           </ResizeHandlersWrapper>
+          <GuideLine 
+            width={componentStyle.width}
+            height={componentStyle.height}
+            top={componentStyle.top}
+            left={componentStyle.left}
+          />
         </>
       }
       {children}

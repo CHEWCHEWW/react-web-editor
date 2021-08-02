@@ -8,6 +8,16 @@ interface NewComponentStyle {
   newHeight: number
 }
 
+interface ComponentCenter {
+  centerX: number
+  centerY: number
+}
+
+interface ComponentLocatedCenter {
+  isCenterX: boolean
+  isCenterY: boolean
+}
+
 export const generateDraggedList = (items: DragListContent[], startPoint: number, endPoint: number): DragListContent[] => {
   const draggedItem = items[startPoint];
   const remainingItems = items.filter((_, index) => index !== startPoint);
@@ -67,5 +77,48 @@ export const changeComponentLocationByHandler = (
     newTop,
     newWidth,
     newHeight,
+  };
+};
+
+export const calculateCenter = (
+  width: number, 
+  height: number, 
+  top: number, 
+  left: number,
+): ComponentCenter => {
+  const centerX = left + (width / 2);
+  const centerY = top + (height / 2);
+
+  return {
+    centerX,
+    centerY,
+  };
+};
+
+export const isLocatedCenter = (
+  width: number, 
+  height: number, 
+  top: number, 
+  left: number,
+): ComponentLocatedCenter => {
+  const screenWidth = window.screen.width;
+  const screenHeight = window.screen.height;
+
+  const { centerX, centerY } = calculateCenter(width, height, top, left);
+
+  let isCenterX = false;
+  let isCenterY = false;
+
+  if (screenWidth / 2 === centerX) {
+    isCenterX = true;
+  }
+
+  if (screenHeight / 2 === centerY) {
+    isCenterY = true;
+  }
+
+  return {
+    isCenterX,
+    isCenterY,
   };
 };
