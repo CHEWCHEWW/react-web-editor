@@ -34,7 +34,7 @@ const useDragAndDrop = ({ items }: UseDragAndDropProps): UseDragAndDropReturns =
     updatedOrder: [],
   });
 
-  const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
+  const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {    
     const initialPosition = Number(ev.currentTarget.id);
 
     setDragListInformation((prev) => ({

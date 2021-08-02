@@ -6,12 +6,11 @@ interface CoordinatesTagProps {
   top: number
 }
 
-const CoordinatesTag = ({ left, top }: CoordinatesTagProps): React.ReactElement => {
-  return (
-    <Tag>
-      {`x: ${left} y: ${top}`}
-    </Tag>
-  );
+const CoordinatesTag: React.FC<CoordinatesTagProps> = ({
+  left,
+  top,
+}): React.ReactElement => {
+  return <Tag>{`x: ${left} y: ${top}`}</Tag>;
 };
 
 const Tag = styled.div`
