@@ -11,38 +11,43 @@ interface LineProps {
   width?: number
 }
 
-const GuideLine: React.FC<ComponentStyle> = ({
+interface GuideLine extends ComponentStyle {
+  boardWidth?: number
+  boardHeight?: number
+}
+
+const GuideLine: React.FC<GuideLine> = ({
   left,
   top,
   width,
   height,
+  boardWidth = window.screen.width,
+  boardHeight = window.screen.height,
 }): React.ReactElement => {
-  const screenWidth = window.screen.width;
-  const screenHeight = window.screen.height;
-
   const { centerX, centerY } = calculateCenter(width, height, top, left);
   const { isCenterX, isCenterY } = isLocatedCenter(width, height, top, left);
-  console.log(isCenterX, isCenterY, centerX, centerY, left, top);
+  
   return (
     <>
-      {!isCenterX && 
-        <Line left={centerX} height={screenHeight} />
+      {isCenterX && 
+        <Line left={centerX} height={boardHeight} />
       }
-      {!isCenterY && 
-        <Line top={centerY} width={screenWidth} />
+      {isCenterY && 
+        <Line top={centerY} width={boardWidth} />
       }
     </>
   );
 };
 
 const Line = styled.div<LineProps>`
-  left: ${({ left }) => left ? left : 0}px;
   top: ${({ top }) => top ? top : 0}px;;
+  left: ${({ left }) => left ? left : 0}px;
   width: ${({ width }) => width ? width : 0}px;
   height: ${({ height }) => height ? height: 0}px;
-  border: 1px solid black;
   position: fixed;
+  border: 1px solid red;
   z-index: 100;
+  opacity: 0.5;
 `;
 
 export default GuideLine;

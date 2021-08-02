@@ -4,15 +4,13 @@ import styled from "styled-components";
 import { DragListContent } from "../../types/ui";
 import useDragAndDrop from "../../hooks/useDragAndDrop";
 
-const items: DragListContent[] = [
-  { number: "1", title: "happy" },
-  { number: "2", title: "dummy" },
-  { number: "3", title: "dum" },
-  { number: "4", title: "dumdumdum" },
-  { number: "5", title: "happyppy" }
-];
+interface DragAndDropTableProps {
+  items: DragListContent[]
+}
 
-const DragAndDropTable: React.FC = (): React.ReactElement => {
+const DragAndDropTable: React.FC<DragAndDropTableProps> = ({ 
+  items,
+}): React.ReactElement => {
   const { 
     handleDragStart, 
     handleDragOver, 
