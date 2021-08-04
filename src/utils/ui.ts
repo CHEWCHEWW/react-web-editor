@@ -23,17 +23,6 @@ interface ComponentPosition extends ComponentLocation {
   right: number
 }
 
-export const generateDraggedList = (items: DragListContent[], startPoint: number, endPoint: number): DragListContent[] => {
-  const draggedItem = items[startPoint];
-  const remainingItems = items.filter((_, index) => index !== startPoint);
-
-  return [
-    ...remainingItems.slice(0, endPoint),
-    draggedItem,
-    ...remainingItems.slice(endPoint)
-  ];
-};
-
 const getBoundingZone = ({ 
   left, 
   top, 
@@ -68,23 +57,34 @@ export const getBoundPosition = (
     bottom: currentBottom 
   } = getBoundingZone({ left: currentX, top: currentY, width, height});
 
-  if (currentX <= left) {
+  if (currentX < left) {
     currentX = left;
   }
 
-  if (currentY <= top) {
+  if (currentY < top) {
     currentY = top;
   }
 
-  if (currentRight >= right) {
+  if (currentRight > right) {
     currentX = right - width;
   }
 
-  if (currentBottom >= bottom) {
+  if (currentBottom > bottom) {
     currentY = bottom - height;
   }
 
   return { left: currentX, top: currentY };
+};
+
+export const generateDraggedList = (items: DragListContent[], startPoint: number, endPoint: number): DragListContent[] => {
+  const draggedItem = items[startPoint];
+  const remainingItems = items.filter((_, index) => index !== startPoint);
+
+  return [
+    ...remainingItems.slice(0, endPoint),
+    draggedItem,
+    ...remainingItems.slice(endPoint)
+  ];
 };
 
 export const changeComponentLocationByHandler = (
@@ -142,21 +142,21 @@ export const changeComponentLocationByHandler = (
   
   const { right, bottom } = getBoundingZone(parentLocation);
 
-  if (newLeft <= parentLocation.left) {
+  if (newLeft < parentLocation.left) {
     newLeft = parentLocation.left;
     newWidth -= parentLocation.left;
   }
 
-  if (newTop <= parentLocation.top) {
+  if (newTop < parentLocation.top) {
     newTop = parentLocation.top;
     newHeight -= parentLocation.top;
   }
 
-  if (newLeft + newWidth >= right) {
+  if (newLeft + newWidth > right) {
     newWidth = right - newLeft;
   }
 
-  if (newTop + newHeight >= bottom) {
+  if (newTop + newHeight > bottom) {
     newHeight = bottom - newTop;
   }
 

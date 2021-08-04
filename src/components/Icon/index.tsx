@@ -10,8 +10,13 @@ const Icon: React.FC = ({ children }): React.ReactElement => {
 };
 
 const Wrapper = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 25px;
+  height: 25px;
+  top: 0px;
+  right: -28px;
+  background-color: #F8F8F6;
+  position: absolute;
+  border-radius: 6px;
 `;
 
 export default Icon;
