@@ -5,6 +5,7 @@ import CoordinatesTag from "../CoordinatesTag";
 import { ComponentStyle, EditorProps } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
 import GuideLine from "../GuideLine";
+import Icon from "../Icon";
 import useDraggable from "../../hooks/useDraggable";
 import useResize from "../../hooks/useResize";
 
@@ -105,6 +106,7 @@ const Editor: React.FC<EditorProps> = ({
             top={componentStyle.top}
             left={componentStyle.left}
           />
+          <Icon />
         </>
       }
       {children}
