@@ -1,9 +1,11 @@
 import React, { useCallback, useState } from "react";
 
-import { ComponentLocation, Dispatcher, EditorProps } from "../types/ui";
+import { getBoundPosition } from "../utils/ui";
+import { ComponentLocation, ComponentStyle, Dispatcher, EditorProps } from "../types/ui";
 
 interface UseDraggableProps extends ComponentLocation {
   onDrag: Dispatcher<EditorProps>
+  dragBoardOption?: ComponentStyle
 }
 
 interface ComponentInfomation {
@@ -19,7 +21,12 @@ interface UseDraggableReturns {
   isDragging: boolean,
 }
 
-const useDraggable = ({ left, top, onDrag }: UseDraggableProps): UseDraggableReturns => {
+const useDraggable = ({ 
+  left, 
+  top, 
+  onDrag, 
+  dragBoardOption,
+}: UseDraggableProps): UseDraggableReturns => {
   const [componentInfomation, setComponentInformation] = useState<ComponentInfomation>({
     currentX: left,
     currentY: top,
@@ -28,7 +35,7 @@ const useDraggable = ({ left, top, onDrag }: UseDraggableProps): UseDraggableRet
   
   const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
     const { clientX, clientY } = ev;
-
+    
     const currentX = clientX - left;
     const currentY = clientY - top;
     
@@ -49,15 +56,20 @@ const useDraggable = ({ left, top, onDrag }: UseDraggableProps): UseDraggableRet
 
     const { clientX, clientY } = ev;
 
-    const left = clientX - currentX;
-    const top = clientY - currentY;
+    const { left, top } = getBoundPosition(
+      clientX,
+      clientY,
+      currentX,
+      currentY,
+      dragBoardOption,
+    );
 
     onDrag((prev) => ({
       ...prev,
       left,
       top,
     }));
-  }, [onDrag, componentInfomation]);
+  }, [onDrag, componentInfomation, dragBoardOption]);
 
   const handleDragEnd = (): void => {
     setComponentInformation((prev) => ({
