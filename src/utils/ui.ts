@@ -1,5 +1,5 @@
 import { DIRECTION } from "../constants/location";
-import { DragListContent } from "../types/ui";
+import { ComponentLocation ,ComponentStyle, DragListContent } from "../types/ui";
 
 interface NewComponentStyle {
   newLeft: number
@@ -18,6 +18,11 @@ interface ComponentLocatedCenter {
   isCenterY: boolean
 }
 
+interface ComponentPosition extends ComponentLocation {
+  bottom: number
+  right: number
+}
+
 export const generateDraggedList = (items: DragListContent[], startPoint: number, endPoint: number): DragListContent[] => {
   const draggedItem = items[startPoint];
   const remainingItems = items.filter((_, index) => index !== startPoint);
@@ -27,6 +32,53 @@ export const generateDraggedList = (items: DragListContent[], startPoint: number
     draggedItem,
     ...remainingItems.slice(endPoint)
   ];
+};
+
+const getBoundingZone = ({ 
+  left, 
+  top, 
+  width, 
+  height 
+}: ComponentStyle): ComponentPosition => {
+  const right = left + width;
+  const bottom = top + height;
+
+  return { left, top, right, bottom };
+};
+
+export const getBoundPosition = (
+  clientX: number, 
+  clientY: number, 
+  x: number, 
+  y: number,
+  parentLocation?: ComponentStyle, 
+): ComponentLocation => {
+  let currentX: number = clientX - x;
+  let currentY: number = clientY - y;
+
+  if (!parentLocation) {
+    return { left: currentX, top: currentY };
+  }
+
+  const { left, top, right, bottom } = getBoundingZone(parentLocation);
+  
+  if (currentX < left) {
+    currentX = x;
+  }
+
+  if (currentY < top) {
+    currentY = y;
+  }
+
+  if (currentX > right) {
+    currentX = x;
+  }
+
+  if (currentY > bottom) {
+    currentY = y;
+  }
+
+  return { left: currentX, top: currentY };
 };
 
 export const changeComponentLocationByHandler = (

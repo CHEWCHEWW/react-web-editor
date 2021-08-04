@@ -15,6 +15,7 @@ const Editor: React.FC<EditorProps> = ({
   left,
   minWidth,
   minHeight,
+  parentStyle,
   children,
 }): React.ReactElement => {
   const [componentStyle, setComponentStyle] = useState<EditorProps>({
@@ -42,7 +43,8 @@ const Editor: React.FC<EditorProps> = ({
   } = useDraggable({ 
     left: componentStyle.left, 
     top: componentStyle.top, 
-    onDrag: setComponentStyle 
+    onDrag: setComponentStyle,
+    dragBoardOption: parentStyle,
   });
 
   useEffect(() => {

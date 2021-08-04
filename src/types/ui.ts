@@ -28,6 +28,7 @@ export interface EditorProps {
   left: number
   minWidth: number
   minHeight: number
+  parentStyle?: ComponentStyle
 }
 
 export type Dispatcher<S> = React.Dispatch<React.SetStateAction<S>>;
