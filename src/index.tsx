@@ -1,17 +1,7 @@
-import React from "react";
-import ReactDom from "react-dom";
-import { ThemeProvider } from "styled-components";
+export { default as useDragAndDrop } from "./hooks/useDragAndDrop";
+export { default as useDraggable } from "./hooks/useDraggable";
+export { default as useResize } from "./hooks/useResize";
 
-import App from "../src/components/App";
-import GlobalStyle from "./theme/GlobalStyle";
-import { theme } from "./theme/theme";
-
-ReactDom.render(
-  <>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </>,
-  document.getElementById("root")
-);
+export { default as Editor } from "./components/Editor";
+export { default as EditorBoard } from "./components/EditorBoard";
+export { default as DragAndDropTable } from "./components/DragAndDropTable";

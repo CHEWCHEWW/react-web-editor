@@ -9,9 +9,11 @@ const config: webpack.Configuration = {
   mode: "production",
   entry: "./src/index.tsx",
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "[name].[contenthash].js",
-    publicPath: "",
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].js",
+    publicPath: "/",
+    libraryExport: "default",
+    libraryTarget: "commonjs2"
   },
   module: {
     rules: [
