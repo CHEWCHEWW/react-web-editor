@@ -1,0 +1,9 @@
+# npm
+node_modules/
+
+# dev
+src
+.gitignore
+
+# GIT
+.git
