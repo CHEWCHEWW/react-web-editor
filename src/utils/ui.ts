@@ -42,7 +42,7 @@ const getBoundingZone = ({
 }: ComponentStyle): ComponentPosition => {
   const right = left + width;
   const bottom = top + height;
-
+  
   return { left, top, right, bottom };
 };
 
@@ -51,6 +51,8 @@ export const getBoundPosition = (
   clientY: number, 
   x: number, 
   y: number,
+  width: number,
+  height: number,
   parentLocation?: ComponentStyle, 
 ): ComponentLocation => {
   let currentX: number = clientX - x;
@@ -61,21 +63,25 @@ export const getBoundPosition = (
   }
 
   const { left, top, right, bottom } = getBoundingZone(parentLocation);
-  
-  if (currentX < left) {
-    currentX = x;
+  const { 
+    right: currentRight, 
+    bottom: currentBottom 
+  } = getBoundingZone({ left: currentX, top: currentY, width, height});
+
+  if (currentX <= left) {
+    currentX = left;
   }
 
-  if (currentY < top) {
-    currentY = y;
+  if (currentY <= top) {
+    currentY = top;
   }
 
-  if (currentX > right) {
-    currentX = x;
+  if (currentRight >= right) {
+    currentX = right - width;
   }
 
-  if (currentY > bottom) {
-    currentY = y;
+  if (currentBottom >= bottom) {
+    currentY = bottom - height;
   }
 
   return { left: currentX, top: currentY };

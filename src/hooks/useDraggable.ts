@@ -1,9 +1,9 @@
 import React, { useCallback, useState } from "react";
 
 import { getBoundPosition } from "../utils/ui";
-import { ComponentLocation, ComponentStyle, Dispatcher, EditorProps } from "../types/ui";
+import { ComponentStyle, Dispatcher, EditorProps } from "../types/ui";
 
-interface UseDraggableProps extends ComponentLocation {
+interface UseDraggableProps extends ComponentStyle {
   onDrag: Dispatcher<EditorProps>
   dragBoardOption?: ComponentStyle
 }
@@ -25,6 +25,8 @@ const useDraggable = ({
   left, 
   top, 
   onDrag, 
+  width,
+  height,
   dragBoardOption,
 }: UseDraggableProps): UseDraggableReturns => {
   const [componentInfomation, setComponentInformation] = useState<ComponentInfomation>({
@@ -61,15 +63,17 @@ const useDraggable = ({
       clientY,
       currentX,
       currentY,
+      width,
+      height,
       dragBoardOption,
     );
-
+    console.log(left, top);
     onDrag((prev) => ({
       ...prev,
       left,
       top,
     }));
-  }, [onDrag, componentInfomation, dragBoardOption]);
+  }, [onDrag, componentInfomation, dragBoardOption, height, width]);
 
   const handleDragEnd = (): void => {
     setComponentInformation((prev) => ({

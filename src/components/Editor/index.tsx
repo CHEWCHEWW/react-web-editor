@@ -41,8 +41,7 @@ const Editor: React.FC<EditorProps> = ({
     handleDragMove,
     isDragging,
   } = useDraggable({ 
-    left: componentStyle.left, 
-    top: componentStyle.top, 
+    ...componentStyle,
     onDrag: setComponentStyle,
     dragBoardOption: parentStyle,
   });
@@ -127,7 +126,7 @@ const Wrapper = styled.div.attrs<ComponentStyle>(
     },
   })
 )<ComponentStyle>`
-  position: absolute;
+  position: fixed;
   background-color: skyblue;
 `;
 
