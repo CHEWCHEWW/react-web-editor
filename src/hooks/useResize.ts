@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from "react";
 
 import { changeComponentLocationByHandler } from "../utils/ui";
-import { ResizeProps, Dispatcher } from "../types/ui";
+import { ComponentStyle ,Dispatcher, ResizeProps } from "../types/ui";
 
 interface ComponentInformation {
   isResizing: boolean
@@ -14,6 +14,7 @@ interface ComponentInformation {
 interface UseResizeProps {
   componentStyle: ResizeProps
   onResize: Dispatcher<ResizeProps>
+  resizeBoardOption?: ComponentStyle
 }
 
 interface UseResizeReturns {
@@ -23,7 +24,11 @@ interface UseResizeReturns {
   isResizing: boolean
 }
 
-const useResize = ({ componentStyle, onResize }: UseResizeProps): UseResizeReturns => {
+const useResize = ({ 
+  componentStyle, 
+  onResize, 
+  resizeBoardOption, 
+}: UseResizeProps): UseResizeReturns => {
   const [componentInformation, setComponentInformation] = useState<ComponentInformation>({
     isClicked: false,
     isResizing: false,
@@ -50,7 +55,8 @@ const useResize = ({ componentStyle, onResize }: UseResizeProps): UseResizeRetur
         width,
         height,
         deltaX,
-        deltaY
+        deltaY,
+        resizeBoardOption,
       );
     
     if (newWidth < minWidth || newHeight < minHeight) {

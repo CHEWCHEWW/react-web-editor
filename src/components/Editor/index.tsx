@@ -33,7 +33,11 @@ const Editor: React.FC<EditorProps> = ({
     handleMouseDown,
     handleMouseUp,
     isResizing,
-  } = useResize({ componentStyle, onResize: setComponentStyle });
+  } = useResize({ 
+    componentStyle, 
+    onResize: setComponentStyle,
+    resizeBoardOption: parentStyle,
+  });
 
   const {
     handleDragStart,
