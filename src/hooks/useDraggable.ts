@@ -67,7 +67,7 @@ const useDraggable = ({
       height,
       dragBoardOption,
     );
-    console.log(left, top);
+    
     onDrag((prev) => ({
       ...prev,
       left,

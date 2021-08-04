@@ -4,9 +4,10 @@ import styled from "styled-components";
 import Editor from "../Editor";
 
 const Test = () => {
-  const handleWrapperClick = (ev) => {
+  const handleWrapperClick = (ev: React.MouseEvent) => {
     console.log(ev.target);
   };
+  
   return (
     <Wrapper>
       <EditorWrapper onClick={handleWrapperClick}>

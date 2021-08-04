@@ -94,7 +94,8 @@ export const changeComponentLocationByHandler = (
   width: number,
   height: number,
   differenceX: number,
-  differenceY: number
+  differenceY: number,
+  parentLocation?: ComponentStyle,
 ): NewComponentStyle => {
   let newLeft: number = left;
   let newTop: number = top;
@@ -128,6 +129,35 @@ export const changeComponentLocationByHandler = (
       break;
     default:
       break;
+  }
+
+  if (!parentLocation) {
+    return {
+      newLeft,
+      newTop,
+      newWidth,
+      newHeight,
+    };
+  }
+  
+  const { right, bottom } = getBoundingZone(parentLocation);
+
+  if (newLeft <= parentLocation.left) {
+    newLeft = parentLocation.left;
+    newWidth -= parentLocation.left;
+  }
+
+  if (newTop <= parentLocation.top) {
+    newTop = parentLocation.top;
+    newHeight -= parentLocation.top;
+  }
+
+  if (newLeft + newWidth >= right) {
+    newWidth = right - newLeft;
+  }
+
+  if (newTop + newHeight >= bottom) {
+    newHeight = bottom - newTop;
   }
 
   return {
