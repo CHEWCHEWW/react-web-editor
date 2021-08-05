@@ -4,13 +4,9 @@ import styled from "styled-components";
 import Editor from "../Editor";
 
 const Test = () => {
-  const handleWrapperClick = (ev: React.MouseEvent) => {
-    console.log(ev.target);
-  };
-  
   return (
     <Wrapper>
-      <EditorWrapper onClick={handleWrapperClick}>
+      <EditorWrapper>
         <Editor 
           width={100} 
           height={100} 
