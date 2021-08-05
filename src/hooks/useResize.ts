@@ -76,7 +76,7 @@ const useResize = ({
       currentX: clientX,
       currentY: clientY,
     }));
-  }, [componentInformation, onResize, componentStyle]);
+  }, [componentInformation, onResize, componentStyle, resizeBoardOption]);
 
   const handleMouseDown = (ev: React.MouseEvent<HTMLDivElement>): void => {
     ev.preventDefault();

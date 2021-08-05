@@ -1,11 +1,11 @@
 {
   "name": "react-web-editor",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "private": false,
   "author": "chewchewchew3@gmail.com",
   "scripts": {
     "start": "webpack serve --config webpack.dev.config.ts",
-    "build": "webpack --prod webpack.dev.config.ts && tsc",
+    "build": "webpack --config webpack.prod.config.ts && tsc",
     "prepare": "npm run build"
   },
   "repository": {
