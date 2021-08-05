@@ -1,11 +1,14 @@
 import { useState } from "react";
 
+import { Dispatcher } from "../types/ui";
+
 interface UseMouseEventReturns {
   isClicked: boolean
   isMouseOver: boolean
   handleMouseClick: ()=> void
   handleMouseOver: ()=> void
   handleMouseLeave: ()=> void
+  setIsClicked: Dispatcher<boolean>
 }
 
 const useMouseEvent = (): UseMouseEventReturns => {
@@ -30,6 +33,7 @@ const useMouseEvent = (): UseMouseEventReturns => {
     handleMouseClick,
     handleMouseOver,
     handleMouseLeave,
+    setIsClicked,
   };
 };
 
