@@ -30,9 +30,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
           accept={accept}
           value={value && value}
         />
-        <IconImageWrapper>
-          {children}
-        </IconImageWrapper>
+        {children}
       </Icon>
     </>
   );
@@ -41,15 +39,6 @@ const CustomInput: React.FC<CustomInputProps> = ({
 const Input = styled.input`
   opacity: 0;
   position: absolute;
-`;
-
-const IconImageWrapper = styled.div`
-  color: #9C9C9A;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  height: 70%;
 `;
 
 export default CustomInput;

@@ -6,21 +6,25 @@ interface IconProps {
   right?: number
   left?: number
   bottom?: number
+  onClick?: (ev: React.MouseEvent) => void
 }
 
 const Icon: React.FC<IconProps> = ({ 
   children, 
   top, 
   right,
+  onClick,
 }): React.ReactElement => {
   return (
-    <Wrapper top={top} right={right}>
-      {children}
-    </Wrapper>
+    <IconBackground top={top} right={right} onClick={onClick}>
+      <IconImage>
+        {children}
+      </IconImage>
+    </IconBackground>
   );
 };
 
-const Wrapper = styled.div<IconProps>`
+const IconBackground = styled.div<IconProps>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,6 +39,15 @@ const Wrapper = styled.div<IconProps>`
   border-radius: 1px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+`;
+
+const IconImage = styled.div`
+  color: #9C9C9A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 70%;
 `;
 
 export default Icon;
