@@ -31,6 +31,14 @@ export interface EditorProps {
   parentStyle?: ComponentStyle
 }
 
+export interface EditorBlockProps extends EditorProps {
+  isMouseOver: boolean
+  isClicked: boolean
+  onMouseClick: ()=> void
+  onMouseOver: ()=> void
+  onMouseLeave: ()=> void
+}
+
 export interface ColorProps {
   color: string
 }
