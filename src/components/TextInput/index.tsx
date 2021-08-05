@@ -4,34 +4,35 @@ import { BiText } from "react-icons/bi";
 
 import Icon from "../Icon";
 
-const TextInput: React.FC = (): React.ReactElement => {
-  const [text, setText] = useState<string>("");
-  const [isEditing, setIsEditing] = useState<boolean>(false);
+interface TextInpuProps {
+  onClick: () => void
+  onChange: (ev: React.ChangeEvent<HTMLTextAreaElement>) => void
+  isEditing: boolean
+  text: string
+}
 
-  const handleIconClick = () => {
-    setIsEditing(prev => !prev);
-  };
-
-  const handleTextChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    setText(ev.target.value);
-  };
-
+const TextInput: React.FC<TextInpuProps> = ({
+  onChange,
+  onClick,
+  isEditing,
+  text,
+}): React.ReactElement => {
   return (
     <>
       <Icon
         top={0}
         right={-21}
-        onClick={handleIconClick}
+        onClick={onClick}
       >
         <BiText />
       </Icon>
-      {isEditing && <Input onChange={handleTextChange} value={text} autoFocus/>}
+      {isEditing && <Input onChange={onChange} value={text} autoFocus />}
       <TextArea>{text}</TextArea>
     </>
   );
 };
 
-const Input = styled.input`
+const Input = styled.textarea`
   width: 90%;
   height: 90%;
   position: absolute;
@@ -43,10 +44,10 @@ const Input = styled.input`
 const TextArea = styled.div`
   width: 100%;
   height: 100%;
-  position: absolute;
-  font-size: 100px;
+  overflow-x: auto;
+  font-size: 20px;
   color: pink;
-  z-index: 8;
+  cursor: text
 `;
 
 export default TextInput;
