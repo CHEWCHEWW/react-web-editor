@@ -9,10 +9,12 @@ interface CustomInputProps {
   accept?: string
   top: number
   right: number
+  value?: string 
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({ 
   onChange,
+  value,
   type,
   accept,
   children,
@@ -26,6 +28,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
           type={type}
           onChange={onChange}
           accept={accept}
+          value={value && value}
         />
         <IconImageWrapper>
           {children}
