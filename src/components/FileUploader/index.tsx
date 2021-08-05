@@ -4,10 +4,9 @@ import styled from "styled-components";
 import Icon from "../Icon";
 
 const FileUploader: React.FC = (): React.ReactElement => {
-  const [file, setFile] = useState({});
-  const [preview, setPreview] = useState({});
+  const [imageSrc, setImageSrc] = useState<string>("");
   
-  const handleFileChange = (ev: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleFileChange = async (ev: React.ChangeEvent<HTMLInputElement>) => {
     ev.preventDefault();
 
     const { files } = ev.target;
@@ -20,10 +19,11 @@ const FileUploader: React.FC = (): React.ReactElement => {
       const reader = new FileReader();
       
       reader.readAsDataURL(file);
-
+      
       reader.addEventListener("load", () => {
-        setFile({ file });
-        setPreview(reader);
+        if (!(reader.result instanceof ArrayBuffer) && reader.result) {
+          setImageSrc(reader.result);
+        }
       });
     });
   };
@@ -37,7 +37,7 @@ const FileUploader: React.FC = (): React.ReactElement => {
           accept="image/*"
         />
       </Icon>
-      {preview && <img src={preview.result}></img>}
+      {imageSrc && <img src={imageSrc} />}
     </>
   );
 };
