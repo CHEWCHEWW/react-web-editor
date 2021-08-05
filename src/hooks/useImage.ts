@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 
-import Icon from "../Icon";
+interface useImageReturns {
+  imageSrc: string
+  handleFileChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
+}
 
-const FileUploader: React.FC = (): React.ReactElement => {
+const useImage = (): useImageReturns => {
   const [imageSrc, setImageSrc] = useState<string>("");
   
-  const handleFileChange = async (ev: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     ev.preventDefault();
 
     const { files } = ev.target;
@@ -27,22 +29,8 @@ const FileUploader: React.FC = (): React.ReactElement => {
       });
     });
   };
-  
-  return (
-    <>
-      <Icon>
-        <Input 
-          type="file" 
-          onChange={handleFileChange}
-          accept="image/*"
-        />
-      </Icon>
-      {imageSrc && <img src={imageSrc} />}
-    </>
-  );
+
+  return { imageSrc, handleFileChange };
 };
 
-const Input = styled.input`
-`;
-
-export default FileUploader;
+export default useImage;

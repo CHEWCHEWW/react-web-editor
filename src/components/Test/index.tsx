@@ -16,7 +16,7 @@ const Test = () => {
           minHeight={1}
           parentStyle={{width: 500, height: 300, left: 200, top: 200}}
         >
-          happy
+          <TestDiv>happy</TestDiv>
         </Editor>
       </EditorWrapper>
     </Wrapper>
@@ -33,8 +33,15 @@ const EditorWrapper = styled.div`
   height: 300px; 
   left: 200px; 
   top: 200px; 
-  background: yellow; 
+  background: green; 
   position: fixed;
+`;
+
+const TestDiv = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: skyblue;
+  position: absolute;
 `;
 
 export default Test;
