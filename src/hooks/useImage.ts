@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
-interface useImageReturns {
+interface UseImageReturns {
   imageSrc: string
   handleFileChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const useImage = (): useImageReturns => {
+const useImage = (): UseImageReturns => {
   const [imageSrc, setImageSrc] = useState<string>("");
   
   const handleFileChange = (ev: React.ChangeEvent<HTMLInputElement>) => {

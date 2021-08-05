@@ -2,7 +2,7 @@ import React from "react";
 
 import Test from "./components/Test";
 
-const App = () => {
+const App: React.FC = (): React.ReactElement => {
   return (
     <div>
       <Test />

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import Editor from "../Editor";
 
-const Test = () => {
+const Test: React.FC = (): React.ReactElement => {
   return (
     <Wrapper>
       <EditorWrapper>

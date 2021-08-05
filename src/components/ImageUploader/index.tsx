@@ -3,24 +3,26 @@ import styled from "styled-components";
 import { BsImages } from "react-icons/bs";
 
 import Icon from "../Icon";
-import useImage from "../../hooks/useImage";
 
-const ImageUploader: React.FC = (): React.ReactElement => {
-  const { imageSrc, handleFileChange } = useImage();
-  
+interface ImageUploaderProps {
+  onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
+}
+
+const ImageUploader: React.FC<ImageUploaderProps> = ({ 
+  onChange, 
+}): React.ReactElement => {  
   return (
     <>
       <Icon>
         <Input 
           type="file" 
-          onChange={handleFileChange}
+          onChange={onChange}
           accept="image/*"
         />
         <IconImageWrapper>
           <BsImages />
         </IconImageWrapper>
       </Icon>
-      {imageSrc && <Image src={imageSrc} />}
     </>
   );
 };
