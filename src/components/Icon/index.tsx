@@ -1,22 +1,31 @@
 import React from "react";
 import styled from "styled-components";
 
-const Icon: React.FC = ({ children }): React.ReactElement => {
+interface IconProps {
+  top: number
+  right: number
+}
+
+const Icon: React.FC<IconProps> = ({ 
+  children, 
+  top, 
+  right,
+}): React.ReactElement => {
   return (
-    <Wrapper>
+    <Wrapper top={top} right={right}>
       {children}
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<IconProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 20px;
   height: 20px;
-  top: 0px;
-  right: -21px;
+  top: ${({ top }) => top}px;
+  right: ${({ right }) => right}px;
   background-color: #F8F8F6;
   position: absolute;
   border-radius: 1px;

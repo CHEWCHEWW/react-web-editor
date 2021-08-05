@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
+import ColorPicker from "../ColorPicker";
 import CoordinatesTag from "../CoordinatesTag";
-import { ComponentStyle, EditorProps } from "../../types/ui";
+import { ColorProps ,ComponentStyle, EditorProps } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
 import GuideLine from "../GuideLine";
 import ImageUploader from "../ImageUploader";
+import useColor from "../../hooks/useColor";
 import useDraggable from "../../hooks/useDraggable";
 import useImage from "../../hooks/useImage";
 import useResize from "../../hooks/useResize";
@@ -32,6 +34,7 @@ const Editor: React.FC<EditorProps> = ({
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
   const { imageSrc, handleFileChange } = useImage();
+  const { color, handleColorChange } = useColor();
 
   const {
     handleMouseMove,
@@ -124,14 +127,23 @@ const Editor: React.FC<EditorProps> = ({
       {isMouseOver && 
         <>
           <ImageUploader onChange={handleFileChange} />
+          <ColorPicker onChange={handleColorChange} />
           <CoordinatesTag top={componentStyle.top} left={componentStyle.left} />
         </>
       }
       {imageSrc && <UploadedImage src={imageSrc} />}
+      {color && <CustomBlock color={color} />}
       {children}
     </Wrapper>
   );
 };
+
+const CustomBlock = styled.div<ColorProps>`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: ${({ color }) => color};
+`;
 
 const DraggableHandler = styled.div`
   width: 100%;

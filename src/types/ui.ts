@@ -31,4 +31,8 @@ export interface EditorProps {
   parentStyle?: ComponentStyle
 }
 
+export interface ColorProps {
+  color: string
+}
+
 export type Dispatcher<S> = React.Dispatch<React.SetStateAction<S>>;
