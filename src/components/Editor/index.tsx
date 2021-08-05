@@ -28,8 +28,8 @@ const Editor: React.FC<EditorProps> = ({
     minWidth,
     minHeight,
   });
-  const [isClicked, setIsClicked] = useState(false);
-  const [isMouseOver, setIsMouseOver] = useState(false);
+  const [isClicked, setIsClicked] = useState<boolean>(false);
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
   const { imageSrc, handleFileChange } = useImage();
 
@@ -104,7 +104,6 @@ const Editor: React.FC<EditorProps> = ({
     >
       {isClicked && 
         <>
-          <CoordinatesTag top={componentStyle.top} left={componentStyle.left} />
           <DraggableHandler
             onMouseDown={handleDragStart}
             onMouseUp={handleDragEnd}
@@ -122,7 +121,12 @@ const Editor: React.FC<EditorProps> = ({
           />
         </>
       }
-      {isMouseOver && <ImageUploader onChange={handleFileChange} />}
+      {isMouseOver && 
+        <>
+          <ImageUploader onChange={handleFileChange} />
+          <CoordinatesTag top={componentStyle.top} left={componentStyle.left} />
+        </>
+      }
       {imageSrc && <UploadedImage src={imageSrc} />}
       {children}
     </Wrapper>
