@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { ClickState } from "../types/handler";
 
@@ -7,14 +7,30 @@ interface UseMouseEventReturns extends ClickState {
   handleMouseClick: ()=> void
   handleMouseOver: ()=> void
   handleMouseLeave: ()=> void
+  componentRef: React.Ref<HTMLDivElement>
 }
 
 const useMouseEvent = (): UseMouseEventReturns => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
+  const componentRef = useRef<HTMLDivElement>(null);
+
+  // useEffect(() => {
+  //   const handleComponentOutsideClick = (ev: MouseEvent): void => {
+  //     const target = ev.target as HTMLElement;
+  
+  //     if (!componentRef.current?.contains(target)) {
+  //       setIsClicked(false);
+  //     }
+  //   };
+
+  //   document.addEventListener("click", handleComponentOutsideClick);
+
+  //   return () => document.removeEventListener("click", handleComponentOutsideClick);
+  // }, []);
 
   const handleMouseClick = (): void => {
-    setIsClicked((prev) => !prev);
+    setIsClicked(true);
   };
 
   const handleMouseOver = (): void => {
@@ -32,6 +48,7 @@ const useMouseEvent = (): UseMouseEventReturns => {
     handleMouseOver,
     handleMouseLeave,
     onClicked: setIsClicked,
+    componentRef,
   };
 };
 

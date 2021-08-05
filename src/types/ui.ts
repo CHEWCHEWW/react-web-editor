@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface ComponentLocation {
   left: number
   top: number
@@ -6,6 +8,7 @@ export interface ComponentLocation {
 export interface ComponentStyle extends ComponentLocation {
   width: number
   height: number
+  ref?: React.Ref<HTMLDivElement>
 }
 
 export interface DragListContent {
@@ -37,6 +40,7 @@ export interface EditorBlockProps extends EditorProps {
   onMouseClick: ()=> void
   onMouseOver: ()=> void
   onMouseLeave: ()=> void
+  componentRef: React.Ref<HTMLElement>
 }
 
 export interface ColorProps {

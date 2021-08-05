@@ -28,10 +28,12 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
     handleMouseClick,
     handleMouseOver,
     handleMouseLeave,
+    componentRef,
   } = useMouseEvent();
 
   return (
-    <EditorBlock 
+    <EditorBlock
+      componentRef={componentRef} 
       width={width}
       height={height}
       top={top}

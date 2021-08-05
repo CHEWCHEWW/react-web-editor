@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import EditorBlock from "../EditorBlock";
 import { EditorProps } from "../../types/ui";
@@ -22,6 +22,7 @@ const TextEditorBlock: React.FC<EditorProps> = ({
     handleMouseOver,
     handleMouseLeave,
     onClicked,
+    componentRef
   } = useMouseEvent();
 
   const {
@@ -36,6 +37,7 @@ const TextEditorBlock: React.FC<EditorProps> = ({
       width={width}
       height={height}
       top={top}
+      componentRef={componentRef}
       left={left}
       minWidth={minWidth}
       minHeight={minHeight}

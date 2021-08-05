@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { getBoundPosition } from "../utils/ui";
 import { ComponentStyle, Dispatcher, EditorProps } from "../types/ui";
@@ -16,7 +16,6 @@ interface ComponentInfomation {
 
 interface UseDraggableReturns {
   handleDragEnd: () => void
-  handleDragMove: (ev: MouseEvent) => void 
   handleDragStart: (ev: React.MouseEvent<HTMLDivElement>) => void
   isDragging: boolean,
 }
@@ -34,6 +33,42 @@ const useDraggable = ({
     currentY: top,
     isDragging: false,
   });
+
+  useEffect(() => {
+    if (!componentInfomation.isDragging) {
+      return;
+    }
+
+    const handleDragMove = (ev: MouseEvent) => {
+      const { currentX, currentY, isDragging } = componentInfomation;
+  
+      if (!isDragging || !currentX || !currentY) {
+        return;
+      }
+  
+      const { clientX, clientY } = ev;
+  
+      const { left, top } = getBoundPosition(
+        clientX,
+        clientY,
+        currentX,
+        currentY,
+        width,
+        height,
+        dragBoardOption,
+      );
+      
+      onDrag((prev) => ({
+        ...prev,
+        left,
+        top,
+      }));
+    };
+
+    document.addEventListener("mousemove", handleDragMove);
+
+    return () => document.removeEventListener("mousemove", handleDragMove);
+  }, [componentInfomation, dragBoardOption, height, onDrag, width]);
   
   const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
     const { clientX, clientY } = ev;
@@ -49,32 +84,6 @@ const useDraggable = ({
     }));
   };
 
-  const handleDragMove = useCallback((ev: MouseEvent) => {
-    const { currentX, currentY, isDragging } = componentInfomation;
-
-    if (!isDragging || !currentX || !currentY) {
-      return;
-    }
-
-    const { clientX, clientY } = ev;
-
-    const { left, top } = getBoundPosition(
-      clientX,
-      clientY,
-      currentX,
-      currentY,
-      width,
-      height,
-      dragBoardOption,
-    );
-    
-    onDrag((prev) => ({
-      ...prev,
-      left,
-      top,
-    }));
-  }, [onDrag, componentInfomation, dragBoardOption, height, width]);
-
   const handleDragEnd = (): void => {
     setComponentInformation((prev) => ({
       ...prev,
@@ -84,7 +93,6 @@ const useDraggable = ({
 
   return {  
     handleDragEnd, 
-    handleDragMove, 
     handleDragStart,
     isDragging: componentInfomation.isDragging,
   };

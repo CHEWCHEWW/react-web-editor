@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 import CoordinatesTag from "../CoordinatesTag";
@@ -22,6 +22,7 @@ const Editor: React.FC<EditorBlockProps> = ({
   onMouseLeave,
   isMouseOver,
   isClicked,
+  componentRef,
 }): React.ReactElement => {
   const [componentStyle, setComponentStyle] = useState<EditorProps>({
     width,
@@ -32,12 +33,7 @@ const Editor: React.FC<EditorBlockProps> = ({
     minHeight,
   });
 
-  const {
-    handleMouseMove,
-    handleMouseDown,
-    handleMouseUp,
-    isResizing,
-  } = useResize({ 
+  const { handleMouseDown } = useResize({ 
     componentStyle, 
     onResize: setComponentStyle,
     resizeBoardOption: parentStyle,
@@ -46,37 +42,11 @@ const Editor: React.FC<EditorBlockProps> = ({
   const {
     handleDragStart,
     handleDragEnd,
-    handleDragMove,
-    isDragging,
   } = useDraggable({ 
     ...componentStyle,
     onDrag: setComponentStyle,
     dragBoardOption: parentStyle,
   });
-
-  useEffect(() => {
-    if (!isDragging) {
-      return;
-    }
-
-    document.addEventListener("mousemove", handleDragMove);
-
-    return () => document.removeEventListener("mousemove", handleDragMove);
-  }, [handleDragMove, isDragging]);
-
-  useEffect(() => {
-    if (!isResizing) {
-      return;
-    }
-
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
-
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
-    };
-  }, [handleMouseMove, isResizing, handleMouseUp]);
 
   return (
     <Wrapper
@@ -84,7 +54,6 @@ const Editor: React.FC<EditorBlockProps> = ({
       height={componentStyle.height}
       top={componentStyle.top}
       left={componentStyle.left}
-      onMouseUp={handleMouseUp}
       onClick={onMouseClick}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
