@@ -8,7 +8,6 @@ export interface ComponentLocation {
 export interface ComponentStyle extends ComponentLocation {
   width: number
   height: number
-  ref?: React.Ref<HTMLDivElement>
 }
 
 export interface DragListContent {
@@ -19,8 +18,6 @@ export interface DragListContent {
 }
 
 export interface ResizeProps extends ComponentStyle {
-  minWidth: number
-  minHeight: number
   children?: React.ReactElement
 }
 
@@ -29,8 +26,6 @@ export interface EditorProps {
   height: number
   top: number
   left: number
-  minWidth: number
-  minHeight: number
   parentStyle?: ComponentStyle
 }
 

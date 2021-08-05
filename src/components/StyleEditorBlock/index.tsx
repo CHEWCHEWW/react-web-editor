@@ -14,8 +14,6 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
   height,
   top,
   left,
-  minWidth,
-  minHeight,
   parentStyle,
   children,
 }): React.ReactElement => {
@@ -38,8 +36,6 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
       height={height}
       top={top}
       left={left}
-      minWidth={minWidth}
-      minHeight={minHeight}
       parentStyle={parentStyle}
       onMouseClick={handleMouseClick}
       onMouseOver={handleMouseOver}

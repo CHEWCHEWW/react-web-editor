@@ -1,6 +1,7 @@
 import React  from "react";
 import styled from "styled-components";
 import { BiText } from "react-icons/bi";
+import { IoMdExit } from "react-icons/io";
 
 import Icon from "../Icon";
 
@@ -9,6 +10,7 @@ interface TextInpuProps {
   onChange: (ev: React.ChangeEvent<HTMLTextAreaElement>) => void
   text: string
   isEditing: boolean
+  isMouseOver: boolean
 }
 
 interface TextInputStyleProps {
@@ -20,16 +22,19 @@ const TextInput: React.FC<TextInpuProps> = ({
   onClick,
   isEditing,
   text,
+  isMouseOver,
 }): React.ReactElement => {
   return (
     <>
-      <Icon
-        top={0}
-        right={-21}
-        onClick={onClick}
-      >
-        <BiText />
-      </Icon>
+      {isMouseOver && (
+        <Icon
+          top={0}
+          right={-21}
+          onClick={onClick}
+        >
+          {isEditing ? <IoMdExit /> : <BiText />}
+        </Icon>
+      )}
       {isEditing && <Input onChange={onChange} value={text} autoFocus />}
       <TextArea isEditing={isEditing}>{text}</TextArea>
     </>

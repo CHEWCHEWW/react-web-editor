@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { ClickState } from "../types/handler";
+import { INITIAL_TEXT } from "../constants/ui";
 
 interface UseTextReturns {
   text: string
@@ -10,7 +11,7 @@ interface UseTextReturns {
 }
 
 const useText = ({ onClicked, isClicked }: ClickState): UseTextReturns => {
-  const [text, setText] = useState<string>("");
+  const [text, setText] = useState<string>(INITIAL_TEXT);
   const [isEditing, setIsEditing] = useState<boolean>(false);
   const [isEdited, setIsEdited] = useState<boolean>(false);
   

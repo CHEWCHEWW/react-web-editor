@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { changeComponentLocationByHandler } from "../utils/ui";
 import { ComponentStyle ,Dispatcher, ResizeProps } from "../types/ui";
+import { MIN_HEIGHT, MIN_WIDTH } from "../constants/ui";
 
 interface ComponentInformation {
   isResizing: boolean
@@ -43,7 +44,7 @@ const useResize = ({
       
       const { clientX, clientY } = ev;
       const { currentX, currentY, direction } = componentInformation;
-      const { left, top, width, height, minWidth, minHeight } = componentStyle;
+      const { left, top, width, height } = componentStyle;
       
       const deltaX = clientX - currentX;
       const deltaY = clientY - currentY;
@@ -60,7 +61,7 @@ const useResize = ({
           resizeBoardOption,
         );
       
-      if (newWidth < minWidth || newHeight < minHeight) {
+      if (newWidth < MIN_WIDTH || newHeight < MIN_HEIGHT) {
         return;
       }
   

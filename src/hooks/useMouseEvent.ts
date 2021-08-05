@@ -13,6 +13,7 @@ interface UseMouseEventReturns extends ClickState {
 const useMouseEvent = (): UseMouseEventReturns => {
   const [isClicked, setIsClicked] = useState<boolean>(false);
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
+  
   const componentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
