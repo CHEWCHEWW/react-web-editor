@@ -5,7 +5,7 @@ import CoordinatesTag from "../CoordinatesTag";
 import { ComponentStyle, EditorProps } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
 import GuideLine from "../GuideLine";
-import FileUploader from "../FileUploader";
+import ImageUploader from "../ImageUploader";
 import useDraggable from "../../hooks/useDraggable";
 import useResize from "../../hooks/useResize";
 
@@ -108,7 +108,7 @@ const Editor: React.FC<EditorProps> = ({
           />
         </>
       }
-      <FileUploader />
+      <ImageUploader />
       {children}
     </Wrapper>
   );
@@ -117,9 +117,10 @@ const Editor: React.FC<EditorProps> = ({
 const DraggableHandler = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid red;
+  border: 1px solid gray;
   position: absolute;
   cursor: move;
+  z-index: 9;
 `;
 
 const Wrapper = styled.div.attrs<ComponentStyle>(
@@ -133,7 +134,6 @@ const Wrapper = styled.div.attrs<ComponentStyle>(
   })
 )<ComponentStyle>`
   position: fixed;
-  background-color: skyblue;
 `;
 
 const ResizeHandlersWrapper = styled.div`
@@ -162,11 +162,11 @@ const ResizeHandlersWrapper = styled.div`
   }
 
   > * {
-    width: 7px;
-    height: 7px;
-    background-color: red;
+    width: 3px;
+    height: 3px;
+    border: 1px solid gray;
     position: absolute;
-    z-index: 1;
+    z-index: 10;
   }
 `;
 
