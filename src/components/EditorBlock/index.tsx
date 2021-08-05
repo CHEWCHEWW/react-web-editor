@@ -36,6 +36,14 @@ const Editor: React.FC<EditorProps> = ({
   const { color, handleColorChange } = useColor();
 
   const {
+    isClicked,
+    isMouseOver,
+    handleMouseClick,
+    handleMouseOver,
+    handleMouseLeave,
+  } = useMouseEvent();
+
+  const {
     handleMouseMove,
     handleMouseDown,
     handleMouseUp,
@@ -56,14 +64,6 @@ const Editor: React.FC<EditorProps> = ({
     onDrag: setComponentStyle,
     dragBoardOption: parentStyle,
   });
-
-  const {
-    isClicked,
-    isMouseOver,
-    handleMouseClick,
-    handleMouseOver,
-    handleMouseLeave,
-  } = useMouseEvent();
 
   useEffect(() => {
     if (!isDragging) {
@@ -111,7 +111,7 @@ const Editor: React.FC<EditorProps> = ({
               <div key={item} className={item} onMouseDown={handleMouseDown} />
             ))}
           </ResizeHandlersWrapper>
-          <GuideLine 
+          <GuideLine
             width={componentStyle.width}
             height={componentStyle.height}
             top={componentStyle.top}
@@ -119,7 +119,7 @@ const Editor: React.FC<EditorProps> = ({
           />
         </>
       }
-      {isMouseOver && 
+      {isMouseOver &&
         <>
           <ImageUploader onChange={handleFileChange} />
           <ColorPicker onChange={handleColorChange} />
@@ -128,7 +128,7 @@ const Editor: React.FC<EditorProps> = ({
       }
       {imageSrc && <UploadedImage src={imageSrc} />}
       {color && <CustomBlock color={color} />}
-      {children}
+      {children ? children : <CustomBlock color={color} />}
     </Wrapper>
   );
 };
@@ -137,7 +137,7 @@ const CustomBlock = styled.div<ColorProps>`
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: ${({ color }) => color};
+  background-color: ${({ color }) => color ? color : "white"};
 `;
 
 const DraggableHandler = styled.div`

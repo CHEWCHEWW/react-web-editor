@@ -2,8 +2,10 @@ import React from "react";
 import styled from "styled-components";
 
 interface IconProps {
-  top: number
-  right: number
+  top?: number
+  right?: number
+  left?: number
+  bottom?: number
 }
 
 const Icon: React.FC<IconProps> = ({ 
@@ -24,8 +26,10 @@ const Wrapper = styled.div<IconProps>`
   align-items: center;
   width: 20px;
   height: 20px;
-  top: ${({ top }) => top}px;
-  right: ${({ right }) => right}px;
+  top: ${({ top }) => top && top}px;
+  right: ${({ right }) => right && right}px;
+  left: ${({ left }) => left && left}px;
+  bottom: ${({ bottom }) => bottom && bottom}px;
   background-color: #F8F8F6;
   position: absolute;
   border-radius: 1px;

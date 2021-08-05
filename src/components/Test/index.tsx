@@ -1,13 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-import Editor from "../Editor";
+import EditorBlock from "../EditorBlock";
 
 const Test: React.FC = (): React.ReactElement => {
   return (
     <Wrapper>
       <EditorWrapper>
-        <Editor 
+        <EditorBlock 
+          width={100} 
+          height={100} 
+          top={200} 
+          left={200} 
+          minWidth={1} 
+          minHeight={1}
+          parentStyle={{width: 500, height: 300, left: 200, top: 200}}
+        >
+        </EditorBlock>
+        <EditorBlock 
           width={100} 
           height={100} 
           top={200} 
@@ -17,7 +27,7 @@ const Test: React.FC = (): React.ReactElement => {
           parentStyle={{width: 500, height: 300, left: 200, top: 200}}
         >
           <TestDiv>happy</TestDiv>
-        </Editor>
+        </EditorBlock>
       </EditorWrapper>
     </Wrapper>
   );
