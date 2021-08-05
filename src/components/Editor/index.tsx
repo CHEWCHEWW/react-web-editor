@@ -10,6 +10,7 @@ import ImageUploader from "../ImageUploader";
 import useColor from "../../hooks/useColor";
 import useDraggable from "../../hooks/useDraggable";
 import useImage from "../../hooks/useImage";
+import useMouseEvent from "../../hooks/useMouseEvent";
 import useResize from "../../hooks/useResize";
 
 const Editor: React.FC<EditorProps> = ({ 
@@ -30,8 +31,6 @@ const Editor: React.FC<EditorProps> = ({
     minWidth,
     minHeight,
   });
-  const [isClicked, setIsClicked] = useState<boolean>(false);
-  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
 
   const { imageSrc, handleFileChange } = useImage();
   const { color, handleColorChange } = useColor();
@@ -58,6 +57,14 @@ const Editor: React.FC<EditorProps> = ({
     dragBoardOption: parentStyle,
   });
 
+  const {
+    isClicked,
+    isMouseOver,
+    handleMouseClick,
+    handleMouseOver,
+    handleMouseLeave,
+  } = useMouseEvent();
+
   useEffect(() => {
     if (!isDragging) {
       return;
@@ -82,18 +89,6 @@ const Editor: React.FC<EditorProps> = ({
     };
   }, [handleMouseMove, isResizing, handleMouseUp]);
 
-  const handleComponentClick = (): void => {
-    setIsClicked((prev) => !prev);
-  };
-
-  const handleMouseOver = (): void => {
-    setIsMouseOver(true);
-  };
-
-  const handleMouseLeave = (): void => {
-    setIsMouseOver(false);
-  };
-
   return (
     <Wrapper
       width={componentStyle.width}
@@ -101,7 +96,7 @@ const Editor: React.FC<EditorProps> = ({
       top={componentStyle.top}
       left={componentStyle.left}
       onMouseUp={handleMouseUp}
-      onClick={handleComponentClick}
+      onClick={handleMouseClick}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
     >
