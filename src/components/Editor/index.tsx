@@ -7,6 +7,7 @@ import { DIRECTIIONS } from "../../constants/location";
 import GuideLine from "../GuideLine";
 import ImageUploader from "../ImageUploader";
 import useDraggable from "../../hooks/useDraggable";
+import useImage from "../../hooks/useImage";
 import useResize from "../../hooks/useResize";
 
 const Editor: React.FC<EditorProps> = ({ 
@@ -28,6 +29,9 @@ const Editor: React.FC<EditorProps> = ({
     minHeight,
   });
   const [isClicked, setIsClicked] = useState(false);
+  const [isMouseOver, setIsMouseOver] = useState(false);
+
+  const { imageSrc, handleFileChange } = useImage();
 
   const {
     handleMouseMove,
@@ -79,6 +83,14 @@ const Editor: React.FC<EditorProps> = ({
     setIsClicked((prev) => !prev);
   };
 
+  const handleMouseOver = (): void => {
+    setIsMouseOver(true);
+  };
+
+  const handleMouseLeave = (): void => {
+    setIsMouseOver(false);
+  };
+
   return (
     <Wrapper
       width={componentStyle.width}
@@ -87,6 +99,8 @@ const Editor: React.FC<EditorProps> = ({
       left={componentStyle.left}
       onMouseUp={handleMouseUp}
       onClick={handleComponentClick}
+      onMouseOver={handleMouseOver}
+      onMouseLeave={handleMouseLeave}
     >
       {isClicked && 
         <>
@@ -108,7 +122,8 @@ const Editor: React.FC<EditorProps> = ({
           />
         </>
       }
-      <ImageUploader />
+      {isMouseOver && <ImageUploader onChange={handleFileChange} />}
+      {imageSrc && <UploadedImage src={imageSrc} />}
       {children}
     </Wrapper>
   );
@@ -121,6 +136,13 @@ const DraggableHandler = styled.div`
   position: absolute;
   cursor: move;
   z-index: 9;
+`;
+
+const UploadedImage = styled.img`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 8;
 `;
 
 const Wrapper = styled.div.attrs<ComponentStyle>(
