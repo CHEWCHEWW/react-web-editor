@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React  from "react";
 import styled from "styled-components";
 import { BiText } from "react-icons/bi";
 
@@ -7,8 +7,12 @@ import Icon from "../Icon";
 interface TextInpuProps {
   onClick: () => void
   onChange: (ev: React.ChangeEvent<HTMLTextAreaElement>) => void
-  isEditing: boolean
   text: string
+  isEditing: boolean
+}
+
+interface TextInputStyleProps {
+  isEditing: boolean
 }
 
 const TextInput: React.FC<TextInpuProps> = ({
@@ -27,7 +31,7 @@ const TextInput: React.FC<TextInpuProps> = ({
         <BiText />
       </Icon>
       {isEditing && <Input onChange={onChange} value={text} autoFocus />}
-      <TextArea>{text}</TextArea>
+      <TextArea isEditing={isEditing}>{text}</TextArea>
     </>
   );
 };
@@ -41,13 +45,14 @@ const Input = styled.textarea`
   z-index: 8;
 `;
 
-const TextArea = styled.div`
+const TextArea = styled.div<TextInputStyleProps>`
   width: 100%;
   height: 100%;
   overflow-x: auto;
   font-size: 20px;
   color: pink;
-  cursor: text
+  cursor: text;
+  border: ${({ isEditing }) => isEditing && "1px solid red"};
 `;
 
 export default TextInput;

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import EditorBlock from "../EditorBlock";
 import { EditorProps } from "../../types/ui";
 import useMouseEvent from "../../hooks/useMouseEvent";
+import useText from "../../hooks/useText";
 import TextInput from "../TextInput";
 
 const TextEditorBlock: React.FC<EditorProps> = ({
@@ -14,41 +15,21 @@ const TextEditorBlock: React.FC<EditorProps> = ({
   minHeight,
   parentStyle,
 }): React.ReactElement => {
-  const [text, setText] = useState<string>("");
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [isEdited, setIsEdited] = useState<boolean>(false);
-  
   const {
     isClicked,
     isMouseOver,
     handleMouseClick,
     handleMouseOver,
     handleMouseLeave,
-    setIsClicked,
+    onClicked,
   } = useMouseEvent();
 
-  useEffect(() => {
-    if (isClicked && isEdited) {
-      setIsClicked(false);
-    }
-  }, [isClicked, setIsClicked, isEdited]);
-
-  useEffect(() => {
-    if (isEditing) {
-      setIsClicked(false);
-      setIsEdited(true);
-    } else {
-      setIsEdited(false);
-    }
-  }, [isEditing, setIsClicked]);
-
-  const handleIconClick = () => {
-    setIsEditing(prev => !prev);
-  };
-
-  const handleTextChange = (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(ev.target.value);
-  };
+  const {
+    text,
+    handleIconClick,
+    handleTextChange,
+    isEditing,
+  } = useText({ isClicked, onClicked });
 
   return (
     <EditorBlock 
