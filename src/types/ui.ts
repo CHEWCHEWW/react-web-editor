@@ -40,7 +40,7 @@ export interface EditorBlockProps extends EditorProps {
   onMouseClick: ()=> void
   onMouseOver: ()=> void
   onMouseLeave: ()=> void
-  componentRef: React.Ref<HTMLElement>
+  componentRef: React.Ref<HTMLDivElement>
 }
 
 export interface ColorProps {

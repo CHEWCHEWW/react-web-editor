@@ -57,6 +57,7 @@ const Editor: React.FC<EditorBlockProps> = ({
       onClick={onMouseClick}
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
+      ref={componentRef}
     >
       {isClicked && 
         <>
