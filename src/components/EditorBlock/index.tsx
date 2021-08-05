@@ -13,8 +13,6 @@ const Editor: React.FC<EditorBlockProps> = ({
   height,
   top,
   left,
-  minWidth,
-  minHeight,
   parentStyle,
   children,
   onMouseClick,
@@ -29,8 +27,6 @@ const Editor: React.FC<EditorBlockProps> = ({
     height,
     top,
     left,
-    minWidth,
-    minHeight,
   });
 
   const { handleMouseDown } = useResize({ 

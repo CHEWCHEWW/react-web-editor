@@ -11,8 +11,6 @@ const TextEditorBlock: React.FC<EditorProps> = ({
   height,
   top,
   left,
-  minWidth,
-  minHeight,
   parentStyle,
 }): React.ReactElement => {
   const {
@@ -39,8 +37,6 @@ const TextEditorBlock: React.FC<EditorProps> = ({
       top={top}
       componentRef={componentRef}
       left={left}
-      minWidth={minWidth}
-      minHeight={minHeight}
       parentStyle={parentStyle}
       onMouseClick={handleMouseClick}
       onMouseOver={handleMouseOver}
@@ -53,6 +49,7 @@ const TextEditorBlock: React.FC<EditorProps> = ({
         onClick={handleIconClick} 
         onChange={handleTextChange}
         text={text}
+        isMouseOver={isMouseOver}
       />
     </EditorBlock>    
   );

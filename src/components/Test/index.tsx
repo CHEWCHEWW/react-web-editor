@@ -13,8 +13,6 @@ const Test: React.FC = (): React.ReactElement => {
           height={100} 
           top={200} 
           left={200} 
-          minWidth={1} 
-          minHeight={1}
         >
         </TextEditorBlock>
         <StyleEditorBlock 
@@ -22,8 +20,6 @@ const Test: React.FC = (): React.ReactElement => {
           height={100} 
           top={200} 
           left={200} 
-          minWidth={1} 
-          minHeight={1}
           parentStyle={{width: 500, height: 300, left: 200, top: 200}}
         >
           <TestDiv>happy</TestDiv>
