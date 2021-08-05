@@ -9,8 +9,6 @@ const useImage = (): UseImageReturns => {
   const [imageSrc, setImageSrc] = useState<string>("");
   
   const handleFileChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
-    ev.preventDefault();
-
     const { files } = ev.target;
 
     if (!files) {

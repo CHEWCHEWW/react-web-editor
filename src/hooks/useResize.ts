@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { changeComponentLocationByHandler } from "../utils/ui";
 import { ComponentStyle ,Dispatcher, ResizeProps } from "../types/ui";
@@ -6,7 +6,6 @@ import { ComponentStyle ,Dispatcher, ResizeProps } from "../types/ui";
 interface ComponentInformation {
   isResizing: boolean
   direction: string
-  isClicked: boolean
   currentX: number
   currentY: number
 }
@@ -18,9 +17,7 @@ interface UseResizeProps {
 }
 
 interface UseResizeReturns {
-  handleMouseMove: (ev: MouseEvent) => void
   handleMouseDown: (ev: React.MouseEvent<HTMLDivElement>) => void
-  handleMouseUp: () => void
   isResizing: boolean
 }
 
@@ -30,52 +27,73 @@ const useResize = ({
   resizeBoardOption, 
 }: UseResizeProps): UseResizeReturns => {
   const [componentInformation, setComponentInformation] = useState<ComponentInformation>({
-    isClicked: false,
     isResizing: false,
     direction: "",
     currentX: 0,
     currentY: 0,
   });
 
-  const handleMouseMove = useCallback((ev: MouseEvent): void => {
-    ev.stopPropagation();
-    
-    const { clientX, clientY } = ev;
-    const { currentX, currentY, direction } = componentInformation;
-    const { left, top, width, height, minWidth, minHeight } = componentStyle;
-    
-    const deltaX = clientX - currentX;
-    const deltaY = clientY - currentY;
-    
-    const { newWidth, newHeight, newLeft, newTop } =
-      changeComponentLocationByHandler(
-        direction,
-        left,
-        top,
-        width,
-        height,
-        deltaX,
-        deltaY,
-        resizeBoardOption,
-      );
-    
-    if (newWidth < minWidth || newHeight < minHeight) {
+  useEffect(() => {
+    if (!componentInformation.isResizing) {
       return;
     }
 
-    onResize((prev) => ({
-      ...prev,
-      width: newWidth,
-      height: newHeight,
-      left: newLeft,
-      top: newTop,
-    }));
+    const handleMouseMove = (ev: MouseEvent): void => {
+      ev.stopPropagation();
+      
+      const { clientX, clientY } = ev;
+      const { currentX, currentY, direction } = componentInformation;
+      const { left, top, width, height, minWidth, minHeight } = componentStyle;
+      
+      const deltaX = clientX - currentX;
+      const deltaY = clientY - currentY;
+      
+      const { newWidth, newHeight, newLeft, newTop } =
+        changeComponentLocationByHandler(
+          direction,
+          left,
+          top,
+          width,
+          height,
+          deltaX,
+          deltaY,
+          resizeBoardOption,
+        );
+      
+      if (newWidth < minWidth || newHeight < minHeight) {
+        return;
+      }
+  
+      onResize((prev) => ({
+        ...prev,
+        width: newWidth,
+        height: newHeight,
+        left: newLeft,
+        top: newTop,
+      }));
+  
+      setComponentInformation((prev) => ({
+        ...prev,
+        currentX: clientX,
+        currentY: clientY,
+      }));
+    };
 
-    setComponentInformation((prev) => ({
-      ...prev,
-      currentX: clientX,
-      currentY: clientY,
-    }));
+    const handleMouseUp = (): void => {
+      setComponentInformation((prev) => ({
+        ...prev,
+        direction: "",
+        isResizing: false,
+      }));
+    };
+
+    document.addEventListener("mousemove", handleMouseMove);
+    document.addEventListener("mouseup", handleMouseUp);
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+    };
   }, [componentInformation, onResize, componentStyle, resizeBoardOption]);
 
   const handleMouseDown = (ev: React.MouseEvent<HTMLDivElement>): void => {
@@ -98,19 +116,8 @@ const useResize = ({
     }));
   };
 
-  const handleMouseUp = (): void => {
-    setComponentInformation((prev) => ({
-      ...prev,
-      direction: "",
-      isResizing: false,
-      isClicked: true,
-    }));
-  };
-
   return {
     handleMouseDown,
-    handleMouseMove,
-    handleMouseUp,
     isResizing: componentInformation.isResizing,
   };
 };
