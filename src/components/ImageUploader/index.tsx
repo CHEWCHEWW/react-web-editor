@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { BsImages } from "react-icons/bs";
 
 import Icon from "../Icon";
 import useImage from "../../hooks/useImage";
@@ -15,6 +16,9 @@ const ImageUploader: React.FC = (): React.ReactElement => {
           onChange={handleFileChange}
           accept="image/*"
         />
+        <IconImageWrapper>
+          <BsImages />
+        </IconImageWrapper>
       </Icon>
       {imageSrc && <Image src={imageSrc} />}
     </>
@@ -22,7 +26,8 @@ const ImageUploader: React.FC = (): React.ReactElement => {
 };
 
 const Input = styled.input`
-  display: block;
+  opacity: 0;
+  position: absolute;
 `;
 
 const Image = styled.img`
@@ -30,6 +35,15 @@ const Image = styled.img`
   height: 100%;
   position: absolute;
   z-index: 8;
+`;
+
+const IconImageWrapper = styled.div`
+  color: #9C9C9A;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 70%;
+  height: 70%;
 `;
 
 export default ImageUploader;
