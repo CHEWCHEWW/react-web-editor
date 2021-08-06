@@ -1,7 +1,8 @@
-import React, { useRef ,useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 import { SLIDER_MAX, SLIDER_MIN } from "../../constants/ui";
+import useSlider from "../../hooks/useSlider";
 
 interface SliderProps {
   min?: number
@@ -12,18 +13,11 @@ const Slider: React.FC<SliderProps> = ({
   min = SLIDER_MIN, 
   max = SLIDER_MAX, 
 }): React.ReactElement => {
-  const [value, setValue] = useState<number>(0);
-  const ref = useRef<HTMLInputElement>(null);
-
-  const handleValueChange = (): void => {
-    if (!ref.current) {
-      return;
-    }
-
-    const currentValue = Number(ref.current.value);
-
-    setValue(currentValue * max);
-  };
+  const {
+    ref,
+    value,
+    handleValueChange,
+  } = useSlider(max);
   
   return (
     <SliderBar>
