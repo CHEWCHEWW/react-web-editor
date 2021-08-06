@@ -30,10 +30,10 @@ const IconBackground = styled.div<IconProps>`
   align-items: center;
   width: 20px;
   height: 20px;
-  top: ${({ top }) => top && top}px;
-  right: ${({ right }) => right && right}px;
-  left: ${({ left }) => left && left}px;
-  bottom: ${({ bottom }) => bottom && bottom}px;
+  top: ${({ top }) => top && `${top}px`};
+  right: ${({ right }) => right && `${right}px`};
+  left: ${({ left }) => left && `${left}px`};
+  bottom: ${({ bottom }) => bottom && `${bottom}px`};
   background-color: #F8F8F6;
   position: absolute;
   border-radius: 1px;
