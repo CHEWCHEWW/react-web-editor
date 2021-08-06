@@ -5,8 +5,9 @@ import { IoMdExit } from "react-icons/io";
 
 import Icon from "../Icon";
 import MenuBoard from "../MenuBoard";
+import { Location } from "../../types/ui";
 
-interface TextInpuProps {
+interface TextInpuProps extends Location {
   onClick: () => void
   onChange: (ev: React.ChangeEvent<HTMLTextAreaElement>) => void
   text: string
@@ -24,14 +25,20 @@ const TextInput: React.FC<TextInpuProps> = ({
   isEditing,
   text,
   isMouseOver,
+  top,
+  right,
+  left,
+  bottom,
 }): React.ReactElement => {
   return (
     <>
       <MenuBoard />
       {isMouseOver && (
         <Icon
-          top={0}
-          right={-21}
+          top={top}
+          right={right}
+          left={left}
+          bottom={bottom}
           onClick={onClick}
         >
           {isEditing ? <IoMdExit /> : <BiText />}

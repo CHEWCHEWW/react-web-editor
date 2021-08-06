@@ -52,3 +52,10 @@ export interface DropDownContent {
 export interface DropDownProps {
   items: DropDownContent[]
 }
+
+export interface Location {
+  left?: number
+  right?: number
+  top?: number
+  bottom?: number
+}

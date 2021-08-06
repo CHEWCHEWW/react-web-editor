@@ -1,6 +1,6 @@
-import { Dispatcher } from "./ui";
+import { Dispatcher, Location } from "./ui";
 
-export interface CustomInputProps {
+export interface TypedCustomInputProps extends Location {
   onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
 }
 

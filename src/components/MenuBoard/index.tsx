@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { FaBold, FaItalic } from "react-icons/fa";
 
 import DropDown from "../DropDown";
 import Slider from "../Slider";
@@ -22,6 +23,8 @@ const MenuBoard: React.FC = (): React.ReactElement => {
       </MenuOption>
       <MenuOption>
         옵션(컬러, bold, 이탤릭)
+        <FaBold />
+        <FaItalic />
       </MenuOption>
       <MenuOption>
         정렬
