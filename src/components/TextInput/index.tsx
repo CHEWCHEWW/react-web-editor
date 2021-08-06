@@ -4,6 +4,7 @@ import { BiText } from "react-icons/bi";
 import { IoMdExit } from "react-icons/io";
 
 import Icon from "../Icon";
+import MenuBoard from "../MenuBoard";
 
 interface TextInpuProps {
   onClick: () => void
@@ -26,6 +27,7 @@ const TextInput: React.FC<TextInpuProps> = ({
 }): React.ReactElement => {
   return (
     <>
+      <MenuBoard />
       {isMouseOver && (
         <Icon
           top={0}
@@ -35,7 +37,11 @@ const TextInput: React.FC<TextInpuProps> = ({
           {isEditing ? <IoMdExit /> : <BiText />}
         </Icon>
       )}
-      {isEditing && <Input onChange={onChange} value={text} autoFocus />}
+      {isEditing && (
+        <>
+          <Input onChange={onChange} value={text} autoFocus />
+        </>
+      )}
       <TextArea isEditing={isEditing}>{text}</TextArea>
     </>
   );
