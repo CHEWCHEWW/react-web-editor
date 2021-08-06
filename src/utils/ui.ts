@@ -54,7 +54,7 @@ export const getBoundPosition = (
   const { left, top, right, bottom } = getBoundingZone(parentLocation);
   const { 
     right: currentRight, 
-    bottom: currentBottom 
+    bottom: currentBottom,
   } = getBoundingZone({ left: currentX, top: currentY, width, height});
 
   if (currentX < left) {
