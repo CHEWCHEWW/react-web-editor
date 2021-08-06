@@ -45,8 +45,8 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
     >
       {isMouseOver &&
         <>
-          <ImageUploader onChange={handleFileChange} />
-          <ColorPicker onChange={handleColorChange} />
+          <ImageUploader onChange={handleFileChange} top={0} right={-21} />
+          <ColorPicker onChange={handleColorChange} top={22} right={-21} />
         </>
       }
       {imageSrc && <UploadedImage src={imageSrc} />}

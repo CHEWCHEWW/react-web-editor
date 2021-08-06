@@ -50,6 +50,8 @@ const TextEditorBlock: React.FC<EditorProps> = ({
         onChange={handleTextChange}
         text={text}
         isMouseOver={isMouseOver}
+        top={0}
+        right={-21}
       />
     </EditorBlock>    
   );

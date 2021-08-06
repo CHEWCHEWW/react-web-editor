@@ -3,12 +3,12 @@ import styled from "styled-components";
 
 import Icon from "../Icon";
 
-interface CustomInputProps {
+import { TypedCustomInputProps } from "../../types/handler";
+
+interface CustomInputProps extends TypedCustomInputProps {
   onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
   type: string
   accept?: string
-  top: number
-  right: number
   value?: string 
 }
 
@@ -20,10 +20,17 @@ const CustomInput: React.FC<CustomInputProps> = ({
   children,
   top,
   right,
+  left,
+  bottom,
 }): React.ReactElement => {  
   return (
     <>
-      <Icon top={top} right={right}>
+      <Icon 
+        top={top}
+        right={right}
+        left={left}
+        bottom={bottom}
+      >
         <Input 
           type={type}
           onChange={onChange}
