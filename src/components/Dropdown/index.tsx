@@ -1,17 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { BiChevronRight } from "react-icons/bi";
 
 import { DEFAULT_DROP_DOWN_MESSAGE } from "../../constants/ui";
-
-interface DropDownContent {
-  id: string
-  label: string
-}
-
-interface DropDownProps {
-  items: DropDownContent[]
-}
+import { DropDownProps } from "../../types/ui";
+import useDropDown from "../../hooks/useDropDown";
 
 interface DropDownStyleProps {
   isDropDownOpen: boolean
@@ -22,27 +15,15 @@ interface DropDownMarkProps {
 }
 
 const DropDown: React.FC<DropDownProps> = ({ items }): React.ReactElement => {
-  const [isDropDownOpen, setIsDropDownOpen] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<DropDownContent>({
-    id: "",
-    label: "",
-  });
-
-  const handleDropDownClick = () => {
-    setIsDropDownOpen((prev) => !prev);
-  };
-
-  const handleItemClick = (ev: React.MouseEvent<HTMLDivElement>) => {
-    const id = ev.currentTarget.id;
-    const item = items.find((item) => item.id === id);
-    
-    if (item) {
-      setSelectedItem(item);
-    }
-  };
-
+  const {
+    handleItemClick,
+    handleDropDownClick,
+    isDropDownOpen,
+    selectedItem,
+  } = useDropDown({ items });
+  
   return (
-    <DropDownWrapper>
+    <DropDownBoard>
       <DropDownHeader onClick={handleDropDownClick}>
         {selectedItem.label.length === 0 ? DEFAULT_DROP_DOWN_MESSAGE : selectedItem.label}
         <DropDownIcon isDropDownOpen={isDropDownOpen}>
@@ -57,9 +38,16 @@ const DropDown: React.FC<DropDownProps> = ({ items }): React.ReactElement => {
           </DropDownItem>
         ))}
       </DropDownList>
-    </DropDownWrapper>
+    </DropDownBoard>
   );
 };
+
+const DropDownBoard = styled.div`
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  background-color: white;
+`;
 
 const DropDownHeader = styled.div`
   padding: 15px;
@@ -94,13 +82,6 @@ const DropDownItemDot = styled.span<DropDownMarkProps>`
   opacity: ${({ isSelected }) => isSelected ? 1 : 0};
   color: #91A5BE;
   transition: all .2s ease-in-out;
-`;
-
-const DropDownWrapper = styled.div`
-  width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.1);
-  background-color: white;
 `;
 
 export default DropDown;
