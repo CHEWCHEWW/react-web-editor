@@ -13,7 +13,9 @@ const MenuBoard: React.FC = (): React.ReactElement => {
       </MenuHeader>
       <MenuOption>
         글꼴
-        <DropDown items={data} ></DropDown>
+        <DropDown items={data} >
+
+        </DropDown>
       </MenuOption>
       <MenuOption>
         크기
@@ -56,15 +58,14 @@ const MenuHeader = styled.div`
   border-radius: 5px 5px 0 0;
   background-color: #6c9eeb;
   color: white;
-  z-index: 11;
 `;
 
 const MenuOption = styled.div`
   display: flex;
   width: 10rem;
+  max-height: 2rem;
   border-bottom: 1px solid #D8D8D6;
   color: #555550;
-  z-index: 11;
 `;
 
 export default MenuBoard;
