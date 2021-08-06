@@ -3,7 +3,7 @@ import { IoIosColorPalette } from "react-icons/io";
 
 import CustomInput from "../CustomInput";
 import { TypedCustomInputProps } from "../../types/handler";
-// top 22 right -21
+
 const ColorPicker = ({ 
   onChange, 
   left, 
