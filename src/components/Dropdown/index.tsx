@@ -14,14 +14,16 @@ interface DropDownMarkProps {
   isSelected: boolean
 }
 
-const DropDown: React.FC<DropDownProps> = ({ items }): React.ReactElement => {
+const DropDown: React.FC<DropDownProps> = ({ 
+  items 
+}): React.ReactElement => {
   const {
     handleItemClick,
     handleDropDownClick,
     isDropDownOpen,
     selectedItem,
   } = useDropDown({ items });
-  
+
   return (
     <DropDownBoard>
       <DropDownHeader onClick={handleDropDownClick}>
@@ -43,31 +45,35 @@ const DropDown: React.FC<DropDownProps> = ({ items }): React.ReactElement => {
 };
 
 const DropDownBoard = styled.div`
-  width: 300px;
-  border-radius: 10px;
-  box-shadow: 0 10px 25px rgba(0,0,0,.1);
+  width: 6rem;
+  border-radius: 5px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   background-color: white;
+  font-size: 0.8rem;
+  z-index: 10;
 `;
 
 const DropDownHeader = styled.div`
-  padding: 15px;
-  cursor: pointer;
   display: flex;
-  justify-content: space-between;
+  height: 2rem;
   align-items: center;
-`;
-
-const DropDownIcon = styled.div<DropDownStyleProps>`
-  font-size: 13px;
-  color: #91A5BE;
-  transform: ${({ isDropDownOpen }) => isDropDownOpen ? "rotate(90deg)" : "rotate(0deg)"};;
-  transition: all .2s ease-in-out;
+  justify-content: center;
+  cursor: pointer;
 `;
 
 const DropDownList = styled.div<DropDownStyleProps>`
+  display: ${({ isDropDownOpen }) => isDropDownOpen ? "block" : "none"};
   padding: 5px;
   border-top: 1px solid #E5E8EC;
-  display: ${({ isDropDownOpen }) => isDropDownOpen ? "block" : "none"};
+  background-color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+`;
+
+const DropDownIcon = styled.div<DropDownStyleProps>`
+  color: #91A5BE;
+  transform: ${({ isDropDownOpen }) => isDropDownOpen ? "rotate(90deg)" : "rotate(0deg)"};;
+  transition: all .2s ease-in-out;
 `;
 
 const DropDownItem = styled.div`
@@ -79,6 +85,7 @@ const DropDownItem = styled.div`
 `;
 
 const DropDownItemDot = styled.span<DropDownMarkProps>`
+  padding-right: 5px;
   opacity: ${({ isSelected }) => isSelected ? 1 : 0};
   color: #91A5BE;
   transition: all .2s ease-in-out;
