@@ -47,8 +47,8 @@ const DropDown: React.FC<DropDownProps> = ({
 const DropDownBoard = styled.div`
   width: 6rem;
   border-radius: 5px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  background-color: white;
+  /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); */
+  background-color: #F8F8F6;
   font-size: 0.8rem;
   z-index: 10;
 `;
@@ -64,15 +64,15 @@ const DropDownHeader = styled.div`
 const DropDownList = styled.div<DropDownStyleProps>`
   display: ${({ isDropDownOpen }) => isDropDownOpen ? "block" : "none"};
   padding: 5px;
-  border-top: 1px solid #E5E8EC;
-  background-color: white;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  /* border-top: 1px solid #E5E8EC; */
+  background-color: #F8F8F6;
+  box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.1);  
   border-radius: 5px;
 `;
 
 const DropDownIcon = styled.div<DropDownStyleProps>`
   color: #91A5BE;
-  transform: ${({ isDropDownOpen }) => isDropDownOpen ? "rotate(90deg)" : "rotate(0deg)"};;
+  transform: ${({ isDropDownOpen }) => isDropDownOpen ? "rotate(90deg)" : "rotate(0deg)"};
   transition: all .2s ease-in-out;
 `;
 
