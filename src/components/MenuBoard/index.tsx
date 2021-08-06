@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import DropDown from "../DropDown";
+import Slider from "../Slider";
 
 const data = [{ id: "0", label: "글꼴 1" }, { id: "1", label: "글꼴 2" }];
 
@@ -13,15 +14,14 @@ const MenuBoard: React.FC = (): React.ReactElement => {
       </MenuHeader>
       <MenuOption>
         글꼴
-        <DropDown items={data} >
-
-        </DropDown>
+        <DropDown items={data} />
       </MenuOption>
       <MenuOption>
         크기
+        <Slider />
       </MenuOption>
       <MenuOption>
-        색상
+        옵션(컬러, bold, 이탤릭)
       </MenuOption>
       <MenuOption>
         정렬
