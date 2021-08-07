@@ -17,6 +17,10 @@ export interface DragListContent {
   type?: string
 }
 
+export interface InnerHTML {
+  __html: string
+}
+
 export interface ResizeProps extends ComponentStyle {
   children?: React.ReactElement
 }
