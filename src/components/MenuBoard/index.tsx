@@ -4,32 +4,25 @@ import { AiOutlineAlignCenter, AiOutlineAlignLeft, AiOutlineAlignRight } from "r
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 import { IoIosColorPalette } from "react-icons/io";
 
-import ColorPicker from "../ColorPicker";
 import DropDown from "../DropDown";
-import Icon from "../Icon";
+import MenuOption from "../MenuOption";
 import Slider from "../Slider";
-import useColor from "../../hooks/useColor";
 
 const data = [{ id: "0", label: "글꼴 1" }, { id: "1", label: "글꼴 2" }];
 
 const MenuBoard: React.FC = (): React.ReactElement => {
-  const { color, handleColorChange } = useColor();
-
   return (
     <Board>
       <MenuHeader>
         설정
       </MenuHeader>
-      <MenuOption>
-        글꼴
+      <MenuOption name={"글꼴"}>
         <DropDown items={data} />
       </MenuOption>
-      <MenuOption>
-        크기
+      <MenuOption name={"크기"}>
         <Slider />
       </MenuOption>
-      <MenuOption>
-        옵션
+      <MenuOption name={"옵션"}>
         <Button>
           <FaBold />
         </Button>
@@ -43,8 +36,7 @@ const MenuBoard: React.FC = (): React.ReactElement => {
           <FaUnderline />
         </Button>
       </MenuOption>
-      <MenuOption>
-        정렬
+      <MenuOption name={"정렬"}>
         <Button>
           <AiOutlineAlignLeft />
         </Button>
@@ -55,23 +47,32 @@ const MenuBoard: React.FC = (): React.ReactElement => {
           <AiOutlineAlignRight />
         </Button>
       </MenuOption>
-      <MenuOption>
-        효과
-        <TwoColorText>
-          A
-        </TwoColorText>
-        <BoxText>
-          A
-        </BoxText>
-        <DownSideText>
-          A
-        </DownSideText>
-        <OutLineText>
-          A
-        </OutLineText>
-        <BubbleShadowText>
-          A
-        </BubbleShadowText>
+      <MenuOption name={"효과"}>
+        <Button>
+          <DownSideText>
+            A
+          </DownSideText>
+        </Button>
+        <Button>
+          <TwoColorText>
+            A
+          </TwoColorText>
+        </Button>
+        <Button>
+          <OutLineText>
+            A
+          </OutLineText>
+        </Button>
+        <Button>
+          <BoxText>
+            A
+          </BoxText>
+        </Button>
+        <Button>
+          <BubbleShadowText>
+            A
+          </BubbleShadowText>
+        </Button>
       </MenuOption>
     </Board>
   );
@@ -80,13 +81,13 @@ const MenuBoard: React.FC = (): React.ReactElement => {
 const Board = styled.div`
   display: flex;
   flex-direction: column;
-  width: 10rem;
-  height: 15rem;
+  width: 11rem;
   top: -2rem;
-  right: -12rem;
+  right: -13rem;
+  padding: 0.5rem;
   background-color: #F8F8F6;
   position: absolute;
-  font-family: "MaruBuri-Regular";
+  font-family: "NanumBarunGothic";
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -96,33 +97,27 @@ const Board = styled.div`
 
 const MenuHeader = styled.div`
   display: flex;
-  width: 10rem;
-  height: 2rem;
+  width: 100%;
+  height: 1.2rem;
   align-items: center;
-  border-radius: 5px 5px 0 0;
-  background-color: #6c9eeb;
-  color: white;
-`;
-
-const MenuOption = styled.div`
-  display: flex;
-  width: 10rem;
-  max-height: 2rem;
-  border-bottom: 1px solid #D8D8D6;
-  color: #555550;
+  border-radius: 2px;
+  background-color: #E2E2DA;
+  color: #9c9393;
+  font-weight: 600;
+  font-size: 0.7rem;
 `;
 
 const Button = styled.div`
   display: flex;
   width: 1.5rem;
   height: 1.5rem;
-  margin: 0.2rem 0.1rem;
+  padding: 0.2rem 0.1rem;
   color: #6c9eeb;
   align-items: center;
   justify-content: center;
 
   :hover {
-    background-color: black;
+    background-color: #f3f0f0;
   }
 `;
 
@@ -130,14 +125,14 @@ const TwoColorText = styled.div`
   color: #3899ec;
   font-size: 26px;
   font-weight: 600;
-  text-shadow: rgb(10 189 240 / 30%) 3px 3px 0px, rgb(254 1 1 / 30%) -3px -3px 0px;
+  text-shadow: rgb(10 189 240 / 30%) 3px 3px 0px, rgb(254 1 1 / 30%) -2px -2px 0px;
 `;
 
 const BoxText = styled.div`
   color: #3899ec;
   font-size: 26px;
   border-radius: 8px;
-  text-shadow: rgb(238, 235, 84) 3px 3px 0px, rgba(0, 0, 0, 0.2) 6px 6px 0px;  
+  text-shadow: rgb(238, 235, 84) 3px 3px 0px, rgba(0, 0, 0, 0.2) 3px 3px 0px;  
   border: none;
   outline: none;
   font-weight: 600;
