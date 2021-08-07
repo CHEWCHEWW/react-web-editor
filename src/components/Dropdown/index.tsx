@@ -64,8 +64,8 @@ const DropDownHeader = styled.div`
 const DropDownList = styled.div<DropDownStyleProps>`
   display: ${({ isDropDownOpen }) => isDropDownOpen ? "block" : "none"};
   padding: 5px;
-  /* border-top: 1px solid #E5E8EC; */
-  background-color: #F8F8F6;
+  border-top: 1px solid #E5E8EC;
+  background-color: #fcfcf8;
   box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.1);  
   border-radius: 5px;
 `;
