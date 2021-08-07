@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 import EditorBlock from "../EditorBlock";
 import { EditorProps } from "../../types/ui";
+import { INITIAL_TEXT } from "../../constants/ui";
 import useMouseEvent from "../../hooks/useMouseEvent";
 import useText from "../../hooks/useText";
 import TextInput from "../TextInput";
@@ -19,16 +20,18 @@ const TextEditorBlock: React.FC<EditorProps> = ({
     handleMouseClick,
     handleMouseOver,
     handleMouseLeave,
-    onClicked,
     componentRef
   } = useMouseEvent();
 
+  const [html, setHtml] = useState(INITIAL_TEXT);
+
   const {
-    text,
-    handleIconClick,
-    handleTextChange,
-    isEditing,
-  } = useText({ isClicked, onClicked });
+    ref,
+    handleInputChange,
+    // isEditing,
+    innerHTML,
+    // handleInputClick,
+  } = useText({ html, onChange: setHtml });
 
   return (
     <EditorBlock 
@@ -45,10 +48,11 @@ const TextEditorBlock: React.FC<EditorProps> = ({
       isClicked={isClicked}
     > 
       <TextInput 
-        isEditing={isEditing} 
-        onClick={handleIconClick} 
-        onChange={handleTextChange}
-        text={text}
+        isEditing={true} 
+        componentRef={ref}
+        onChange={handleInputChange}
+        // onClick={handleInputClick}
+        html={innerHTML}
         isMouseOver={isMouseOver}
         top={0}
         right={-21}

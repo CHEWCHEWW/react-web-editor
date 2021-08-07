@@ -5,12 +5,13 @@ import { IoMdExit } from "react-icons/io";
 
 import Icon from "../Icon";
 import MenuBoard from "../MenuBoard";
-import { Location } from "../../types/ui";
+import { Location, InnerHTML } from "../../types/ui";
 
 interface TextInpuProps extends Location {
   onClick: () => void
-  onChange: (ev: React.ChangeEvent<HTMLTextAreaElement>) => void
-  text: string
+  onChange: (ev: React.FormEvent<HTMLDivElement>) => void
+  componentRef: React.Ref<HTMLDivElement>
+  html: InnerHTML
   isEditing: boolean
   isMouseOver: boolean
 }
@@ -22,8 +23,9 @@ interface TextInputStyleProps {
 const TextInput: React.FC<TextInpuProps> = ({
   onChange,
   onClick,
+  componentRef,
   isEditing,
-  text,
+  html,
   isMouseOver,
   top,
   right,
@@ -32,35 +34,36 @@ const TextInput: React.FC<TextInpuProps> = ({
 }): React.ReactElement => {
   return (
     <>
-      <MenuBoard />
+      {/* <MenuBoard />
       {isMouseOver && (
         <Icon
           top={top}
           right={right}
           left={left}
           bottom={bottom}
-          onClick={onClick}
         >
           {isEditing ? <IoMdExit /> : <BiText />}
         </Icon>
-      )}
-      {isEditing && (
-        <>
-          <Input onChange={onChange} value={text} autoFocus />
-        </>
-      )}
-      <TextArea isEditing={isEditing}>{text}</TextArea>
+      )} */}
+      <div 
+        contentEditable={isEditing}
+        ref={componentRef}
+        dangerouslySetInnerHTML={html}
+        onInput={onChange}
+      />
     </>
   );
 };
 
 const Input = styled.textarea`
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   position: absolute;
-  font-size: 100px;
-  opacity: 0;
+  font-size: 20px;
+  color: transparent;
+  background-color: transparent;
   z-index: 8;
+  border: transparent;
 `;
 
 const TextArea = styled.div<TextInputStyleProps>`
@@ -71,6 +74,7 @@ const TextArea = styled.div<TextInputStyleProps>`
   color: pink;
   cursor: text;
   border: ${({ isEditing }) => isEditing && "1px solid red"};
+  white-space: pre-wrap;
 `;
 
 export default TextInput;

@@ -1,48 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect ,useRef, useState } from "react";
 
-import { ClickState } from "../types/handler";
 import { INITIAL_TEXT } from "../constants/ui";
+import { Dispatcher ,InnerHTML } from "../types/ui";
 
-interface UseTextReturns {
-  text: string
-  handleIconClick: () => void
-  handleTextChange: (ev: React.ChangeEvent<HTMLTextAreaElement>) => void
-  isEditing: boolean
+interface UseTextProps {
+  onChange: Dispatcher<string>
+  html: string
 }
 
-const useText = ({ onClicked, isClicked }: ClickState): UseTextReturns => {
-  const [text, setText] = useState<string>(INITIAL_TEXT);
-  const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [isEdited, setIsEdited] = useState<boolean>(false);
-  
-  useEffect(() => {
-    if (isClicked && isEdited) {
-      onClicked(false);
+interface UseTextReturns {
+  ref: React.Ref<HTMLDivElement>
+  innerHTML: InnerHTML
+  // isEditing: boolean
+  handleInputChange: () => void
+  // handleInputClick: () => void
+}
+
+const useText = ({ 
+  html, 
+  onChange, 
+}: UseTextProps): UseTextReturns => {
+  const [savedHtml, setSavedHtml] = useState(INITIAL_TEXT);
+  const ref = useRef<HTMLDivElement>(null);
+
+  const handleInputChange = () => {
+    if (!ref.current) {
+      return;
     }
-  }, [isClicked, onClicked, isEdited]);
-
-  useEffect(() => {
-    if (isEditing) {
-      onClicked(false);
-      setIsEdited(true);
-    } else {
-      setIsEdited(false);
+    
+    const currentHtml = ref.current.innerHTML;
+    
+    if (!currentHtml || currentHtml === savedHtml) {
+      return;
     }
-  }, [isEditing, onClicked]);
-
-  const handleIconClick = () => {
-    setIsEditing(prev => !prev);
-  };
-
-  const handleTextChange = (ev: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setText(ev.target.value);
+    
+    onChange(html);
+    setSavedHtml(currentHtml);
   };
 
   return {
-    text,
-    handleIconClick,
-    handleTextChange,
-    isEditing,
+    ref,
+    handleInputChange,
+    // isEditing,
+    innerHTML: { __html: html },
+
+    // innerHTML: { __html: html },
+    // handleInputClick,
   };
 };
 

@@ -7,6 +7,8 @@ import TextEditorBlock from "../TextEditorBlock";
 const Test: React.FC = (): React.ReactElement => {
   return (
     <Wrapper>
+      <TwoColorText>
+      </TwoColorText>
       <EditorWrapper>
         <TextEditorBlock 
           width={100} 
@@ -28,6 +30,13 @@ const Test: React.FC = (): React.ReactElement => {
     </Wrapper>
   );
 };
+
+const TwoColorText = styled.div`
+  color: #3899ec;
+  font-size: 26px;
+  font-weight: 600;
+  text-shadow: rgb(10 189 240 / 30%) 3px 3px 0px, rgb(254 1 1 / 30%) -2px -2px 0px;
+`;
 
 const Wrapper = styled.div`
   width: 100vw;
