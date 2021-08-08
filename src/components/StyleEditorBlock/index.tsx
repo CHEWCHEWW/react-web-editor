@@ -72,7 +72,7 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
       {imageSrc && <UploadedImage src={imageSrc} />}
       {color && <CustomBlock color={color} />}
       {children ? children : <CustomBlock color={color} />}
-      <TextEditor html={innerHTML} componentRef={ref} onChange={handleInputChange} isEditing={isEditing} />
+      {/* <TextEditor html={innerHTML} componentRef={ref} onChange={handleInputChange} isEditing={isEditing} /> */}
     </EditorBlock>
   );
 };

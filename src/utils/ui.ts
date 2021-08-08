@@ -24,10 +24,10 @@ interface ComponentPosition extends ComponentLocation {
 }
 
 const getBoundingZone = ({ 
-  left, 
-  top, 
-  width, 
-  height 
+  left = 0, 
+  top = 0, 
+  width = 0, 
+  height = 0, 
 }: ComponentStyle): ComponentPosition => {
   const right = left + width;
   const bottom = top + height;
