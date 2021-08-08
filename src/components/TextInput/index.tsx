@@ -8,7 +8,7 @@ import MenuBoard from "../MenuBoard";
 import { Location, InnerHTML } from "../../types/ui";
 
 interface TextInpuProps extends Location {
-  onClick: () => void
+  // onClick: () => void
   onChange: (ev: React.FormEvent<HTMLDivElement>) => void
   componentRef: React.Ref<HTMLDivElement>
   html: InnerHTML
@@ -22,7 +22,7 @@ interface TextInputStyleProps {
 
 const TextInput: React.FC<TextInpuProps> = ({
   onChange,
-  onClick,
+  // onClick,
   componentRef,
   isEditing,
   html,
@@ -34,8 +34,8 @@ const TextInput: React.FC<TextInpuProps> = ({
 }): React.ReactElement => {
   return (
     <>
-      {/* <MenuBoard />
-      {isMouseOver && (
+      <MenuBoard />
+      {/* {isMouseOver && (
         <Icon
           top={top}
           right={right}
@@ -46,7 +46,7 @@ const TextInput: React.FC<TextInpuProps> = ({
         </Icon>
       )} */}
       <div 
-        contentEditable={isEditing}
+        contentEditable
         ref={componentRef}
         dangerouslySetInnerHTML={html}
         onInput={onChange}
