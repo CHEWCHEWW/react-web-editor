@@ -94,10 +94,10 @@ const DraggableHandler = styled.div`
 const Wrapper = styled.div.attrs<ComponentStyle>(
   ({ width, height, left, top }) => ({
     style: {
-      top: `${top}px`,
-      left: `${left}px`,
-      width: `${width}px`,
-      height: `${height}px`,
+      top: top && `${top}px`,
+      left: left && `${left}px`,
+      width: width && `${width}px`,
+      height: height && `${height}px`,
     },
   })
 )<ComponentStyle>`

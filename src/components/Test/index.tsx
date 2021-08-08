@@ -10,13 +10,6 @@ const Test: React.FC = (): React.ReactElement => {
       <TwoColorText>
       </TwoColorText>
       <EditorWrapper>
-        <TextEditorBlock 
-          width={100} 
-          height={100} 
-          top={200} 
-          left={200} 
-        >
-        </TextEditorBlock>
         <StyleEditorBlock 
           width={100} 
           height={100} 
@@ -26,6 +19,7 @@ const Test: React.FC = (): React.ReactElement => {
         >
           <TestDiv>happy</TestDiv>
         </StyleEditorBlock>
+        <TextEditorBlock top={500} left={500} width={200} height={100} />
       </EditorWrapper>
     </Wrapper>
   );
