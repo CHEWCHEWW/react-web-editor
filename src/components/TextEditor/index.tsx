@@ -30,6 +30,8 @@ const TextEditor: React.FC<TextEditorProps> = ({
 };
 
 const TextBoard = styled.div`
+  width: 100%;
+  height: 100%;
   position: absolute;
   z-index: 10;
 `;

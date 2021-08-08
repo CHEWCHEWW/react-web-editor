@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { BiText } from "react-icons/bi";
 
 import { ComponentLocation, ComponentStyle } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
+import Icon from "../Icon";
 import { INITIAL_TEXT } from "../../constants/ui";
 import useDraggable from "../../hooks/useDraggable";
+import useMouseEvent from "../../hooks/useMouseEvent";
 import useResize from "../../hooks/useResize";
 import useText from "../../hooks/useText";
 import TextEditor from "../TextEditor";
@@ -29,6 +32,15 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
   });
 
   const {
+    isClicked,
+    isMouseOver,
+    handleMouseClick,
+    handleMouseOver,
+    handleMouseLeave,
+    componentRef,
+  } = useMouseEvent();
+
+  const {
     ref,
     handleInputChange,
     innerHTML,
@@ -50,19 +62,24 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
       left={componentStyle.left}
       width={componentStyle.width}
       height={componentStyle.height}
-      // onDoubleClick={handleEditingMode}
+      onDoubleClick={handleEditingMode}
+      onMouseOver={handleMouseOver}
     >
+      {isMouseOver && 
+        <Icon 
+          top={0}
+          right={-21}
+          onMouseDown={handleDragStart}
+          onMouseUp={handleDragEnd}
+        >
+          <BiText />
+        </Icon>}
       <TextEditor 
         html={innerHTML} 
         onChange={handleInputChange}
         componentRef={ref}
         isEditing={isEditing}
       />
-      <DraggableHandler
-        onMouseDown={handleDragStart}
-        onMouseUp={handleDragEnd}
-      >   
-      </DraggableHandler>
       <ResizeHandlersWrapper>
         {DIRECTIIONS.map((item) => (
           <div key={item} className={item} onMouseDown={handleMouseDown} />
@@ -71,15 +88,6 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
     </Wrapper>
   );
 };
-
-const DraggableHandler = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 1px solid gray;
-  position: absolute;
-  cursor: move;
-  z-index: 9;
-`;
 
 const Wrapper = styled.div.attrs<ComponentStyle>(
   ({ left, top, width, height }) => ({

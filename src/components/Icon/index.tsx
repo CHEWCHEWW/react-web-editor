@@ -7,6 +7,8 @@ interface IconProps {
   left?: number
   bottom?: number
   onClick?: (ev: React.MouseEvent) => void
+  onMouseDown?: (ev: React.MouseEvent<HTMLDivElement>) => void
+  onMouseUp?: () => void
 }
 
 const Icon: React.FC<IconProps> = ({ 
@@ -14,9 +16,17 @@ const Icon: React.FC<IconProps> = ({
   top, 
   right,
   onClick,
+  onMouseDown,
+  onMouseUp,
 }): React.ReactElement => {
   return (
-    <IconBackground top={top} right={right} onClick={onClick}>
+    <IconBackground 
+      top={top} 
+      right={right} 
+      onClick={onClick}
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+    >
       <IconImage>
         {children}
       </IconImage>

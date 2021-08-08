@@ -22,7 +22,7 @@ const useText = ({
   onChange, 
 }: UseTextProps): UseTextReturns => {
   const [savedHtml, setSavedHtml] = useState<string>(INITIAL_TEXT);
-  const [isEditing, setIsEditing] = useState<boolean>(true);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
 
   const handleInputChange = () => {
@@ -41,6 +41,7 @@ const useText = ({
   };
 
   const handleEditingMode = () => {
+    console.log(400);
     setIsEditing((prev) => !prev);
   };
 
