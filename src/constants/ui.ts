@@ -7,3 +7,7 @@ export const DEFAULT_DROP_DOWN_MESSAGE = "Select Font";
 
 export const SLIDER_MIN = 0;
 export const SLIDER_MAX = 1;
+
+export const SANITIZE_CONFIGURATION = {
+  allowedTags: [ "b","i", "em", "p", "div" ],
+};
