@@ -12,9 +12,9 @@ interface UseTextProps {
 interface UseTextReturns {
   ref: React.Ref<HTMLDivElement>
   innerHTML: InnerHTML
-  // isEditing: boolean
   handleInputChange: () => void
-  // handleInputClick: () => void
+  handleEditingMode: () => void
+  isEditing: boolean
 }
 
 const useText = ({ 
@@ -22,6 +22,7 @@ const useText = ({
   onChange, 
 }: UseTextProps): UseTextReturns => {
   const [savedHtml, setSavedHtml] = useState<string>(INITIAL_TEXT);
+  const [isEditing, setIsEditing] = useState<boolean>(true);
   const ref = useRef<HTMLDivElement>(null);
 
   const handleInputChange = () => {
@@ -39,14 +40,16 @@ const useText = ({
     setSavedHtml(sanitizeHtml(currentHtml, SANITIZE_CONFIGURATION));
   };
 
+  const handleEditingMode = () => {
+    setIsEditing((prev) => !prev);
+  };
+
   return {
     ref,
     handleInputChange,
-    // isEditing,
     innerHTML: { __html: html },
-
-    // innerHTML: { __html: html },
-    // handleInputClick,
+    handleEditingMode,
+    isEditing,
   };
 };
 

@@ -40,14 +40,14 @@ export const getBoundPosition = (
   clientY: number, 
   x: number, 
   y: number,
-  width: number,
-  height: number,
+  width?: number,
+  height?: number,
   parentLocation?: ComponentStyle, 
 ): ComponentLocation => {
   let currentX: number = clientX - x;
   let currentY: number = clientY - y;
 
-  if (!parentLocation) {
+  if (!parentLocation || !width || !height) {
     return { left: currentX, top: currentY };
   }
 

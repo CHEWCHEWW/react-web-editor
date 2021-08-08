@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 interface CoordinatesTagProps {
-  left: number
-  top: number
+  left?: number
+  top?: number
 }
 
 const CoordinatesTag: React.FC<CoordinatesTagProps> = ({
