@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { BiText } from "react-icons/bi";
+import { GiMove } from "react-icons/gi";
+import { MdExitToApp } from "react-icons/md";
 
-import { ComponentLocation, ComponentStyle } from "../../types/ui";
+import { ComponentStyle } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
 import Icon from "../Icon";
 import { INITIAL_TEXT } from "../../constants/ui";
@@ -32,12 +34,9 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
   });
 
   const {
-    isClicked,
     isMouseOver,
-    handleMouseClick,
     handleMouseOver,
     handleMouseLeave,
-    componentRef,
   } = useMouseEvent();
 
   const {
@@ -62,29 +61,42 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
       left={componentStyle.left}
       width={componentStyle.width}
       height={componentStyle.height}
-      onDoubleClick={handleEditingMode}
       onMouseOver={handleMouseOver}
+      onMouseLeave={handleMouseLeave}
     >
       {isMouseOver && 
-        <Icon 
-          top={0}
-          right={-21}
-          onMouseDown={handleDragStart}
-          onMouseUp={handleDragEnd}
-        >
-          <BiText />
-        </Icon>}
+        <>
+          <ButtonHandler />
+          {!isEditing && (
+            <Icon 
+              top={0}
+              right={-21}
+              onMouseDown={handleDragStart}
+              onMouseUp={handleDragEnd}
+            >
+              <GiMove />
+            </Icon>
+          )}
+          <Icon 
+            top={isEditing ? 0 : 22}
+            right={-21}
+            onClick={handleEditingMode}
+          >
+            {isEditing ? <MdExitToApp /> : <BiText />}
+          </Icon>
+          <ResizeHandlersWrapper>
+            {DIRECTIIONS.map((item) => (
+              <div key={item} className={item} onMouseDown={handleMouseDown} />
+            ))}
+          </ResizeHandlersWrapper>
+        </>
+      }
       <TextEditor 
         html={innerHTML} 
         onChange={handleInputChange}
         componentRef={ref}
         isEditing={isEditing}
       />
-      <ResizeHandlersWrapper>
-        {DIRECTIIONS.map((item) => (
-          <div key={item} className={item} onMouseDown={handleMouseDown} />
-        ))}
-      </ResizeHandlersWrapper>
     </Wrapper>
   );
 };
@@ -134,6 +146,14 @@ const ResizeHandlersWrapper = styled.div`
     position: absolute;
     z-index: 10;
   }
+`;
+
+const ButtonHandler = styled.span`
+  top: 0;
+  right: -20px;
+  width: 30px;
+  height: 50px;
+  position: absolute;
 `;
 
 export default TextEditorBlock;

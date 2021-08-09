@@ -29,8 +29,8 @@ const useDraggable = ({
   dragBoardOption,
 }: UseDraggableProps): UseDraggableReturns => {
   const [componentInfomation, setComponentInformation] = useState<ComponentInfomation>({
-    currentX: left,
-    currentY: top,
+    currentX: left || 0,
+    currentY: top || 0,
     isDragging: false,
   });
 
@@ -72,7 +72,7 @@ const useDraggable = ({
   
   const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
     const { clientX, clientY } = ev;
-    
+
     const currentX = clientX - left;
     const currentY = clientY - top;
     

@@ -2,11 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import { InnerHTML } from "../../types/ui";
+import MenuBoard from "../MenuBoard";
 
 interface TextEditorProps {
-  // onChange: (ev: React.FormEvent<HTMLDivElement>) => void
-  // componentRef: React.Ref<HTMLDivElement>
-  // html: InnerHTML
   html: InnerHTML
   isEditing: boolean
   onChange: () => void
@@ -20,12 +18,15 @@ const TextEditor: React.FC<TextEditorProps> = ({
   isEditing,
 }): React.ReactElement => {
   return (
-    <TextBoard 
-      contentEditable={isEditing}
-      ref={componentRef}
-      dangerouslySetInnerHTML={html}
-      onInput={onChange}
-    />
+    <>
+      <TextBoard 
+        contentEditable
+        ref={componentRef}
+        dangerouslySetInnerHTML={html}
+        onInput={onChange}
+      />
+      {isEditing && <MenuBoard />}
+    </>
   );
 };
 
@@ -33,7 +34,6 @@ const TextBoard = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 10;
 `;
 
 export default TextEditor;
