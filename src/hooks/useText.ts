@@ -41,7 +41,6 @@ const useText = ({
   };
 
   const handleEditingMode = () => {
-    console.log(400);
     setIsEditing((prev) => !prev);
   };
 

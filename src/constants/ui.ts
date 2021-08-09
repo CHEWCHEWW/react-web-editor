@@ -11,3 +11,7 @@ export const SLIDER_MAX = 1;
 export const SANITIZE_CONFIGURATION = {
   allowedTags: [ "b","i", "em", "p", "div" ],
 };
+
+export const FIRST_EDITOR_ICON_TOP = 0;
+export const SECOND_EDITOR_ICON_TOP = 22;
+export const EDITOR_ICON_RIGHT = -21;

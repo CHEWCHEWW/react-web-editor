@@ -6,6 +6,7 @@ import { MdExitToApp } from "react-icons/md";
 
 import { ComponentStyle } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
+import { EDITOR_ICON_RIGHT, FIRST_EDITOR_ICON_TOP, SECOND_EDITOR_ICON_TOP } from "../../constants/ui";
 import Icon from "../Icon";
 import { INITIAL_TEXT } from "../../constants/ui";
 import useDraggable from "../../hooks/useDraggable";
@@ -69,8 +70,8 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
           <ButtonHandler />
           {!isEditing && (
             <Icon 
-              top={0}
-              right={-21}
+              top={FIRST_EDITOR_ICON_TOP}
+              right={EDITOR_ICON_RIGHT}
               onMouseDown={handleDragStart}
               onMouseUp={handleDragEnd}
             >
@@ -78,8 +79,8 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
             </Icon>
           )}
           <Icon 
-            top={isEditing ? 0 : 22}
-            right={-21}
+            top={isEditing ? FIRST_EDITOR_ICON_TOP : SECOND_EDITOR_ICON_TOP}
+            right={EDITOR_ICON_RIGHT}
             onClick={handleEditingMode}
           >
             {isEditing ? <MdExitToApp /> : <BiText />}
@@ -152,7 +153,7 @@ const ButtonHandler = styled.span`
   top: 0;
   right: -20px;
   width: 30px;
-  height: 50px;
+  height: 100%;
   position: absolute;
 `;
 

@@ -2,8 +2,9 @@ import React from "react";
 import styled from "styled-components";
 
 import ColorPicker from "../ColorPicker";
-import EditorBlock from "../EditorBlock";
 import { ColorProps, EditorProps } from "../../types/ui";
+import EditorBlock from "../EditorBlock";
+import { EDITOR_ICON_RIGHT, FIRST_EDITOR_ICON_TOP, SECOND_EDITOR_ICON_TOP } from "../../constants/ui";
 import ImageUploader from "../ImageUploader";
 import useColor from "../../hooks/useColor";
 import useImage from "../../hooks/useImage";
@@ -45,8 +46,16 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
     >
       {isMouseOver &&
         <>
-          <ImageUploader onChange={handleFileChange} top={0} right={-21} />
-          <ColorPicker onChange={handleColorChange} top={22} right={-21} />
+          <ImageUploader 
+            onChange={handleFileChange} 
+            top={FIRST_EDITOR_ICON_TOP} 
+            right={EDITOR_ICON_RIGHT} 
+          />
+          <ColorPicker 
+            onChange={handleColorChange} 
+            top={SECOND_EDITOR_ICON_TOP} 
+            right={EDITOR_ICON_RIGHT} 
+          />
         </>
       }
       {imageSrc && <UploadedImage src={imageSrc} />}
