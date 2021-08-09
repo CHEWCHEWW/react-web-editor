@@ -7,7 +7,7 @@ interface UseSliderReturns {
 }
 
 const useSlider = (max: number): UseSliderReturns => {
-  const [value, setValue] = useState<number>(0);
+  const [value, setValue] = useState<number>(0.2);
   const sliderRef = useRef<HTMLInputElement>(null);
 
   const handleValueChange = (): void => {
