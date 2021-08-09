@@ -24,7 +24,6 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
   height,
 }): React.ReactElement => {
   const [html, setHtml] = useState(INITIAL_TEXT);
-  const [fontStyle, setFontStyle] = useState<string>("");
   const [componentStyle, setComponentStyle] = useState<ComponentStyle>({
     top,
     left,
@@ -39,8 +38,8 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
 
   const {
     isMouseOver,
-    handleMouseOver,
     handleMouseLeave,
+    handleMouseOver,
   } = useMouseEvent();
 
   const {
@@ -49,6 +48,10 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
     innerHTML,
     handleEditingMode,
     isEditing,
+    fontStyle,
+    handleStyleChange,
+    handleFontStyleClick,
+    fontName,
   } = useText({ html, onChange: setHtml });
 
   const {
@@ -67,12 +70,6 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
     handleValueChange,
   } = useSlider(SLIDER_MAX);
 
-  const handleStyleChange = (ev: React.MouseEvent<HTMLButtonElement>) => {
-    const targetName = ev.currentTarget.name;
-    console.log(targetName, ev.target);
-    setFontStyle(targetName);
-  };
-  
   return (
     <Wrapper
       top={componentStyle.top}
@@ -120,6 +117,8 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
         sliderValue={value}
         onSliderChange={handleValueChange}
         onClick={handleStyleChange}
+        onFontClick={handleFontStyleClick}
+        fontName={fontName}
       />
     </Wrapper>
   );

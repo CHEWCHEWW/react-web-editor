@@ -6,6 +6,7 @@ interface UseMouseEventReturns extends ClickState {
   isMouseOver: boolean
   handleMouseClick: ()=> void
   handleMouseOver: ()=> void
+  handleMouseUp: () => void
   handleMouseLeave: ()=> void
   componentRef: React.Ref<HTMLDivElement>
 }
@@ -34,6 +35,10 @@ const useMouseEvent = (): UseMouseEventReturns => {
     setIsClicked(true);
   };
 
+  const handleMouseUp = (): void => {
+    setIsClicked(false);
+  };
+
   const handleMouseOver = (): void => {
     setIsMouseOver(true);
   };
@@ -48,6 +53,7 @@ const useMouseEvent = (): UseMouseEventReturns => {
     handleMouseClick,
     handleMouseOver,
     handleMouseLeave,
+    handleMouseUp,
     onClicked: setIsClicked,
     componentRef,
   };

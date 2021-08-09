@@ -1,5 +1,7 @@
 import React, { useRef, useState } from "react";
 
+import { DEFAULT_SLIDER_VALUE } from "../constants/ui";
+
 interface UseSliderReturns {
   value: number
   handleValueChange: () => void
@@ -7,7 +9,7 @@ interface UseSliderReturns {
 }
 
 const useSlider = (max: number): UseSliderReturns => {
-  const [value, setValue] = useState<number>(0.2);
+  const [value, setValue] = useState<number>(DEFAULT_SLIDER_VALUE);
   const sliderRef = useRef<HTMLInputElement>(null);
 
   const handleValueChange = (): void => {
