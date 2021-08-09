@@ -5,6 +5,7 @@ import { ColorProps } from "../types/ui";
 interface UseColorReturns extends ColorProps {
   color: string
   handleColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
+  handleFontColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const useColor = (): UseColorReturns => {
@@ -14,7 +15,18 @@ const useColor = (): UseColorReturns => {
     setColor(ev.target.value);
   };
 
-  return { color, handleColorChange };
+  const handleFontColorChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    ev.preventDefault();
+
+    handleColorChange(ev);
+    document.execCommand("foreColor", false, color);
+  };
+
+  return { 
+    color, 
+    handleColorChange, 
+    handleFontColorChange, 
+  };
 };
 
 export default useColor;

@@ -8,9 +8,11 @@ import { ComponentStyle } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
 import { EDITOR_ICON_RIGHT, FIRST_EDITOR_ICON_TOP, SECOND_EDITOR_ICON_TOP } from "../../constants/ui";
 import Icon from "../Icon";
-import { INITIAL_TEXT } from "../../constants/ui";
+import { SLIDER_MAX, INITIAL_TEXT } from "../../constants/ui";
+import useColor from "../../hooks/useColor";
 import useDraggable from "../../hooks/useDraggable";
 import useMouseEvent from "../../hooks/useMouseEvent";
+import useSlider from "../../hooks/useSlider";
 import useResize from "../../hooks/useResize";
 import useText from "../../hooks/useText";
 import TextEditor from "../TextEditor";
@@ -22,6 +24,7 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
   height,
 }): React.ReactElement => {
   const [html, setHtml] = useState(INITIAL_TEXT);
+  const [fontStyle, setFontStyle] = useState<string>("");
   const [componentStyle, setComponentStyle] = useState<ComponentStyle>({
     top,
     left,
@@ -56,6 +59,20 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
     onDrag: setComponentStyle,
   });
 
+  const { handleFontColorChange } = useColor();
+  
+  const {
+    sliderRef,
+    value,
+    handleValueChange,
+  } = useSlider(SLIDER_MAX);
+
+  const handleStyleChange = (ev: React.MouseEvent<HTMLButtonElement>) => {
+    const targetName = ev.currentTarget.name;
+    console.log(targetName, ev.target);
+    setFontStyle(targetName);
+  };
+  
   return (
     <Wrapper
       top={componentStyle.top}
@@ -94,9 +111,15 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
       }
       <TextEditor 
         html={innerHTML} 
+        fontStyle={fontStyle}
         onChange={handleInputChange}
         componentRef={textRef}
         isEditing={isEditing}
+        onColorChange={handleFontColorChange}
+        sliderRef={sliderRef}
+        sliderValue={value}
+        onSliderChange={handleValueChange}
+        onClick={handleStyleChange}
       />
     </Wrapper>
   );
