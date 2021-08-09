@@ -44,6 +44,7 @@ const CustomInput: React.FC<CustomInputProps> = ({
 };
 
 const Input = styled.input`
+  width: 20px;
   opacity: 0;
   position: absolute;
 `;
