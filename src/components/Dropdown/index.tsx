@@ -15,7 +15,8 @@ interface DropDownMarkProps {
 }
 
 const DropDown: React.FC<DropDownProps> = ({ 
-  items 
+  items,
+  onClick,
 }): React.ReactElement => {
   const {
     handleItemClick,
@@ -24,6 +25,12 @@ const DropDown: React.FC<DropDownProps> = ({
     selectedItem,
   } = useDropDown({ items });
 
+  const handleDropDownListClick = (ev: React.MouseEvent<HTMLDivElement>): void => {
+    handleItemClick(ev);
+    console.log(ev.currentTarget.id);
+    onClick && onClick(ev);
+  };
+  console.log(selectedItem);
   return (
     <DropDownBoard>
       <DropDownHeader onClick={handleDropDownClick}>
@@ -34,8 +41,8 @@ const DropDown: React.FC<DropDownProps> = ({
       </DropDownHeader>
       <DropDownList isDropDownOpen={isDropDownOpen}>
         {items.map((item) => (
-          <DropDownItem onClick={handleItemClick} id={item.id} key={item.id}>
-            <DropDownItemDot isSelected={item.id == selectedItem.id}>•</DropDownItemDot>
+          <DropDownItem onClick={handleDropDownListClick} id={item.id} key={item.id}>
+            <DropDownItemDot isSelected={item.id === selectedItem.id}>•</DropDownItemDot>
             {item.label}
           </DropDownItem>
         ))}

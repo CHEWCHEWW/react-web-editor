@@ -4,7 +4,7 @@ import { AiOutlineAlignCenter, AiOutlineAlignLeft, AiOutlineAlignRight } from "r
 import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 import { IoIosColorPalette } from "react-icons/io";
 
-import { TEXT_STYLES } from "../../constants/ui";
+import { FONT_STYLES, TEXT_STYLES } from "../../constants/ui";
 import DropDown from "../DropDown";
 import EditorButton from "../EditorButton";
 import MenuOption from "../MenuOption";
@@ -20,9 +20,8 @@ interface MenuBoardProps {
   sliderRef: React.Ref<HTMLInputElement>
   sliderValue: number
   onClick: (ev: React.MouseEvent<HTMLButtonElement>) => void
+  onFontClick: (ev: React.MouseEvent<HTMLDivElement>) => void
 }
-
-const data = [{ id: "0", label: "글꼴 1" }, { id: "1", label: "글꼴 2" }];
 
 const MenuBoard: React.FC<MenuBoardProps> = ({
   sliderRef,
@@ -30,6 +29,7 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
   onSliderChange,
   sliderValue,
   onClick,
+  onFontClick,
 }): React.ReactElement => {
   return (
     <Board>
@@ -37,7 +37,7 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
         설정
       </MenuHeader>
       <MenuOption name={"글꼴"}>
-        <DropDown items={data} />
+        <DropDown items={FONT_STYLES} onClick={onFontClick} />
       </MenuOption>
       <MenuOption name={"크기"}>
         <Slider 

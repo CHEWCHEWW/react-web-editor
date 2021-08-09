@@ -49,12 +49,13 @@ export interface ColorProps {
 export type Dispatcher<S> = React.Dispatch<React.SetStateAction<S>>;
 
 export interface DropDownContent {
-  id: string
   label: string
+  id: string
 }
 
 export interface DropDownProps {
   items: DropDownContent[]
+  onClick?: (ev: React.MouseEvent<HTMLDivElement>) => void
 }
 
 export interface Location {

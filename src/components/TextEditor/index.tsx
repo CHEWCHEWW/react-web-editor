@@ -3,9 +3,6 @@ import styled from "styled-components";
 
 import { InnerHTML } from "../../types/ui";
 import MenuBoard from "../MenuBoard";
-import useColor from "../../hooks/useColor";
-import useSlider from "../../hooks/useSlider";
-import { SLIDER_MAX } from "../../constants/ui";
 
 interface TextEditorProps {
   html: InnerHTML
@@ -18,10 +15,13 @@ interface TextEditorProps {
   onSliderChange: () => void
   onClick: (ev: React.MouseEvent<HTMLButtonElement>) => void
   fontStyle: string
+  onFontClick: (ev: React.MouseEvent<HTMLDivElement>) => void
+  fontName: string
 }
 
 interface TextBoardStyle {
   fontSize: number
+  fontName?: string
 }
 
 const TextEditor: React.FC<TextEditorProps> = ({
@@ -35,17 +35,20 @@ const TextEditor: React.FC<TextEditorProps> = ({
   onSliderChange,
   onClick,
   fontStyle,
+  onFontClick,
+  fontName,
 }): React.ReactElement => {
   return (
     <>
       <FontStyle>
         <TextBoard 
-          className={fontStyle}
+          className={`${fontStyle} ${fontName}`}
           contentEditable
           ref={componentRef}
           dangerouslySetInnerHTML={html}
           onInput={onChange}
           fontSize={sliderValue}
+          fontName={fontName}
         />
       </FontStyle>
       {isEditing && (
@@ -55,8 +58,10 @@ const TextEditor: React.FC<TextEditorProps> = ({
           onSliderChange={onSliderChange}
           sliderValue={sliderValue}
           onClick={onClick}
+          onFontClick={onFontClick}
         />
       )}
+      
     </>
   );
 };
@@ -64,17 +69,25 @@ const TextEditor: React.FC<TextEditorProps> = ({
 const TextBoard = styled.div.attrs<TextBoardStyle>(
   ({ fontSize }) => ({
     style: {
-      fontSize: fontSize && `${fontSize * 100}px`
+      fontSize: fontSize && `${fontSize * 100}px`,
     },
   })
 )<TextBoardStyle>`
   width: 100%;
   height: 100%;
   position: absolute;
+  padding: 0;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 const FontStyle = styled.span`
-  .two-color-text {
+  @import url('https://fonts.googleapis.com/css2?family=Andada+Pro&family=Bebas+Neue&family=MonteCarlo&family=Roboto:wght@100&family=STIX+Two+Text&family=Style+Script&display=swap');
+
+  .twin-color-text {
     font-size: 26px;
     font-weight: 600;
     text-shadow: rgb(10 189 240 / 30%) 3px 3px 0px, rgb(254 1 1 / 30%) -2px -2px 0px;
@@ -109,6 +122,30 @@ const FontStyle = styled.span`
     font-weight: 600;
     text-shadow: 0 4px 8.896px #247aca, 0 -2px 1px #6499fd;
     color: #5fb4e6;
+  }
+
+  .andada-pro {
+    font-family: "Andada Pro", serif;
+  }
+
+  .bebas-nenu {
+    font-family: "Bebas Neue", cursive;
+  }
+
+  .montecarlo {
+    font-family: "MonteCarlo", cursive;
+  }
+
+  .roboto {
+    font-family: "Roboto", sans-serif;
+  }
+
+  .stix-two-text {
+    font-family: "STIX Two Text", serif;
+  }
+
+  .style-script {
+    font-family: "Style Script", cursive;
   }
 `;
 
