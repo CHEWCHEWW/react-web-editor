@@ -9,10 +9,7 @@ import DropDown from "../DropDown";
 import EditorButton from "../EditorButton";
 import MenuOption from "../MenuOption";
 import Slider from "../Slider";
-// import { SLIDER_MAX } from "../../constants/ui";
-// import useColor from "../../hooks/useColor";
-// import useSlider from "../../hooks/useSlider";
- 
+
 interface MenuBoardProps {
   color?: string
   onColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void

@@ -4,13 +4,13 @@ import { IoIosColorPalette } from "react-icons/io";
 import CustomInput from "../CustomInput";
 import { TypedCustomInputProps } from "../../types/handler";
 
-const ColorPicker = ({ 
+const ColorPicker: React.FC<TypedCustomInputProps> = ({ 
   onChange, 
   left, 
   top, 
   bottom, 
   right,
-}: TypedCustomInputProps): React.ReactElement => {
+}): React.ReactElement => {
   return (
     <CustomInput 
       type="color" 

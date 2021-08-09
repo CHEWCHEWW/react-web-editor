@@ -85,7 +85,7 @@ const TextBoard = styled.div.attrs<TextBoardStyle>(
 `;
 
 const FontStyle = styled.span`
-  @import url('https://fonts.googleapis.com/css2?family=Andada+Pro&family=Bebas+Neue&family=MonteCarlo&family=Roboto:wght@100&family=STIX+Two+Text&family=Style+Script&display=swap');
+  @import url("https://fonts.googleapis.com/css2?family=Andada+Pro&family=Bebas+Neue&family=MonteCarlo&family=Roboto:wght@100&family=STIX+Two+Text&family=Style+Script&display=swap");
 
   .twin-color-text {
     font-size: 26px;

@@ -27,10 +27,10 @@ const DropDown: React.FC<DropDownProps> = ({
 
   const handleDropDownListClick = (ev: React.MouseEvent<HTMLDivElement>): void => {
     handleItemClick(ev);
-    console.log(ev.currentTarget.id);
+
     onClick && onClick(ev);
   };
-  console.log(selectedItem);
+
   return (
     <DropDownBoard>
       <DropDownHeader onClick={handleDropDownClick}>
@@ -41,7 +41,12 @@ const DropDown: React.FC<DropDownProps> = ({
       </DropDownHeader>
       <DropDownList isDropDownOpen={isDropDownOpen}>
         {items.map((item) => (
-          <DropDownItem onClick={handleDropDownListClick} id={item.id} key={item.id}>
+          <DropDownItem 
+            onClick={handleDropDownListClick} 
+            id={item.id} 
+            key={item.id} 
+            className={item.id}
+          >
             <DropDownItemDot isSelected={item.id === selectedItem.id}>•</DropDownItemDot>
             {item.label}
           </DropDownItem>
@@ -52,9 +57,8 @@ const DropDown: React.FC<DropDownProps> = ({
 };
 
 const DropDownBoard = styled.div`
-  width: 6rem;
+  width: 8rem;
   border-radius: 5px;
-  /* box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); */
   background-color: #F8F8F6;
   font-size: 0.8rem;
   z-index: 10;
@@ -69,12 +73,36 @@ const DropDownHeader = styled.div`
 `;
 
 const DropDownList = styled.div<DropDownStyleProps>`
+  width: 12rem;
   display: ${({ isDropDownOpen }) => isDropDownOpen ? "block" : "none"};
   padding: 5px;
-  border-top: 1px solid #E5E8EC;
-  background-color: #fcfcf8;
+  background-color: #fdfdfd;
   box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.1);  
   border-radius: 5px;
+
+  .andada-pro {
+    font-family: "Andada Pro", serif;
+  }
+
+  .bebas-nenu {
+    font-family: "Bebas Neue", cursive;
+  }
+
+  .montecarlo {
+    font-family: "MonteCarlo", cursive;
+  }
+
+  .roboto {
+    font-family: "Roboto", sans-serif;
+  }
+
+  .stix-two-text {
+    font-family: "STIX Two Text", serif;
+  }
+
+  .style-script {
+    font-family: "Style Script", cursive;
+  }
 `;
 
 const DropDownIcon = styled.div<DropDownStyleProps>`
@@ -85,6 +113,8 @@ const DropDownIcon = styled.div<DropDownStyleProps>`
 
 const DropDownItem = styled.div`
   padding: 10px;
+  font-weight: 1000;
+  font-size: 25px;
 
   :hover {
     cursor: pointer;
