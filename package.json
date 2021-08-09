@@ -1,6 +1,6 @@
 {
   "name": "react-web-editor",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "private": false,
   "author": "chewchewchew3@gmail.com",
   "scripts": {
@@ -51,5 +51,19 @@
     "webpack": "^5.11.1",
     "webpack-cli": "^4.3.1",
     "webpack-dev-server": "^3.11.1"
-  }
+  },
+  "keywords": [
+    "editor",
+    "WYSIWYG",
+    "webEditor",
+    "draggable",
+    "dragAndDrop",
+    "resize",
+    "drag",
+    "resizable",
+    "colorPicker",
+    "richTextEditor",
+    "textEditor",
+    "react"
+  ]
 }
