@@ -83,7 +83,7 @@ const Board = styled.div`
   flex-direction: column;
   width: 11rem;
   top: -2rem;
-  right: -13rem;
+  right: -15rem;
   padding: 0.5rem;
   background-color: #F8F8F6;
   position: absolute;
@@ -163,7 +163,7 @@ const BubbleShadowText = styled.div`
   font-size: 26px;
   font-weight: 600;
   text-shadow: 0 4px 8.896px #247aca, 0 -2px 1px #6499fd;
-  letter-spacing: -4px;
+  /* letter-spacing: -4px; */
   color: #5fb4e6;
 `;
 
