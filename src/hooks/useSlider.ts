@@ -3,25 +3,25 @@ import React, { useRef, useState } from "react";
 interface UseSliderReturns {
   value: number
   handleValueChange: () => void
-  ref: React.Ref<HTMLInputElement>
+  sliderRef: React.Ref<HTMLInputElement>
 }
 
 const useSlider = (max: number): UseSliderReturns => {
   const [value, setValue] = useState<number>(0);
-  const ref = useRef<HTMLInputElement>(null);
+  const sliderRef = useRef<HTMLInputElement>(null);
 
   const handleValueChange = (): void => {
-    if (!ref.current) {
+    if (!sliderRef.current) {
       return;
     }
 
-    const currentValue = Number(ref.current.value);
+    const currentValue = Number(sliderRef.current.value);
 
     setValue(currentValue * max);
   };
 
   return {
-    ref,
+    sliderRef,
     value,
     handleValueChange,
   };

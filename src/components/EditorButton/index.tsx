@@ -4,7 +4,8 @@ import styled from "styled-components";
 interface EditorButtonProps {
   name: string
   isShowing: boolean
-  value: string
+  value?: string
+  onChange?: (ev: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const EditorButton: React.FC<EditorButtonProps> = ({
@@ -12,10 +13,12 @@ const EditorButton: React.FC<EditorButtonProps> = ({
   isShowing,
   value,
   children,
+  // onChange,
 }): React.ReactElement => {
   const handleTextStyleChange = (ev: React.MouseEvent<HTMLDivElement>) => {
     ev.preventDefault();
     
+    // onChange && onChange(ev);
     document.execCommand(name, isShowing, value);
   };
 

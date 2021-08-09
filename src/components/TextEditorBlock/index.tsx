@@ -41,7 +41,7 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
   } = useMouseEvent();
 
   const {
-    ref,
+    textRef,
     handleInputChange,
     innerHTML,
     handleEditingMode,
@@ -95,7 +95,7 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
       <TextEditor 
         html={innerHTML} 
         onChange={handleInputChange}
-        componentRef={ref}
+        componentRef={textRef}
         isEditing={isEditing}
       />
     </Wrapper>
