@@ -24,6 +24,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
         ref={componentRef}
         dangerouslySetInnerHTML={html}
         onInput={onChange}
+        onBlur={onChange}
       />
       {isEditing && <MenuBoard />}
     </>

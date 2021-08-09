@@ -5,12 +5,19 @@ import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 import { IoIosColorPalette } from "react-icons/io";
 
 import DropDown from "../DropDown";
+import EditorButton from "../EditorButton";
 import MenuOption from "../MenuOption";
 import Slider from "../Slider";
+import useColor from "../../hooks/useColor";
 
 const data = [{ id: "0", label: "글꼴 1" }, { id: "1", label: "글꼴 2" }];
 
 const MenuBoard: React.FC = (): React.ReactElement => {
+  const {
+    color,
+    handleColorChange,
+  } = useColor();
+
   return (
     <Board>
       <MenuHeader>
@@ -23,18 +30,19 @@ const MenuBoard: React.FC = (): React.ReactElement => {
         <Slider />
       </MenuOption>
       <MenuOption name={"옵션"}>
-        <Button>
+        <EditorButton name={"bold"} isShowing={false}>
           <FaBold />
-        </Button>
-        <Button>
+        </EditorButton>
+        <EditorButton name={"italic"} isShowing={true}>
           <FaItalic />
-        </Button>
-        <Button>
+        </EditorButton>
+        <EditorButton name={"foreColor"} isShowing={false} value={color}>
           <IoIosColorPalette />
-        </Button>
-        <Button>
+        </EditorButton>
+        <input type="color" onChange={handleColorChange} />
+        <EditorButton name={"underline"} isShowing={false}>
           <FaUnderline />
-        </Button>
+        </EditorButton>
       </MenuOption>
       <MenuOption name={"정렬"}>
         <Button>
