@@ -8,7 +8,17 @@ import DropDown from "../DropDown";
 import EditorButton from "../EditorButton";
 import MenuOption from "../MenuOption";
 import Slider from "../Slider";
+import { SLIDER_MAX } from "../../constants/ui";
 import useColor from "../../hooks/useColor";
+import useSlider from "../../hooks/useSlider";
+ 
+interface MenuBoardProps {
+  color?: string
+  onColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
+  onValueChange: () => void
+  sliderRef: React.Ref<HTMLInputElement>
+  value: number
+}
 
 const data = [{ id: "0", label: "글꼴 1" }, { id: "1", label: "글꼴 2" }];
 
@@ -17,6 +27,26 @@ const MenuBoard: React.FC = (): React.ReactElement => {
     color,
     handleColorChange,
   } = useColor();
+  
+  const {
+    sliderRef,
+    value,
+    handleValueChange,
+  } = useSlider(SLIDER_MAX);
+
+  const handleInputChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+    ev.preventDefault();
+
+    handleColorChange(ev);
+
+    document.execCommand("foreColor", false, color);
+  };
+
+  const handleSliderChange = () => {
+    handleValueChange();
+
+    document.execCommand("fontSize", false, String(value * 7));
+  };
 
   return (
     <Board>
@@ -27,7 +57,11 @@ const MenuBoard: React.FC = (): React.ReactElement => {
         <DropDown items={data} />
       </MenuOption>
       <MenuOption name={"크기"}>
-        <Slider />
+        <Slider 
+          onChange={handleSliderChange} 
+          sliderRef={sliderRef} 
+          value={value} 
+        />
       </MenuOption>
       <MenuOption name={"옵션"}>
         <EditorButton name={"bold"} isShowing={false}>
@@ -36,24 +70,24 @@ const MenuBoard: React.FC = (): React.ReactElement => {
         <EditorButton name={"italic"} isShowing={true}>
           <FaItalic />
         </EditorButton>
-        <EditorButton name={"foreColor"} isShowing={false} value={color}>
+        <Button>
           <IoIosColorPalette />
-        </EditorButton>
-        <input type="color" onChange={handleColorChange} />
+          <Input type="color" onChange={handleInputChange} />
+        </Button>
         <EditorButton name={"underline"} isShowing={false}>
           <FaUnderline />
         </EditorButton>
       </MenuOption>
       <MenuOption name={"정렬"}>
-        <Button>
+        <EditorButton name={"justifyLeft"} isShowing={false}>
           <AiOutlineAlignLeft />
-        </Button>
-        <Button>
+        </EditorButton>
+        <EditorButton name={"justifyCenter"} isShowing={false}>
           <AiOutlineAlignCenter />
-        </Button>
-        <Button>
+        </EditorButton>
+        <EditorButton name={"justifyRight"} isShowing={false}>
           <AiOutlineAlignRight />
-        </Button>
+        </EditorButton>
       </MenuOption>
       <MenuOption name={"효과"}>
         <Button>
@@ -127,6 +161,12 @@ const Button = styled.div`
   :hover {
     background-color: #f3f0f0;
   }
+`;
+
+const Input = styled.input`
+  position: absolute;
+  width: 20px;
+  opacity: 0;
 `;
 
 const TwoColorText = styled.div`

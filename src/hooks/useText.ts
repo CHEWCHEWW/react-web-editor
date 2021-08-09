@@ -10,7 +10,7 @@ interface UseTextProps {
 }
 
 interface UseTextReturns {
-  ref: React.Ref<HTMLDivElement>
+  textRef: React.Ref<HTMLDivElement>
   innerHTML: InnerHTML
   handleInputChange: () => void
   handleEditingMode: () => void
@@ -23,20 +23,20 @@ const useText = ({
 }: UseTextProps): UseTextReturns => {
   const [savedHtml, setSavedHtml] = useState<string>(INITIAL_TEXT);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const ref = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
 
   const handleInputChange = () => {
-    if (!ref.current) {
+    if (!textRef.current) {
       return;
     }
     
-    const currentHtml = ref.current.innerHTML;
+    const currentHtml = textRef.current.innerHTML;
     
     if (!currentHtml || currentHtml === savedHtml) {
       return;
     }
     
-    onChange(sanitizeHtml(html, SANITIZE_CONFIGURATION));
+    onChange(html);
     setSavedHtml(sanitizeHtml(currentHtml, SANITIZE_CONFIGURATION));
   };
 
@@ -45,7 +45,7 @@ const useText = ({
   };
 
   return {
-    ref,
+    textRef,
     handleInputChange,
     innerHTML: { __html: html },
     handleEditingMode,

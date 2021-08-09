@@ -2,29 +2,28 @@ import React from "react";
 import styled from "styled-components";
 
 import { SLIDER_MAX, SLIDER_MIN } from "../../constants/ui";
-import useSlider from "../../hooks/useSlider";
 
 interface SliderProps {
   min?: number
   max?: number
+  value: number
+  onChange: () => void
+  sliderRef: React.Ref<HTMLInputElement>
 }
 
 const Slider: React.FC<SliderProps> = ({ 
   min = SLIDER_MIN, 
   max = SLIDER_MAX, 
+  sliderRef,
+  value,
+  onChange,
 }): React.ReactElement => {
-  const {
-    ref,
-    value,
-    handleValueChange,
-  } = useSlider(max);
-  
   return (
     <SliderBar>
       <Range 
-        ref={ref} 
+        ref={sliderRef} 
         type="range" 
-        onChange={handleValueChange} 
+        onChange={onChange} 
         value={value} 
         min={min} 
         max={max} 
