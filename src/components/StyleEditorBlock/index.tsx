@@ -16,6 +16,7 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
   top,
   left,
   parentStyle,
+  unit,
   children,
 }): React.ReactElement => {
   const { imageSrc, handleFileChange } = useImage();
@@ -37,6 +38,7 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
       height={height}
       top={top}
       left={left}
+      unit={unit}
       parentStyle={parentStyle}
       onMouseClick={handleMouseClick}
       onMouseOver={handleMouseOver}

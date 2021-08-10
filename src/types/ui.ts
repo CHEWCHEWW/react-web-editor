@@ -32,6 +32,7 @@ export interface EditorProps {
   top: number
   left: number
   parentStyle?: ComponentStyle
+  unit: string
 }
 
 export interface EditorBlockProps extends EditorProps {

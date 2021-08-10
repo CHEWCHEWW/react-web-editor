@@ -1,16 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
+import { convertPointsToPixel } from "../../utils/ui";
+
 interface CoordinatesTagProps {
-  left?: number
-  top?: number
+  left: number
+  top: number
+  unit: string
 }
 
 const CoordinatesTag: React.FC<CoordinatesTagProps> = ({
   left,
   top,
+  unit,
 }): React.ReactElement => {
-  return <Tag>{`x: ${left} y: ${top}`}</Tag>;
+  const { clientX, clientY } = convertPointsToPixel(unit, left, top);
+
+  return <Tag>{`x: ${clientX} y: ${clientY}`}</Tag>;
 };
 
 const Tag = styled.div`

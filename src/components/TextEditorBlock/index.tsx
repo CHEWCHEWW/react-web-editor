@@ -27,6 +27,7 @@ const TextEditorBlock: React.FC<EditorProps> = ({
   width,
   height,
   parentStyle,
+  unit,
 }): React.ReactElement => {
   const [html, setHtml] = useState(INITIAL_TEXT);
   const [componentStyle, setComponentStyle] = useState<ComponentStyle>({
@@ -37,7 +38,8 @@ const TextEditorBlock: React.FC<EditorProps> = ({
   });
 
   const { handleMouseDown } = useResize({ 
-    componentStyle, 
+    componentStyle,
+    unit,
     onResize: setComponentStyle,
     resizeBoardOption: parentStyle,
   });
@@ -67,6 +69,7 @@ const TextEditorBlock: React.FC<EditorProps> = ({
     ...componentStyle,
     onDrag: setComponentStyle,
     dragBoardOption: parentStyle,
+    unit,
   });
 
   const { handleFontColorChange } = useColor();
@@ -83,6 +86,7 @@ const TextEditorBlock: React.FC<EditorProps> = ({
       left={componentStyle.left}
       width={componentStyle.width}
       height={componentStyle.height}
+      unit={unit}
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
     >
@@ -111,7 +115,11 @@ const TextEditorBlock: React.FC<EditorProps> = ({
               <div key={item} className={item} onMouseDown={handleMouseDown} />
             ))}
           </ResizeHandlersWrapper>
-          <CoordinatesTag top={componentStyle.top} left={componentStyle.left} />
+          <CoordinatesTag 
+            top={componentStyle.top} 
+            left={componentStyle.left}
+            unit={unit}
+          />
           <GuideLine
             width={componentStyle.width}
             height={componentStyle.height}
