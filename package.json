@@ -1,6 +1,6 @@
 {
   "name": "react-web-editor",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "private": false,
   "author": "chewchewchew3@gmail.com",
   "scripts": {
@@ -17,6 +17,7 @@
   "dependencies": {
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "sanitize-html": "^2.4.0",
     "styled-components": "^5.3.0"
@@ -31,6 +32,7 @@
     "@types/fork-ts-checker-webpack-plugin": "^0.4.5",
     "@types/react": "^17.0.15",
     "@types/react-dom": "^17.0.9",
+    "@types/react-helmet": "^6.1.2",
     "@types/sanitize-html": "^2.3.2",
     "@types/styled-components": "^5.1.11",
     "@types/webpack": "^4.41.25",
