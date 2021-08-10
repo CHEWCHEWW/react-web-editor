@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import CoordinatesTag from "../CoordinatesTag";
-import { ComponentStyle, EditorProps, EditorBlockProps } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
+import EditorBlockWrapper from "../shared/EditorBlockWrapper";
+import { EditorProps, EditorBlockProps } from "../../types/ui";
 import GuideLine from "../GuideLine";
+import ResizeHandlersWrapper from "../shared/ResizeHandlerWrapper";
 import useDraggable from "../../hooks/useDraggable";
 import useResize from "../../hooks/useResize";
 
@@ -45,7 +47,7 @@ const Editor: React.FC<EditorBlockProps> = ({
   });
 
   return (
-    <Wrapper
+    <EditorBlockWrapper
       width={componentStyle.width}
       height={componentStyle.height}
       top={componentStyle.top}
@@ -66,6 +68,11 @@ const Editor: React.FC<EditorBlockProps> = ({
               <div key={item} className={item} onMouseDown={handleMouseDown} />
             ))}
           </ResizeHandlersWrapper>
+        </>
+      }
+      {isMouseOver && (
+        <>
+          <CoordinatesTag top={componentStyle.top} left={componentStyle.left} />
           <GuideLine
             width={componentStyle.width}
             height={componentStyle.height}
@@ -73,12 +80,9 @@ const Editor: React.FC<EditorBlockProps> = ({
             left={componentStyle.left}
           />
         </>
-      }
-      {isMouseOver &&
-        <CoordinatesTag top={componentStyle.top} left={componentStyle.left} />
-      }
+      )}
       {children}
-    </Wrapper>
+    </EditorBlockWrapper>
   );
 };
 
@@ -89,53 +93,6 @@ const DraggableHandler = styled.div`
   position: absolute;
   cursor: move;
   z-index: 9;
-`;
-
-const Wrapper = styled.div.attrs<ComponentStyle>(
-  ({ width, height, left, top }) => ({
-    style: {
-      top: top && `${top}px`,
-      left: left && `${left}px`,
-      width: width && `${width}px`,
-      height: height && `${height}px`,
-    },
-  })
-)<ComponentStyle>`
-  position: fixed;
-`;
-
-const ResizeHandlersWrapper = styled.div`
-  .top-left {
-    top: -3px;
-    left: -3px;
-    cursor: nw-resize;
-  }
-
-  .top-right {
-    top: -3px;
-    right: -3px;
-    cursor: ne-resize;
-  }
-
-  .bottom-left {
-    bottom: -3px;
-    left: -3px;
-    cursor: sw-resize;
-  }
-
-  .bottom-right {
-    bottom: -3px;
-    right: -3px;
-    cursor: se-resize;
-  }
-
-  > * {
-    width: 3px;
-    height: 3px;
-    border: 1px solid gray;
-    position: absolute;
-    z-index: 10;
-  }
 `;
 
 export default Editor;

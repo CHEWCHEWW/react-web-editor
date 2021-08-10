@@ -79,30 +79,6 @@ const DropDownList = styled.div<DropDownStyleProps>`
   background-color: #fdfdfd;
   box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.1);  
   border-radius: 5px;
-
-  .andada-pro {
-    font-family: "Andada Pro", serif;
-  }
-
-  .bebas-nenu {
-    font-family: "Bebas Neue", cursive;
-  }
-
-  .montecarlo {
-    font-family: "MonteCarlo", cursive;
-  }
-
-  .roboto {
-    font-family: "Roboto", sans-serif;
-  }
-
-  .stix-two-text {
-    font-family: "STIX Two Text", serif;
-  }
-
-  .style-script {
-    font-family: "Style Script", cursive;
-  }
 `;
 
 const DropDownIcon = styled.div<DropDownStyleProps>`
