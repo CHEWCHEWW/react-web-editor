@@ -44,7 +44,7 @@ const IconBackground = styled.div<IconProps>`
   right: ${({ right }) => right && `${right}px`};
   left: ${({ left }) => left && `${left}px`};
   bottom: ${({ bottom }) => bottom && `${bottom}px`};
-  background-color: #F8F8F6;
+  background-color: #f8f8f6;
   position: absolute;
   border-radius: 1px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -53,7 +53,7 @@ const IconBackground = styled.div<IconProps>`
 `;
 
 const IconImage = styled.div`
-  color: #9C9C9A;
+  color: #9c9c9a;
   display: flex;
   justify-content: center;
   align-items: center;

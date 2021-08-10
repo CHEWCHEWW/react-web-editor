@@ -15,6 +15,7 @@ export interface DragListContent {
   title: string
   content?: string
   type?: string
+  color?: string
 }
 
 export interface InnerHTML {

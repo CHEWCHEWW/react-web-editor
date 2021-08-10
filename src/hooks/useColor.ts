@@ -9,8 +9,8 @@ interface UseColorReturns extends ColorProps {
 }
 
 const useColor = (): UseColorReturns => {
-  const [color, setColor] = useState("");
-
+  const [color, setColor] = useState("#ffffff");
+  
   const handleColorChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     setColor(ev.target.value);
   };

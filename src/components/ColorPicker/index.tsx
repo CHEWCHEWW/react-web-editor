@@ -10,6 +10,7 @@ const ColorPicker: React.FC<TypedCustomInputProps> = ({
   top, 
   bottom, 
   right,
+  value,
 }): React.ReactElement => {
   return (
     <CustomInput 
@@ -19,6 +20,7 @@ const ColorPicker: React.FC<TypedCustomInputProps> = ({
       right={right}
       left={left}
       bottom={bottom}
+      value={value}
     >
       <IoIosColorPalette />
     </CustomInput>

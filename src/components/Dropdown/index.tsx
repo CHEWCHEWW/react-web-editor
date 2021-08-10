@@ -59,7 +59,7 @@ const DropDown: React.FC<DropDownProps> = ({
 const DropDownBoard = styled.div`
   width: 8rem;
   border-radius: 5px;
-  background-color: #F8F8F6;
+  background-color: #f8f8f6;
   font-size: 0.8rem;
   z-index: 10;
 `;
