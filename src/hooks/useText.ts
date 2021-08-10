@@ -7,6 +7,9 @@ import { Dispatcher, InnerHTML } from "../types/ui";
 interface UseTextProps {
   onChange: Dispatcher<string>
   html: string
+  initialFontName?: string
+  initialFontStyle?: string
+  initialFontText?: string
 }
 
 interface UseTextReturns {
@@ -21,11 +24,17 @@ interface UseTextReturns {
   handleFontStyleClick: (ev: React.MouseEvent<HTMLDivElement>) => void
 }
 
-const useText = ({ html, onChange }: UseTextProps): UseTextReturns => {
-  const [savedHtml, setSavedHtml] = useState<string>(INITIAL_TEXT);
+const useText = ({ 
+  html, 
+  onChange,
+  initialFontStyle = "",
+  initialFontName = "",
+  initialFontText = INITIAL_TEXT,
+}: UseTextProps): UseTextReturns => {
+  const [savedHtml, setSavedHtml] = useState<string>(initialFontText);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [fontStyle, setFontStyle] = useState<string>("");
-  const [fontName, setFontName] = useState<string>("");
+  const [fontStyle, setFontStyle] = useState<string>(initialFontStyle);
+  const [fontName, setFontName] = useState<string>(initialFontName);
 
   const textRef = useRef<HTMLDivElement>(null);
 

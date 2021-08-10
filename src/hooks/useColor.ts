@@ -8,8 +8,8 @@ interface UseColorReturns extends ColorProps {
   handleFontColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const useColor = (): UseColorReturns => {
-  const [color, setColor] = useState("#ffffff");
+const useColor = (initialColor?: string): UseColorReturns => {
+  const [color, setColor] = useState(initialColor || "#ffffff");
   
   const handleColorChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     setColor(ev.target.value);

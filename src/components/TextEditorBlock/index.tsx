@@ -21,13 +21,26 @@ import useResize from "../../hooks/useResize";
 import useText from "../../hooks/useText";
 import TextEditor from "../TextEditor";
 
-const TextEditorBlock: React.FC<EditorProps> = ({ 
+interface TextEditorBlockProps extends EditorProps {
+  initialFontSize?: number
+  initialFontColor?: string
+  initialFontStyle?: string
+  initialFontText?: string
+  initialFontName?: string
+}
+
+const TextEditorBlock: React.FC<TextEditorBlockProps> = ({ 
   left,
   top,
   width,
   height,
   parentStyle,
   unit,
+  initialFontSize = SLIDER_MAX,
+  initialFontColor,
+  initialFontStyle,
+  initialFontText,
+  initialFontName,
 }): React.ReactElement => {
   const [html, setHtml] = useState(INITIAL_TEXT);
   const [componentStyle, setComponentStyle] = useState<ComponentStyle>({
@@ -60,7 +73,13 @@ const TextEditorBlock: React.FC<EditorProps> = ({
     handleStyleChange,
     handleFontStyleClick,
     fontName,
-  } = useText({ html, onChange: setHtml });
+  } = useText({ 
+    html, 
+    onChange: setHtml,
+    initialFontName,
+    initialFontStyle,
+    initialFontText,
+  });
 
   const {
     handleDragStart,
@@ -72,13 +91,13 @@ const TextEditorBlock: React.FC<EditorProps> = ({
     unit,
   });
 
-  const { handleFontColorChange } = useColor();
+  const { handleFontColorChange } = useColor(initialFontColor);
   
   const {
     sliderRef,
     value,
     handleValueChange,
-  } = useSlider(SLIDER_MAX);
+  } = useSlider(initialFontSize);
 
   return (
     <EditorBlockWrapper
