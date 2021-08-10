@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { getBoundPosition } from "../utils/ui";
-import { ComponentStyle, Dispatcher, EditorProps } from "../types/ui";
+import { convertPointsByUnit, getBoundPosition } from "../utils/ui";
+import { ComponentStyle, Dispatcher } from "../types/ui";
 
 interface UseDraggableProps extends ComponentStyle {
-  onDrag: Dispatcher<EditorProps>
+  onDrag: Dispatcher<ComponentStyle>
   dragBoardOption?: ComponentStyle
+  unit: string
 }
 
 interface ComponentInfomation {
@@ -27,6 +28,7 @@ const useDraggable = ({
   width,
   height,
   dragBoardOption,
+  unit,
 }: UseDraggableProps): UseDraggableReturns => {
   const [componentInfomation, setComponentInformation] = useState<ComponentInfomation>({
     currentX: left || 0,
@@ -46,7 +48,7 @@ const useDraggable = ({
         return;
       }
   
-      const { clientX, clientY } = ev;
+      const { clientX, clientY } = convertPointsByUnit(unit, ev.clientX, ev.clientY);
   
       const { left, top } = getBoundPosition(
         clientX,
@@ -68,10 +70,10 @@ const useDraggable = ({
     document.addEventListener("mousemove", handleDragMove);
 
     return () => document.removeEventListener("mousemove", handleDragMove);
-  }, [componentInfomation, dragBoardOption, height, onDrag, width]);
+  }, [componentInfomation, dragBoardOption, height, onDrag, width, unit]);
   
   const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
-    const { clientX, clientY } = ev;
+    const { clientX, clientY } = convertPointsByUnit(unit, ev.clientX, ev.clientY);
 
     const currentX = clientX - left;
     const currentY = clientY - top;

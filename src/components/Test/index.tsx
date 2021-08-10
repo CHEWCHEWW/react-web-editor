@@ -9,23 +9,24 @@ const Test: React.FC = (): React.ReactElement => {
     <Wrapper>
       <TwoColorText>
       </TwoColorText>
-      <EditorWrapper>
-        <StyleEditorBlock 
-          width={100} 
-          height={100} 
-          top={200} 
-          left={200} 
-          parentStyle={{width: 500, height: 300, left: 200, top: 200}}
-        >
-          <TestDiv>happy</TestDiv>
-        </StyleEditorBlock>
-        <TextEditorBlock top={500} left={500} width={200} height={100} />
-      </EditorWrapper>
+      <EditorWrapper />
+      <TextEditorBlock 
+        width={5} 
+        height={5} 
+        top={12} 
+        left={12}
+        unit={"rem"}
+        parentStyle={{ width: 10, height: 10, left: 10, top: 10 }}
+      >
+        {/* <TestDiv>happy</TestDiv> */}
+      </TextEditorBlock>
+      <TextEditorBlock top={50} left={50} width={20} height={10} unit={"rem"} />
       <StyleEditorBlock 
-        width={300} 
-        height={100} 
-        top={500} 
-        left={800} 
+        width={30} 
+        height={10} 
+        top={50} 
+        left={80} 
+        unit={"rem"}
       >
         <TestDiv>happy</TestDiv>
       </StyleEditorBlock>
@@ -46,12 +47,12 @@ const Wrapper = styled.div`
 `;
 
 const EditorWrapper = styled.div`
-  width: 500px; 
-  height: 300px; 
-  left: 200px; 
-  top: 200px; 
+  width: 10rem; 
+  height: 10rem; 
+  left: 10rem; 
+  top: 10rem; 
   background: #84bdec; 
-  position: fixed;
+  position: absolute;
 `;
 
 const TestDiv = styled.div`

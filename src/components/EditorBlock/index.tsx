@@ -4,7 +4,7 @@ import styled from "styled-components";
 import CoordinatesTag from "../CoordinatesTag";
 import { DIRECTIIONS } from "../../constants/location";
 import EditorBlockWrapper from "../shared/EditorBlockWrapper";
-import { EditorProps, EditorBlockProps } from "../../types/ui";
+import { ComponentStyle, EditorBlockProps } from "../../types/ui";
 import GuideLine from "../GuideLine";
 import ResizeHandlersWrapper from "../shared/ResizeHandlerWrapper";
 import useDraggable from "../../hooks/useDraggable";
@@ -23,8 +23,9 @@ const Editor: React.FC<EditorBlockProps> = ({
   isMouseOver,
   isClicked,
   componentRef,
+  unit,
 }): React.ReactElement => {
-  const [componentStyle, setComponentStyle] = useState<EditorProps>({
+  const [componentStyle, setComponentStyle] = useState<ComponentStyle>({
     width,
     height,
     top,
@@ -32,6 +33,7 @@ const Editor: React.FC<EditorBlockProps> = ({
   });
 
   const { handleMouseDown } = useResize({ 
+    unit,
     componentStyle, 
     onResize: setComponentStyle,
     resizeBoardOption: parentStyle,
@@ -44,6 +46,7 @@ const Editor: React.FC<EditorBlockProps> = ({
     ...componentStyle,
     onDrag: setComponentStyle,
     dragBoardOption: parentStyle,
+    unit,
   });
 
   return (
@@ -56,6 +59,7 @@ const Editor: React.FC<EditorBlockProps> = ({
       onMouseOver={onMouseOver}
       onMouseLeave={onMouseLeave}
       ref={componentRef}
+      unit={unit}
     >
       {isClicked && 
         <>
@@ -72,7 +76,7 @@ const Editor: React.FC<EditorBlockProps> = ({
       }
       {isMouseOver && (
         <>
-          <CoordinatesTag top={componentStyle.top} left={componentStyle.left} />
+          <CoordinatesTag top={componentStyle.top} left={componentStyle.left} unit={unit} />
           <GuideLine
             width={componentStyle.width}
             height={componentStyle.height}

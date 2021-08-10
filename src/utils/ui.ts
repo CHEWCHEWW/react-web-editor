@@ -13,6 +13,11 @@ interface ComponentCenter {
   centerY: number
 }
 
+interface ClientLocation {
+  clientX: number
+  clientY: number
+}
+
 interface ComponentLocatedCenter {
   isCenterX: boolean
   isCenterY: boolean
@@ -209,4 +214,38 @@ export const isLocatedCenter = (
     isCenterX,
     isCenterY,
   };
+};
+
+export const convertPointsByUnit = (unit: string, x: number, y: number): ClientLocation => {
+  let clientX: number = x;
+  let clientY: number = y;
+  
+  switch (unit) {
+    case "rem":
+      clientX = clientX * 0.0625;
+      clientY = clientY * 0.0625;
+
+      break;
+    default:
+      break;
+  }
+
+  return { clientX, clientY };
+};
+
+export const convertPointsToPixel = (unit: string, x: number, y: number): ClientLocation => {
+  let clientX: number = x;
+  let clientY: number = y;
+  
+  switch (unit) {
+    case "rem":
+      clientX = clientX / 0.0625;
+      clientY = clientY / 0.0625;
+
+      break;
+    default:
+      break;
+  }
+
+  return { clientX, clientY };
 };

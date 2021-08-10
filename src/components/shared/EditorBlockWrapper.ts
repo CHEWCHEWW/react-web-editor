@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
-import { ComponentStyle } from "../../types/ui";
+import { EditorProps } from "../../types/ui";
 
-const EditorBlockWrapper = styled.div.attrs<ComponentStyle>(
-  ({ left, top, width, height }) => ({
+const EditorBlockWrapper = styled.div.attrs<EditorProps>(
+  ({ left, top, width, height, unit }) => ({
     style: {
-      top: top && `${top}px`,
-      left: left && `${left}px`,
-      width: width && `${width}px`,
-      height: left && `${height}px`,
+      top: top && `${top}${unit}`,
+      left: left && `${left}${unit}`,
+      width: width && `${width}${unit}`,
+      height: left && `${height}${unit}`,
     },
   })
-)<ComponentStyle>`
-  position: fixed;
+)<EditorProps>`
+  position: absolute;
 `;
 
 export default EditorBlockWrapper;
