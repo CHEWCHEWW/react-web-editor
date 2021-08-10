@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { InnerHTML } from "../../types/ui";
 import MenuBoard from "../MenuBoard";
@@ -40,7 +40,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
   fontName,
 }): React.ReactElement => {
   return (
-    <>
+    <HelmetProvider>
       <Helmet>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -56,19 +56,18 @@ const TextEditor: React.FC<TextEditorProps> = ({
           fontSize={sliderValue}
           fontName={fontName}
         />
+        {isEditing && (
+          <MenuBoard 
+            sliderRef={sliderRef}
+            onColorChange={onColorChange}
+            onSliderChange={onSliderChange}
+            sliderValue={sliderValue}
+            onClick={onClick}
+            onFontClick={onFontClick}
+          />
+        )}      
       </FontStyle>
-      {isEditing && (
-        <MenuBoard 
-          sliderRef={sliderRef}
-          onColorChange={onColorChange}
-          onSliderChange={onSliderChange}
-          sliderValue={sliderValue}
-          onClick={onClick}
-          onFontClick={onFontClick}
-        />
-      )}
-      
-    </>
+    </HelmetProvider>
   );
 };
 
@@ -79,8 +78,6 @@ const TextBoard = styled.div.attrs<TextBoardStyle>(
     },
   })
 )<TextBoardStyle>`
-  @import url("https://fonts.googleapis.com/css2?family=Andada+Pro&family=Bebas+Neue&family=MonteCarlo&family=Roboto:wght@300&family=STIX+Two+Text&family=Style+Script&display=swap");
-
   width: 100%;
   height: 100%;
   position: absolute;
