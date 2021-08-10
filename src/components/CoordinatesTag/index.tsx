@@ -22,7 +22,7 @@ const Tag = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  background-color: ${({ theme }) => theme.gray};
+  background-color: #a29d98;
   color: white;
   font-size: 0.8rem;
   font-weight: bold;

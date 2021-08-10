@@ -89,7 +89,7 @@ const Board = styled.div`
   top: -2rem;
   right: -15rem;
   padding: 0.5rem;
-  background-color: #F8F8F6;
+  background-color: #f8f8f6;
   position: absolute;
   font-family: "NanumBarunGothic";
   border-radius: 5px;
@@ -105,7 +105,7 @@ const MenuHeader = styled.div`
   height: 1.2rem;
   align-items: center;
   border-radius: 2px;
-  background-color: #E2E2DA;
+  background-color: #e2e2da;
   color: #9c9393;
   font-weight: 600;
   font-size: 0.7rem;
