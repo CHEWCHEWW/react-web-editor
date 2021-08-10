@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Helmet } from "react-helmet";
 
 import { InnerHTML } from "../../types/ui";
 import MenuBoard from "../MenuBoard";
@@ -40,6 +41,11 @@ const TextEditor: React.FC<TextEditorProps> = ({
 }): React.ReactElement => {
   return (
     <>
+      <Helmet>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Andada+Pro&family=Bebas+Neue&family=MonteCarlo&family=Roboto:wght@300&family=STIX+Two+Text&family=Style+Script&display=swap" rel="stylesheet" />
+      </Helmet>
       <FontStyle>
         <TextBoard 
           className={`${fontStyle} ${fontName}`}
@@ -73,6 +79,8 @@ const TextBoard = styled.div.attrs<TextBoardStyle>(
     },
   })
 )<TextBoardStyle>`
+  @import url("https://fonts.googleapis.com/css2?family=Andada+Pro&family=Bebas+Neue&family=MonteCarlo&family=Roboto:wght@300&family=STIX+Two+Text&family=Style+Script&display=swap");
+
   width: 100%;
   height: 100%;
   position: absolute;
@@ -123,27 +131,27 @@ const FontStyle = styled.span`
   }
 
   .andada-pro {
-    font-family: "Andada Pro", serif;
+    font-family: "Andada Pro", serif !important;
   }
 
   .bebas-nenu {
-    font-family: "Bebas Neue", cursive;
+    font-family: "Bebas Neue", cursive !important;
   }
 
   .montecarlo {
-    font-family: "MonteCarlo", cursive;
+    font-family: "MonteCarlo", cursive !important;
   }
 
   .roboto {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif !important;
   }
 
   .stix-two-text {
-    font-family: "STIX Two Text", serif;
+    font-family: "STIX Two Text", serif !important;
   }
 
   .style-script {
-    font-family: "Style Script", cursive;
+    font-family: "Style Script", cursive !important;
   }
 `;
 

@@ -28,6 +28,7 @@ const config: webpack.Configuration = {
               "@babel/preset-react",
               "@babel/preset-typescript",
             ],
+            plugins: ["styled-components"]
           },
         },
       },
