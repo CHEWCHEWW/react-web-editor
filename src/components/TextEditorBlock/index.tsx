@@ -5,7 +5,7 @@ import { GiMove } from "react-icons/gi";
 import { MdExitToApp } from "react-icons/md";
 
 import CoordinatesTag from "../CoordinatesTag";
-import { ComponentStyle } from "../../types/ui";
+import { ComponentStyle, EditorProps } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
 import EditorBlockWrapper from "../shared/EditorBlockWrapper";
 import { EDITOR_ICON_RIGHT, FIRST_EDITOR_ICON_TOP, SECOND_EDITOR_ICON_TOP } from "../../constants/ui";
@@ -21,11 +21,12 @@ import useResize from "../../hooks/useResize";
 import useText from "../../hooks/useText";
 import TextEditor from "../TextEditor";
 
-const TextEditorBlock: React.FC<ComponentStyle> = ({ 
+const TextEditorBlock: React.FC<EditorProps> = ({ 
   left,
   top,
   width,
   height,
+  parentStyle,
 }): React.ReactElement => {
   const [html, setHtml] = useState(INITIAL_TEXT);
   const [componentStyle, setComponentStyle] = useState<ComponentStyle>({
@@ -38,6 +39,7 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
   const { handleMouseDown } = useResize({ 
     componentStyle, 
     onResize: setComponentStyle,
+    resizeBoardOption: parentStyle,
   });
 
   const {
@@ -64,6 +66,7 @@ const TextEditorBlock: React.FC<ComponentStyle> = ({
   } = useDraggable({    
     ...componentStyle,
     onDrag: setComponentStyle,
+    dragBoardOption: parentStyle,
   });
 
   const { handleFontColorChange } = useColor();
