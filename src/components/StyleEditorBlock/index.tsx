@@ -55,6 +55,7 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
             onChange={handleColorChange} 
             top={SECOND_EDITOR_ICON_TOP} 
             right={EDITOR_ICON_RIGHT} 
+            value={color}
           />
         </>
       }
@@ -65,11 +66,16 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
   );
 };
 
-const CustomBlock = styled.div<ColorProps>`
+const CustomBlock = styled.div.attrs<ColorProps>(
+  ({ color }) => ({
+    style: {
+      backgroundColor: color.length !== 0 && color,
+    },
+  })
+)<ColorProps>`
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: ${({ color }) => color ? color : "white"};
 `;
 
 const UploadedImage = styled.img`

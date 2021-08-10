@@ -9,7 +9,6 @@ interface CustomInputProps extends TypedCustomInputProps {
   onChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
   type: string
   accept?: string
-  value?: string 
 }
 
 const CustomInput: React.FC<CustomInputProps> = ({ 

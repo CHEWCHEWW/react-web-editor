@@ -73,14 +73,14 @@ const ProgressBar = styled.progress`
   width: 6rem;
   height: 0.2rem;
   z-index: -1;
-  background-color: #D7D7D7;
+  background-color: #d7d7d7;
 
   ::-webkit-progress-value { 
-    background-color: #007AFF; 
+    background-color: #007aff; 
   }
 
   ::-webkit-progress-bar {
-    background-color: #B6B6B6;
+    background-color: #b6b6b6;
     border-radius: 1.5px;
     overflow: hidden
   }
