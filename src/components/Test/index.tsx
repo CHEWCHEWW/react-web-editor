@@ -21,6 +21,14 @@ const Test: React.FC = (): React.ReactElement => {
         </StyleEditorBlock>
         <TextEditorBlock top={500} left={500} width={200} height={100} />
       </EditorWrapper>
+      <StyleEditorBlock 
+        width={300} 
+        height={100} 
+        top={500} 
+        left={800} 
+      >
+        <TestDiv>happy</TestDiv>
+      </StyleEditorBlock>
     </Wrapper>
   );
 };
