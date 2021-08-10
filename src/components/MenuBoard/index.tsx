@@ -31,19 +31,19 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
   return (
     <Board>
       <MenuHeader>
-        설정
+        Setting
       </MenuHeader>
-      <MenuOption name={"글꼴"}>
+      <MenuOption name={"font"}>
         <DropDown items={FONT_STYLES} onClick={onFontClick} />
       </MenuOption>
-      <MenuOption name={"크기"}>
+      <MenuOption name={"size"}>
         <Slider 
           onChange={onSliderChange} 
           sliderRef={sliderRef} 
           value={sliderValue} 
         />
       </MenuOption>
-      <MenuOption name={"옵션"}>
+      <MenuOption name={"option"}>
         <EditorButton name={"bold"} isShowing={false}>
           <FaBold />
         </EditorButton>
@@ -58,7 +58,7 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
           <FaUnderline />
         </EditorButton>
       </MenuOption>
-      <MenuOption name={"정렬"}>
+      <MenuOption name={"sort"}>
         <EditorButton name={"justifyLeft"} isShowing={false}>
           <AiOutlineAlignLeft />
         </EditorButton>
@@ -69,7 +69,7 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
           <AiOutlineAlignRight />
         </EditorButton>
       </MenuOption>
-      <MenuOption name={"효과"}>
+      <MenuOption name={"effect"}>
         {TEXT_STYLES.map((item) => (
           <TextStyles key={item} name={item} onClick={onClick}>
             <div className={item}>
@@ -91,7 +91,7 @@ const Board = styled.div`
   padding: 0.5rem;
   background-color: #f8f8f6;
   position: absolute;
-  font-family: "NanumBarunGothic";
+  font-family: "Roboto", sans-serif;
   border-radius: 5px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
