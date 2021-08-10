@@ -27,8 +27,8 @@ const Test: React.FC = (): React.ReactElement => {
         top={50} 
         left={80} 
         unit={"rem"}
+        initialColor={"#00ff0000"}
       >
-        <TestDiv>happy</TestDiv>
       </StyleEditorBlock>
     </Wrapper>
   );

@@ -16,11 +16,11 @@ const CoordinatesTag: React.FC<CoordinatesTagProps> = ({
 }): React.ReactElement => {
   const { clientX, clientY } = convertPointsToPixel(unit, left, top);
 
-  return <Tag>{`x: ${clientX} y: ${clientY}`}</Tag>;
+  return <Tag>{`x: ${clientX.toFixed(1)} y: ${clientY.toFixed(1)}`}</Tag>;
 };
 
 const Tag = styled.div`
-  width: 90px;
+  min-width: 90px;
   height: 20px;
   top: -25px;
   left: -25px;

@@ -5,8 +5,8 @@ interface UseImageReturns {
   handleFileChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const useImage = (): UseImageReturns => {
-  const [imageSrc, setImageSrc] = useState<string>("");
+const useImage = (image?: string): UseImageReturns => {
+  const [imageSrc, setImageSrc] = useState<string>(image || "");
   
   const handleFileChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = ev.target;

@@ -10,7 +10,12 @@ import useColor from "../../hooks/useColor";
 import useImage from "../../hooks/useImage";
 import useMouseEvent from "../../hooks/useMouseEvent";
 
-const StyleEditorBlock: React.FC<EditorProps> = ({
+interface StyleEditorBlockProps extends EditorProps {
+  initialColor?: string
+  initialImage?: string
+}
+
+const StyleEditorBlock: React.FC<StyleEditorBlockProps> = ({
   width,
   height,
   top,
@@ -18,9 +23,11 @@ const StyleEditorBlock: React.FC<EditorProps> = ({
   parentStyle,
   unit,
   children,
+  initialColor,
+  initialImage,
 }): React.ReactElement => {
-  const { imageSrc, handleFileChange } = useImage();
-  const { color, handleColorChange } = useColor();
+  const { imageSrc, handleFileChange } = useImage(initialImage);
+  const { color, handleColorChange } = useColor(initialColor);
 
   const {
     isClicked,
