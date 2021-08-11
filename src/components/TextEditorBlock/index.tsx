@@ -36,7 +36,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   height,
   parentStyle,
   unit,
-  initialFontSize = SLIDER_MAX,
+  initialFontSize,
   initialFontColor,
   initialFontStyle,
   initialFontText,
@@ -97,7 +97,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
     sliderRef,
     value,
     handleValueChange,
-  } = useSlider(initialFontSize);
+  } = useSlider({ max: SLIDER_MAX, initialValue: initialFontSize });
 
   return (
     <EditorBlockWrapper

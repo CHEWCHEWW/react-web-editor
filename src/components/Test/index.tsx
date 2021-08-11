@@ -17,6 +17,8 @@ const Test: React.FC = (): React.ReactElement => {
         left={12}
         unit={"rem"}
         parentStyle={{ width: 10, height: 10, left: 10, top: 10 }}
+        initialFontStyle={"twin-color-text"}
+        initialFontSize={0.8}
       >
         {/* <TestDiv>happy</TestDiv> */}
       </TextEditorBlock>
