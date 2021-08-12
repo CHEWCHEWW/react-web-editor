@@ -1,5 +1,5 @@
 import { DIRECTION } from "../constants/location";
-import { ComponentLocation ,ComponentStyle, DragListContent } from "../types/ui";
+import { ComponentLocation, ComponentSize, ComponentStyle, DragListContent } from "../types/ui";
 
 interface NewComponentStyle {
   newLeft: number
@@ -47,7 +47,7 @@ export const getBoundPosition = (
   y: number,
   width?: number,
   height?: number,
-  parentLocation?: ComponentStyle,
+  parentLocation?: ComponentSize,
 ): ComponentLocation => {
   let currentX: number = clientX - x;
   let currentY: number = clientY - y;
@@ -56,26 +56,30 @@ export const getBoundPosition = (
     return { left: currentX, top: currentY };
   }
 
-  const { left, top, right, bottom } = getBoundingZone(parentLocation);
+  const {
+    width: parentWidth,
+    height: parentHeight,
+  } = parentLocation;
+
   const {
     right: currentRight,
     bottom: currentBottom,
   } = getBoundingZone({ left: currentX, top: currentY, width, height});
 
-  if (currentX < left) {
-    currentX = left;
+  if (currentX < 0.1) {
+    currentX = 0.1;
   }
 
-  if (currentY < top) {
-    currentY = top;
+  if (currentY < 0.1) {
+    currentY = 0.1;
   }
 
-  if (currentRight > right) {
-    currentX = right - width;
+  if (currentRight > parentWidth) {
+    currentX = parentWidth - width;
   }
 
-  if (currentBottom > bottom) {
-    currentY = bottom - height;
+  if (currentBottom > parentHeight) {
+    currentY = parentHeight - height;
   }
 
   return { left: currentX, top: currentY };
@@ -100,7 +104,7 @@ export const changeComponentLocationByHandler = (
   height: number,
   differenceX: number,
   differenceY: number,
-  parentLocation?: ComponentStyle,
+  parentLocation?: ComponentSize,
 ): NewComponentStyle => {
   let newLeft: number = left;
   let newTop: number = top;
@@ -145,24 +149,25 @@ export const changeComponentLocationByHandler = (
     };
   }
 
-  const { right, bottom } = getBoundingZone(parentLocation);
+  const {
+    width: parentWidth,
+    height: parentHeight,
+  } = parentLocation;
 
-  if (newLeft < parentLocation.left) {
-    newLeft = parentLocation.left;
-    newWidth -= parentLocation.left;
+  if (newLeft < 0.1) {
+    newLeft = 0.1;
   }
 
-  if (newTop < parentLocation.top) {
-    newTop = parentLocation.top;
-    newHeight -= parentLocation.top;
+  if (newTop < 0.1) {
+    newTop = 0.1;
   }
 
-  if (newLeft + newWidth > right) {
-    newWidth = right - newLeft;
+  if (newLeft + newWidth > parentWidth) {
+    newWidth = parentWidth - newLeft;
   }
 
-  if (newTop + newHeight > bottom) {
-    newHeight = bottom - newTop;
+  if (newTop + newHeight > parentHeight) {
+    newHeight = parentHeight - newTop;
   }
 
   return {
