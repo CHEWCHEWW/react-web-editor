@@ -18,6 +18,7 @@ interface TextEditorProps {
   fontStyle: string
   onFontClick: (ev: React.MouseEvent<HTMLDivElement>) => void
   fontName: string
+  color?: string
 }
 
 interface TextBoardStyle {
@@ -38,6 +39,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
   fontStyle,
   onFontClick,
   fontName,
+  color,
 }): React.ReactElement => {
   return (
     <HelmetProvider>
@@ -47,7 +49,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
         <link href="https://fonts.googleapis.com/css2?family=Andada+Pro&family=Bebas+Neue&family=MonteCarlo&family=Roboto:wght@300&family=STIX+Two+Text&family=Style+Script&display=swap" rel="stylesheet" />
       </Helmet>
       <FontStyle>
-        <TextBoard 
+        <TextBoard
           className={`${fontStyle} ${fontName}`}
           contentEditable
           ref={componentRef}
@@ -55,9 +57,10 @@ const TextEditor: React.FC<TextEditorProps> = ({
           onInput={onChange}
           fontSize={sliderValue}
           fontName={fontName}
+          color={color}
         />
         {isEditing && (
-          <MenuBoard 
+          <MenuBoard
             sliderRef={sliderRef}
             onColorChange={onColorChange}
             onSliderChange={onSliderChange}
@@ -65,7 +68,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
             onClick={onClick}
             onFontClick={onFontClick}
           />
-        )}      
+        )}
       </FontStyle>
     </HelmetProvider>
   );
@@ -80,6 +83,7 @@ const TextBoard = styled.div.attrs<TextBoardStyle>(
 )<TextBoardStyle>`
   width: 100%;
   height: 100%;
+  color: ${({ color }) => color ? color : "black"};
   position: absolute;
   padding: 0;
 
@@ -98,7 +102,7 @@ const FontStyle = styled.span`
 
   .box-text {
     border-radius: 8px;
-    text-shadow: rgb(238, 235, 84) 3px 3px 0px, rgba(0, 0, 0, 0.2) 3px 3px 0px;  
+    text-shadow: rgb(238, 235, 84) 3px 3px 0px, rgba(0, 0, 0, 0.2) 3px 3px 0px;
     border: none;
     outline: none;
     font-weight: 600;
@@ -109,7 +113,7 @@ const FontStyle = styled.span`
     justify-content: center;
     align-items: center;
     font-weight: 600;
-    text-shadow: 
+    text-shadow:
       0px 4px 3px rgba(0,0,0,0.4),
       0px 8px 13px rgba(0,0,0,0.1),
       0px 18px 23px rgba(0,0,0,0.1);
