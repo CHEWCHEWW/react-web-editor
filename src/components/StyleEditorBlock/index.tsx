@@ -40,7 +40,7 @@ const StyleEditorBlock: React.FC<StyleEditorBlockProps> = ({
 
   return (
     <EditorBlock
-      componentRef={componentRef} 
+      componentRef={componentRef}
       width={width}
       height={height}
       top={top}
@@ -55,15 +55,15 @@ const StyleEditorBlock: React.FC<StyleEditorBlockProps> = ({
     >
       {isMouseOver &&
         <>
-          <ImageUploader 
-            onChange={handleFileChange} 
-            top={FIRST_EDITOR_ICON_TOP} 
-            right={EDITOR_ICON_RIGHT} 
+          <ImageUploader
+            onChange={handleFileChange}
+            top={FIRST_EDITOR_ICON_TOP}
+            right={EDITOR_ICON_RIGHT}
           />
-          <ColorPicker 
-            onChange={handleColorChange} 
-            top={SECOND_EDITOR_ICON_TOP} 
-            right={EDITOR_ICON_RIGHT} 
+          <ColorPicker
+            onChange={handleColorChange}
+            top={SECOND_EDITOR_ICON_TOP}
+            right={EDITOR_ICON_RIGHT}
             value={color}
           />
         </>
