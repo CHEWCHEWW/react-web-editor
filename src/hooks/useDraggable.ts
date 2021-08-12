@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import { convertPointsByUnit, getBoundPosition } from "../utils/ui";
-import { ComponentStyle, Dispatcher } from "../types/ui";
+import { ComponentSize, ComponentStyle, Dispatcher } from "../types/ui";
 
 interface UseDraggableProps extends ComponentStyle {
   onDrag: Dispatcher<ComponentStyle>
-  dragBoardOption?: ComponentStyle
+  dragBoardOption?: ComponentSize
   unit: string
 }
 
@@ -21,10 +21,10 @@ interface UseDraggableReturns {
   isDragging: boolean,
 }
 
-const useDraggable = ({ 
-  left, 
-  top, 
-  onDrag, 
+const useDraggable = ({
+  left,
+  top,
+  onDrag,
   width,
   height,
   dragBoardOption,
@@ -43,13 +43,13 @@ const useDraggable = ({
 
     const handleDragMove = (ev: MouseEvent) => {
       const { currentX, currentY, isDragging } = componentInfomation;
-  
+
       if (!isDragging || !currentX || !currentY) {
         return;
       }
-  
+
       const { clientX, clientY } = convertPointsByUnit(unit, ev.clientX, ev.clientY);
-  
+
       const { left, top } = getBoundPosition(
         clientX,
         clientY,
@@ -59,7 +59,7 @@ const useDraggable = ({
         height,
         dragBoardOption,
       );
-      
+
       onDrag((prev) => ({
         ...prev,
         left,
@@ -71,13 +71,13 @@ const useDraggable = ({
 
     return () => document.removeEventListener("mousemove", handleDragMove);
   }, [componentInfomation, dragBoardOption, height, onDrag, width, unit]);
-  
+
   const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
     const { clientX, clientY } = convertPointsByUnit(unit, ev.clientX, ev.clientY);
 
     const currentX = clientX - left;
     const currentY = clientY - top;
-    
+
     setComponentInformation((prev) => ({
       ...prev,
       isDragging: true,
@@ -93,8 +93,8 @@ const useDraggable = ({
     }));
   };
 
-  return {  
-    handleDragEnd, 
+  return {
+    handleDragEnd,
     handleDragStart,
     isDragging: componentInfomation.isDragging,
   };

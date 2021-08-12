@@ -26,14 +26,20 @@ export interface ResizeProps extends ComponentStyle {
   children?: React.ReactElement
 }
 
+export interface ComponentSize {
+  width: number
+  height: number
+}
+
 export interface EditorProps {
   width: number
   height: number
   top: number
   left: number
-  parentStyle?: ComponentStyle
+  parentStyle?: ComponentSize
   unit: string
 }
+
 
 export interface EditorBlockProps extends EditorProps {
   isMouseOver: boolean

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { changeComponentLocationByHandler, convertPointsByUnit } from "../utils/ui";
-import { ComponentStyle ,Dispatcher, ResizeProps } from "../types/ui";
+import { ComponentSize ,Dispatcher, ResizeProps } from "../types/ui";
 import { MIN_HEIGHT, MIN_WIDTH } from "../constants/ui";
 
 interface ComponentInformation {
@@ -14,7 +14,7 @@ interface ComponentInformation {
 interface UseResizeProps {
   componentStyle: ResizeProps
   onResize: Dispatcher<ResizeProps>
-  resizeBoardOption?: ComponentStyle
+  resizeBoardOption?: ComponentSize
   unit: string
 }
 
@@ -23,9 +23,9 @@ interface UseResizeReturns {
   isResizing: boolean
 }
 
-const useResize = ({ 
-  componentStyle, 
-  onResize, 
+const useResize = ({
+  componentStyle,
+  onResize,
   resizeBoardOption,
   unit,
 }: UseResizeProps): UseResizeReturns => {
@@ -43,14 +43,14 @@ const useResize = ({
 
     const handleMouseMove = (ev: MouseEvent): void => {
       ev.stopPropagation();
-      
+
       const { clientX, clientY } = convertPointsByUnit(unit, ev.clientX, ev.clientY);
       const { currentX, currentY, direction } = componentInformation;
       const { left, top, width, height } = componentStyle;
-      
+
       const deltaX = clientX - currentX;
       const deltaY = clientY - currentY;
-      
+
       const { newWidth, newHeight, newLeft, newTop } =
         changeComponentLocationByHandler(
           direction,
@@ -62,11 +62,11 @@ const useResize = ({
           deltaY,
           resizeBoardOption,
         );
-      
+
       if (newWidth < MIN_WIDTH || newHeight < MIN_HEIGHT) {
         return;
       }
-  
+
       onResize((prev) => ({
         ...prev,
         width: newWidth,
@@ -74,7 +74,7 @@ const useResize = ({
         left: newLeft,
         top: newTop,
       }));
-  
+
       setComponentInformation((prev) => ({
         ...prev,
         currentX: clientX,
@@ -101,16 +101,16 @@ const useResize = ({
 
   const handleMouseDown = (ev: React.MouseEvent<HTMLDivElement>): void => {
     ev.preventDefault();
-    
+
     const { currentTarget: { className } } = ev;
     const { clientX, clientY } = convertPointsByUnit(unit, ev.clientX, ev.clientY);
-  
+
     setComponentInformation((prev) => ({
       ...prev,
       isResizing: true,
       direction: className,
       currentX: clientX,
-      currentY: clientY, 
+      currentY: clientY,
     }));
   };
 

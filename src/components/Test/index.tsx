@@ -15,12 +15,12 @@ const Test: React.FC = (): React.ReactElement => {
           height={100}
           top={1}
           left={1}
-          parentStyle={{ width: 500, height: 300, left: 0.1, top: 0.1 }}
+          parentStyle={{ width: 500, height: 300 }}
           unit={"px"}
         >
           {/* <TestDiv>happy</TestDiv> */}
         </StyleEditorBlock>
-        <TextEditorBlock top={0} left={0} width={200} height={100} unit={"px"} initialText={"happy"} />
+        <TextEditorBlock parentStyle={{ width: 500, height: 300 }} top={0} left={0} width={200} height={100} unit={"px"} initialText={"happy"} />
       </EditorWrapper>
     </Wrapper>
   );
