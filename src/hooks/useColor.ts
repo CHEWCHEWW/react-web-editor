@@ -9,8 +9,8 @@ interface UseColorReturns extends ColorProps {
 }
 
 const useColor = (initialColor?: string): UseColorReturns => {
-  const [color, setColor] = useState(initialColor || "#ffffff");
-  
+  const [color, setColor] = useState(initialColor || "#00ff0000");
+
   const handleColorChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
     setColor(ev.target.value);
   };
@@ -22,10 +22,10 @@ const useColor = (initialColor?: string): UseColorReturns => {
     document.execCommand("foreColor", false, color);
   };
 
-  return { 
-    color, 
-    handleColorChange, 
-    handleFontColorChange, 
+  return {
+    color,
+    handleColorChange,
+    handleFontColorChange,
   };
 };
 

@@ -11,7 +11,7 @@ interface CustomInputProps extends TypedCustomInputProps {
   accept?: string
 }
 
-const CustomInput: React.FC<CustomInputProps> = ({ 
+const CustomInput: React.FC<CustomInputProps> = ({
   onChange,
   value,
   type,
@@ -21,20 +21,20 @@ const CustomInput: React.FC<CustomInputProps> = ({
   right,
   left,
   bottom,
-}): React.ReactElement => {  
+}): React.ReactElement => {
   return (
     <>
-      <Icon 
+      <Icon
         top={top}
         right={right}
         left={left}
         bottom={bottom}
       >
-        <Input 
+        <Input
           type={type}
           onChange={onChange}
           accept={accept}
-          value={value && value}
+          value={value}
         />
         {children}
       </Icon>
