@@ -9,29 +9,19 @@ const Test: React.FC = (): React.ReactElement => {
     <Wrapper>
       <TwoColorText>
       </TwoColorText>
-      <EditorWrapper />
-      <TextEditorBlock 
-        width={5} 
-        height={5} 
-        top={12} 
-        left={12}
-        unit={"rem"}
-        parentStyle={{ width: 10, height: 10, left: 10, top: 10 }}
-        initialFontStyle={"twin-color-text"}
-        initialFontSize={0.8}
-      >
-        {/* <TestDiv>happy</TestDiv> */}
-      </TextEditorBlock>
-      <TextEditorBlock top={50} left={50} width={20} height={10} unit={"rem"} />
-      <StyleEditorBlock 
-        width={30} 
-        height={10} 
-        top={50} 
-        left={80} 
-        unit={"rem"}
-        initialColor={"#00ff0000"}
-      >
-      </StyleEditorBlock>
+      <EditorWrapper>
+        <StyleEditorBlock
+          width={100}
+          height={100}
+          top={0}
+          left={0}
+          parentStyle={{ width: 500, height: 300, left: 200, top: 200 }}
+          unit={"px"}
+        >
+          <TestDiv>happy</TestDiv>
+        </StyleEditorBlock>
+        <TextEditorBlock top={0} left={0} width={200} height={100} unit={"px"} initialText={"happy"} />
+      </EditorWrapper>
     </Wrapper>
   );
 };
@@ -49,12 +39,12 @@ const Wrapper = styled.div`
 `;
 
 const EditorWrapper = styled.div`
-  width: 10rem; 
-  height: 10rem; 
-  left: 10rem; 
-  top: 10rem; 
-  background: #84bdec; 
-  position: absolute;
+  width: 500px;
+  height: 300px;
+  left: 200px;
+  top: 200px;
+  background: #84bdec;
+  position: fixed;
 `;
 
 const TestDiv = styled.div`

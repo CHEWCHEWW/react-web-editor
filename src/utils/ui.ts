@@ -28,26 +28,26 @@ interface ComponentPosition extends ComponentLocation {
   right: number
 }
 
-const getBoundingZone = ({ 
-  left = 0, 
-  top = 0, 
-  width = 0, 
-  height = 0, 
+const getBoundingZone = ({
+  left = 0,
+  top = 0,
+  width = 0,
+  height = 0,
 }: ComponentStyle): ComponentPosition => {
   const right = left + width;
   const bottom = top + height;
-  
+
   return { left, top, right, bottom };
 };
 
 export const getBoundPosition = (
-  clientX: number, 
-  clientY: number, 
-  x: number, 
+  clientX: number,
+  clientY: number,
+  x: number,
   y: number,
   width?: number,
   height?: number,
-  parentLocation?: ComponentStyle, 
+  parentLocation?: ComponentStyle,
 ): ComponentLocation => {
   let currentX: number = clientX - x;
   let currentY: number = clientY - y;
@@ -57,8 +57,8 @@ export const getBoundPosition = (
   }
 
   const { left, top, right, bottom } = getBoundingZone(parentLocation);
-  const { 
-    right: currentRight, 
+  const {
+    right: currentRight,
     bottom: currentBottom,
   } = getBoundingZone({ left: currentX, top: currentY, width, height});
 
@@ -93,8 +93,8 @@ export const generateDraggedList = (items: DragListContent[], startPoint: number
 };
 
 export const changeComponentLocationByHandler = (
-  handlerType: string, 
-  left: number, 
+  handlerType: string,
+  left: number,
   top: number,
   width: number,
   height: number,
@@ -121,7 +121,7 @@ export const changeComponentLocationByHandler = (
       newHeight -= differenceY;
 
       break;
-    case DIRECTION.BOTTOM_LEFT: 
+    case DIRECTION.BOTTOM_LEFT:
       newLeft += differenceX;
       newWidth -= differenceX;
       newHeight += differenceY;
@@ -144,7 +144,7 @@ export const changeComponentLocationByHandler = (
       newHeight,
     };
   }
-  
+
   const { right, bottom } = getBoundingZone(parentLocation);
 
   if (newLeft < parentLocation.left) {
@@ -174,9 +174,9 @@ export const changeComponentLocationByHandler = (
 };
 
 export const calculateCenter = (
-  width: number, 
-  height: number, 
-  top: number, 
+  width: number,
+  height: number,
+  top: number,
   left: number,
 ): ComponentCenter => {
   const centerX = left + (width / 2);
@@ -189,9 +189,9 @@ export const calculateCenter = (
 };
 
 export const isLocatedCenter = (
-  width: number, 
-  height: number, 
-  top: number, 
+  width: number,
+  height: number,
+  top: number,
   left: number,
 ): ComponentLocatedCenter => {
   const screenWidth = window.screen.width;
@@ -219,7 +219,7 @@ export const isLocatedCenter = (
 export const convertPointsByUnit = (unit: string, x: number, y: number): ClientLocation => {
   let clientX: number = x;
   let clientY: number = y;
-  
+
   switch (unit) {
     case "rem":
       clientX = clientX * 0.0625;
@@ -236,7 +236,7 @@ export const convertPointsByUnit = (unit: string, x: number, y: number): ClientL
 export const convertPointsToPixel = (unit: string, x: number, y: number): ClientLocation => {
   let clientX: number = x;
   let clientY: number = y;
-  
+
   switch (unit) {
     case "rem":
       clientX = clientX / 0.0625;
@@ -248,4 +248,8 @@ export const convertPointsToPixel = (unit: string, x: number, y: number): Client
   }
 
   return { clientX, clientY };
+};
+
+export const generateHtml = (text: string): string => {
+  return `<p>${text}<p>`;
 };

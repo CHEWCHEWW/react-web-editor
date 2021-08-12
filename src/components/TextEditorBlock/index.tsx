@@ -9,6 +9,7 @@ import { ComponentStyle, EditorProps } from "../../types/ui";
 import { DIRECTIIONS } from "../../constants/location";
 import EditorBlockWrapper from "../shared/EditorBlockWrapper";
 import { EDITOR_ICON_RIGHT, FIRST_EDITOR_ICON_TOP, SECOND_EDITOR_ICON_TOP } from "../../constants/ui";
+import { generateHtml } from "../../utils/ui";
 import GuideLine from "../GuideLine";
 import Icon from "../Icon";
 import ResizeHandlersWrapper from "../shared/ResizeHandlerWrapper";
@@ -25,11 +26,11 @@ interface TextEditorBlockProps extends EditorProps {
   initialFontSize?: number
   initialFontColor?: string
   initialFontStyle?: string
-  initialFontText?: string
+  initialText?: string
   initialFontName?: string
 }
 
-const TextEditorBlock: React.FC<TextEditorBlockProps> = ({ 
+const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   left,
   top,
   width,
@@ -39,10 +40,11 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   initialFontSize,
   initialFontColor,
   initialFontStyle,
-  initialFontText,
+  initialText,
   initialFontName,
 }): React.ReactElement => {
-  const [html, setHtml] = useState(INITIAL_TEXT);
+  const innerHtml = initialText && generateHtml(initialText);
+  const [html, setHtml] = useState(innerHtml || INITIAL_TEXT);
   const [componentStyle, setComponentStyle] = useState<ComponentStyle>({
     top,
     left,
@@ -50,7 +52,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
     height,
   });
 
-  const { handleMouseDown } = useResize({ 
+  const { handleMouseDown } = useResize({
     componentStyle,
     unit,
     onResize: setComponentStyle,
@@ -73,18 +75,18 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
     handleStyleChange,
     handleFontStyleClick,
     fontName,
-  } = useText({ 
-    html, 
+  } = useText({
+    html,
     onChange: setHtml,
     initialFontName,
     initialFontStyle,
-    initialFontText,
+    initialText,
   });
 
   const {
     handleDragStart,
     handleDragEnd,
-  } = useDraggable({    
+  } = useDraggable({
     ...componentStyle,
     onDrag: setComponentStyle,
     dragBoardOption: parentStyle,
@@ -92,7 +94,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   });
 
   const { handleFontColorChange } = useColor(initialFontColor);
-  
+
   const {
     sliderRef,
     value,
@@ -109,11 +111,11 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
     >
-      {isMouseOver && 
+      {isMouseOver &&
         <>
           <ButtonHandler />
           {!isEditing && (
-            <Icon 
+            <Icon
               top={FIRST_EDITOR_ICON_TOP}
               right={EDITOR_ICON_RIGHT}
               onMouseDown={handleDragStart}
@@ -122,7 +124,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
               <GiMove />
             </Icon>
           )}
-          <Icon 
+          <Icon
             top={isEditing ? FIRST_EDITOR_ICON_TOP : SECOND_EDITOR_ICON_TOP}
             right={EDITOR_ICON_RIGHT}
             onClick={handleEditingMode}
@@ -134,8 +136,8 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
               <div key={item} className={item} onMouseDown={handleMouseDown} />
             ))}
           </ResizeHandlersWrapper>
-          <CoordinatesTag 
-            top={componentStyle.top} 
+          <CoordinatesTag
+            top={componentStyle.top}
             left={componentStyle.left}
             unit={unit}
           />
@@ -147,8 +149,8 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
           />
         </>
       }
-      <TextEditor 
-        html={innerHTML} 
+      <TextEditor
+        html={innerHTML}
         fontStyle={fontStyle}
         onChange={handleInputChange}
         componentRef={textRef}

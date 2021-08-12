@@ -5,7 +5,7 @@ import { FaBold, FaItalic, FaUnderline } from "react-icons/fa";
 import { IoIosColorPalette } from "react-icons/io";
 
 import { FONT_STYLES, TEXT_STYLES } from "../../constants/ui";
-import DropDown from "../DropDown";
+import DropDown from "../Dropdown";
 import EditorButton from "../EditorButton";
 import MenuOption from "../MenuOption";
 import Slider from "../Slider";
@@ -37,10 +37,10 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
         <DropDown items={FONT_STYLES} onClick={onFontClick} />
       </MenuOption>
       <MenuOption name={"size"}>
-        <Slider 
-          onChange={onSliderChange} 
-          sliderRef={sliderRef} 
-          value={sliderValue} 
+        <Slider
+          onChange={onSliderChange}
+          sliderRef={sliderRef}
+          value={sliderValue}
         />
       </MenuOption>
       <MenuOption name={"option"}>
@@ -157,7 +157,7 @@ const TextStyles = styled.button`
 
   .box-text {
     border-radius: 8px;
-    text-shadow: rgb(238, 235, 84) 3px 3px 0px, rgba(0, 0, 0, 0.2) 3px 3px 0px;  
+    text-shadow: rgb(238, 235, 84) 3px 3px 0px, rgba(0, 0, 0, 0.2) 3px 3px 0px;
     border: none;
     outline: none;
     font-weight: 600;
@@ -168,7 +168,7 @@ const TextStyles = styled.button`
     justify-content: center;
     align-items: center;
     font-weight: 600;
-    text-shadow: 
+    text-shadow:
       0px 4px 3px rgba(0,0,0,0.4),
       0px 8px 13px rgba(0,0,0,0.1),
       0px 18px 23px rgba(0,0,0,0.1);
