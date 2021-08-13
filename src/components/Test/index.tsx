@@ -21,7 +21,16 @@ const Test: React.FC = (): React.ReactElement => {
           parentStyle={{ width: 500, height: 300 }}
           unit={"px"}
         >
-          <div style={{ backgroundColor: "pink", position: "absolute" }}>happy</div>
+          <div style={{ zIndex: 3, backgroundColor: "pink", position: "absolute" }}>happy</div>
+        </StyleEditorBlock>
+        <StyleEditorBlock
+          width={100}
+          height={100}
+          top={1}
+          left={1}
+          parentStyle={{ width: 500, height: 300 }}
+          unit={"px"}
+        >
         </StyleEditorBlock>
       </EditorWrapper>
     </Wrapper>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import { changeComponentLocationByHandler, convertPointsByUnit } from "../utils/ui";
-import { ComponentSize ,Dispatcher, ResizeProps } from "../types/ui";
+import { ComponentSize, ComponentStyle, Dispatcher, ResizeProps } from "../types/ui";
 import { MIN_HEIGHT, MIN_WIDTH } from "../constants/ui";
 
 interface ComponentInformation {
@@ -11,8 +11,7 @@ interface ComponentInformation {
   currentY: number
 }
 
-interface UseResizeProps {
-  componentStyle: ResizeProps
+interface UseResizeProps extends ComponentStyle {
   onResize: Dispatcher<ResizeProps>
   resizeBoardOption?: ComponentSize
   unit: string
@@ -24,7 +23,10 @@ interface UseResizeReturns {
 }
 
 const useResize = ({
-  componentStyle,
+  width,
+  height,
+  top,
+  left,
   onResize,
   resizeBoardOption,
   unit,
@@ -46,7 +48,6 @@ const useResize = ({
 
       const { clientX, clientY } = convertPointsByUnit(unit, ev.clientX, ev.clientY);
       const { currentX, currentY, direction } = componentInformation;
-      const { left, top, width, height } = componentStyle;
 
       const deltaX = clientX - currentX;
       const deltaY = clientY - currentY;
@@ -97,7 +98,7 @@ const useResize = ({
       document.removeEventListener("mousemove", handleMouseMove);
       document.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [componentInformation, onResize, componentStyle, resizeBoardOption, unit]);
+  }, [componentInformation, onResize, width, top, left, height, resizeBoardOption, unit]);
 
   const handleMouseDown = (ev: React.MouseEvent<HTMLDivElement>): void => {
     ev.preventDefault();

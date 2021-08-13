@@ -73,10 +73,8 @@ const Block = styled.div<DragAndDropItemStyle>`
   background-color: ${({ color }) => color && color};
 
   &.isDropDown {
-    margin-top: ${({ height }) => `${height}px`};
     position: relative;
     opacity: 0.1;
-    margin-top: 1em;
   }
 `;
 

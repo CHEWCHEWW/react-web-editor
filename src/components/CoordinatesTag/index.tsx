@@ -34,6 +34,7 @@ const Tag = styled.div`
   font-weight: bold;
   border-radius: 5px;
   opacity: 0.8;
+  z-index: 5;
 `;
 
 export default CoordinatesTag;
