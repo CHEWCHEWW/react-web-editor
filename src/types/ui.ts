@@ -10,13 +10,7 @@ export interface ComponentStyle extends ComponentLocation {
   height: number
 }
 
-export interface DragListContent {
-  number: string
-  title: string
-  content?: string
-  type?: string
-  color?: string
-}
+export type DragAndDropItem = React.ReactChild | React.ReactFragment
 
 export interface InnerHTML {
   __html: string
@@ -40,7 +34,6 @@ export interface EditorProps {
   unit: string
 }
 
-
 export interface EditorBlockProps extends EditorProps {
   isMouseOver: boolean
   isClicked: boolean
@@ -52,6 +45,7 @@ export interface EditorBlockProps extends EditorProps {
 
 export interface ColorProps {
   color: string
+  hasChildren?: boolean
 }
 
 export type Dispatcher<S> = React.Dispatch<React.SetStateAction<S>>;
