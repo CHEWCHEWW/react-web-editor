@@ -1,12 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 
+import DragAndDropTable from "../DragAndDropTable";
 import StyleEditorBlock from "../StyleEditorBlock";
 import TextEditorBlock from "../TextEditorBlock";
 
 const Test: React.FC = (): React.ReactElement => {
   return (
     <Wrapper>
+      <DragAndDropTable isVertical={true}>
+        <div>happy</div>
+        <div>hi</div>
+        <div>
+          <div>look at me</div>
+        </div>
+        <input type="text"></input>
+      </DragAndDropTable>
       <TwoColorText>
       </TwoColorText>
       <EditorWrapper>
@@ -45,13 +54,6 @@ const EditorWrapper = styled.div`
   top: 200px;
   background: #84bdec;
   position: fixed;
-`;
-
-const TestDiv = styled.div`
-  width: 100%;
-  height: 100%;
-  background-color: skyblue;
-  position: absolute;
 `;
 
 export default Test;

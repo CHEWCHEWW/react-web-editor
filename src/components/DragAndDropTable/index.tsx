@@ -1,49 +1,49 @@
-import React from "react";
+import React, { Children } from "react";
 import styled from "styled-components";
 
-import { DragListContent } from "../../types/ui";
 import useDragAndDrop from "../../hooks/useDragAndDrop";
 
 interface DragAndDropTableProps {
-  items: DragListContent[]
+  // items: DragAndDropItems[]
   color?: string
+  isVertical: boolean
 }
 
 interface DragAndDropTableStyle {
   backgroundColor?: string
   color?: string
+  isVertical?: boolean
 }
 
-const DragAndDropTable: React.FC<DragAndDropTableProps> = ({ 
-  items,
+const DragAndDropTable: React.FC<DragAndDropTableProps> = ({
   color,
+  isVertical,
+  children,
 }): React.ReactElement => {
-  const { 
-    handleDragStart, 
-    handleDragOver, 
-    handleDropDown, 
-    handleDragLeave, 
+  console.log(typeof Children.toArray(children));
+  const {
+    handleDragStart,
+    handleDragOver,
+    handleDropDown,
+    handleDragLeave,
     dragList,
     endPoint,
-  } = useDragAndDrop({ items });
+  } = useDragAndDrop({ items: Children.toArray(children) });
 
   return (
-    <Wrapper>
+    <Wrapper backgroundColor={color} isVertical={isVertical}>
       {dragList.map((item, index) => (
-        <Block 
+        <Block
           key={index}
           id={String(index)}
           draggable
-          color={color}
           onDragStart={handleDragStart}
           onDragOver={handleDragOver}
           onDrop={handleDropDown}
           onDragLeave={handleDragLeave}
           className={endPoint === index ? "isDropDown" : ""}
         >
-          {item.type === "image" && <Image src={item.content} alt={item.title} />}
-          <span>{item.number}</span>
-          <p>{item.title}</p>
+          {item}
         </Block>
       ))}
     </Wrapper>
@@ -52,13 +52,8 @@ const DragAndDropTable: React.FC<DragAndDropTableProps> = ({
 
 const Wrapper = styled.div<DragAndDropTableStyle>`
   display: flex;
+  flex-direction: ${({ isVertical }) => isVertical && "column"};
   background-color: ${({ backgroundColor }) => backgroundColor && backgroundColor};
-`;
-
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  position: absolute;
 `;
 
 const Block = styled.div<DragAndDropTableStyle>`
@@ -74,14 +69,16 @@ const Block = styled.div<DragAndDropTableStyle>`
     color: white;
     background: white;
     position: relative;
-
+    opacity: 0.1;
+    margin-left: 1em;
+/*
     span {
       display: none;
     }
 
     p {
       margin-left: 1em;
-    }
+    } */
   }
 `;
 

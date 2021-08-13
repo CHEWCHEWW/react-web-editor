@@ -1,5 +1,5 @@
 import { DIRECTION } from "../constants/location";
-import { ComponentLocation, ComponentSize, ComponentStyle, DragListContent } from "../types/ui";
+import { ComponentLocation, ComponentSize, ComponentStyle, DragAndDropItem } from "../types/ui";
 
 interface NewComponentStyle {
   newLeft: number
@@ -85,7 +85,7 @@ export const getBoundPosition = (
   return { left: currentX, top: currentY };
 };
 
-export const generateDraggedList = (items: DragListContent[], startPoint: number, endPoint: number): DragListContent[] => {
+export const generateDraggedList = (items: DragAndDropItem[], startPoint: number, endPoint: number): DragAndDropItem[] => {
   const draggedItem = items[startPoint];
   const remainingItems = items.filter((_, index) => index !== startPoint);
 

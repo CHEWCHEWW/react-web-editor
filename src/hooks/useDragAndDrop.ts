@@ -1,31 +1,31 @@
 import React, { useState } from "react";
 
-import { DragListContent } from "../types/ui";
+import { DragAndDropItem } from "../types/ui";
 import { generateDraggedList } from "../utils/ui";
 
 interface DragListInformation {
   startPoint: number | null
   endPoint: number | null
   isDragging: boolean
-  originalOrder: DragListContent[]
-  updatedOrder: DragListContent[]
+  originalOrder: DragAndDropItem[]
+  updatedOrder: DragAndDropItem[]
 }
 
 interface UseDragAndDropProps {
-  items: DragListContent[]
+  items: DragAndDropItem[]
 }
 
 interface UseDragAndDropReturns {
-  handleDragStart: (ev: React.MouseEvent<HTMLDivElement>) => void 
-  handleDragOver: (ev: React.MouseEvent<HTMLDivElement>) => void  
-  handleDropDown: () => void 
-  handleDragLeave: () => void  
-  dragList: DragListContent[]
+  handleDragStart: (ev: React.MouseEvent<HTMLDivElement>) => void
+  handleDragOver: (ev: React.MouseEvent<HTMLDivElement>) => void
+  handleDropDown: () => void
+  handleDragLeave: () => void
+  dragList: DragAndDropItem[]
   endPoint: number | null
 }
 
 const useDragAndDrop = ({ items }: UseDragAndDropProps): UseDragAndDropReturns => {
-  const [dragList, setDragList] = useState<DragListContent[]>(items);
+  const [dragList, setDragList] = useState<DragAndDropItem[]>(items);
   const [dragListInformation, setDragListInformation] = useState<DragListInformation>({
     startPoint: null,
     endPoint: null,
@@ -34,7 +34,7 @@ const useDragAndDrop = ({ items }: UseDragAndDropProps): UseDragAndDropReturns =
     updatedOrder: [],
   });
 
-  const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {    
+  const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
     const initialPosition = Number(ev.currentTarget.id);
 
     setDragListInformation((prev) => ({
@@ -55,9 +55,9 @@ const useDragAndDrop = ({ items }: UseDragAndDropProps): UseDragAndDropReturns =
     if (!draggedFrom && draggedFrom !== 0) {
       return;
     }
-    
+
     const newDragList = generateDraggedList(oldDragList, draggedFrom, draggedTo);
-    
+
     if (draggedTo !== dragListInformation.endPoint) {
       setDragListInformation((prev) => ({
         ...prev,
@@ -84,11 +84,11 @@ const useDragAndDrop = ({ items }: UseDragAndDropProps): UseDragAndDropReturns =
     }));
   };
 
-  return { 
-    handleDragStart, 
-    handleDragOver, 
-    handleDropDown, 
-    handleDragLeave, 
+  return {
+    handleDragStart,
+    handleDragOver,
+    handleDropDown,
+    handleDragLeave,
     dragList,
     endPoint: dragListInformation.endPoint,
   };
