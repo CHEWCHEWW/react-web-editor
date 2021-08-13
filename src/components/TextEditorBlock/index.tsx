@@ -53,7 +53,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   });
 
   const { handleMouseDown } = useResize({
-    componentStyle,
+    ...componentStyle,
     unit,
     onResize: setComponentStyle,
     resizeBoardOption: parentStyle,

@@ -45,7 +45,6 @@ export interface EditorBlockProps extends EditorProps {
 
 export interface ColorProps {
   color: string
-  hasChildren?: boolean
 }
 
 export type Dispatcher<S> = React.Dispatch<React.SetStateAction<S>>;

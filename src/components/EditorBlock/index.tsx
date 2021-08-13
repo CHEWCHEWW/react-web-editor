@@ -10,7 +10,7 @@ import ResizeHandlersWrapper from "../shared/ResizeHandlerWrapper";
 import useDraggable from "../../hooks/useDraggable";
 import useResize from "../../hooks/useResize";
 
-const Editor: React.FC<EditorBlockProps> = ({ 
+const Editor: React.FC<EditorBlockProps> = ({
   width,
   height,
   top,
@@ -32,9 +32,9 @@ const Editor: React.FC<EditorBlockProps> = ({
     left,
   });
 
-  const { handleMouseDown } = useResize({ 
+  const { handleMouseDown } = useResize({
     unit,
-    componentStyle, 
+    ...componentStyle,
     onResize: setComponentStyle,
     resizeBoardOption: parentStyle,
   });
@@ -42,7 +42,7 @@ const Editor: React.FC<EditorBlockProps> = ({
   const {
     handleDragStart,
     handleDragEnd,
-  } = useDraggable({ 
+  } = useDraggable({
     ...componentStyle,
     onDrag: setComponentStyle,
     dragBoardOption: parentStyle,
@@ -61,7 +61,7 @@ const Editor: React.FC<EditorBlockProps> = ({
       ref={componentRef}
       unit={unit}
     >
-      {isClicked && 
+      {isClicked &&
         <>
           <DraggableHandler
             onMouseDown={handleDragStart}
