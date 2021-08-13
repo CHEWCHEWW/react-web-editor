@@ -69,8 +69,8 @@ const StyleEditorBlock: React.FC<StyleEditorBlockProps> = ({
         </>
       }
       {imageSrc && <UploadedImage src={imageSrc} />}
-      {color && <CustomBlock color={color} />}
       {children ? children : <CustomBlock color={color} />}
+      {color && <CustomBlock color={color} />}
     </EditorBlock>
   );
 };
@@ -85,6 +85,7 @@ const CustomBlock = styled.div.attrs<ColorProps>(
   width: 100%;
   height: 100%;
   position: absolute;
+  z-index: -1;
 `;
 
 const UploadedImage = styled.img`
