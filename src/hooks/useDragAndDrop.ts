@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { DragAndDropItem } from "../types/ui";
+import { ComponentSize, DragAndDropItem } from "../types/ui";
 import { generateDraggedList } from "../utils/ui";
 
 interface DragListInformation {
@@ -9,6 +9,7 @@ interface DragListInformation {
   isDragging: boolean
   originalOrder: DragAndDropItem[]
   updatedOrder: DragAndDropItem[]
+  componentSize: ComponentSize
 }
 
 interface UseDragAndDropProps {
@@ -22,6 +23,9 @@ interface UseDragAndDropReturns {
   handleDragLeave: () => void
   dragList: DragAndDropItem[]
   endPoint: number | null
+  startPoint: number | null
+  componentSize: ComponentSize
+  isDragging: boolean
 }
 
 const useDragAndDrop = ({ items }: UseDragAndDropProps): UseDragAndDropReturns => {
@@ -32,16 +36,25 @@ const useDragAndDrop = ({ items }: UseDragAndDropProps): UseDragAndDropReturns =
     isDragging: false,
     originalOrder: [],
     updatedOrder: [],
+    componentSize: {
+      width: 0,
+      height: 0,
+    }
   });
 
   const handleDragStart = (ev: React.MouseEvent<HTMLDivElement>): void => {
     const initialPosition = Number(ev.currentTarget.id);
+    const currentComponent = ev.currentTarget.getBoundingClientRect();
 
     setDragListInformation((prev) => ({
       ...prev,
       startPoint: initialPosition,
       isDragging: true,
       originalOrder: dragList,
+      componentSize: {
+        width: currentComponent.width,
+        height: currentComponent.height,
+      }
     }));
   };
 
@@ -72,7 +85,6 @@ const useDragAndDrop = ({ items }: UseDragAndDropProps): UseDragAndDropReturns =
 
     setDragListInformation((prev) => ({
       ...prev,
-      startPoint: null,
       endPoint: null,
     }));
   };
@@ -91,6 +103,9 @@ const useDragAndDrop = ({ items }: UseDragAndDropProps): UseDragAndDropReturns =
     handleDragLeave,
     dragList,
     endPoint: dragListInformation.endPoint,
+    startPoint: dragListInformation.startPoint,
+    isDragging: dragListInformation.isDragging,
+    componentSize: dragListInformation.componentSize,
   };
 };
 

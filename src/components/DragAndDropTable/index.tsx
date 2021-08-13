@@ -15,12 +15,16 @@ interface DragAndDropTableStyle {
   isVertical?: boolean
 }
 
+interface DragAndDropItemStyle extends DragAndDropTableStyle {
+  width: number
+  height: number
+}
+
 const DragAndDropTable: React.FC<DragAndDropTableProps> = ({
   color,
   isVertical,
   children,
 }): React.ReactElement => {
-  console.log(typeof Children.toArray(children));
   const {
     handleDragStart,
     handleDragOver,
@@ -28,13 +32,19 @@ const DragAndDropTable: React.FC<DragAndDropTableProps> = ({
     handleDragLeave,
     dragList,
     endPoint,
+    componentSize,
   } = useDragAndDrop({ items: Children.toArray(children) });
 
   return (
-    <Wrapper backgroundColor={color} isVertical={isVertical}>
+    <Wrapper
+      backgroundColor={color}
+      isVertical={isVertical}
+    >
       {dragList.map((item, index) => (
         <Block
           key={index}
+          width={componentSize.width}
+          height={componentSize.height}
           id={String(index)}
           draggable
           onDragStart={handleDragStart}
@@ -56,29 +66,17 @@ const Wrapper = styled.div<DragAndDropTableStyle>`
   background-color: ${({ backgroundColor }) => backgroundColor && backgroundColor};
 `;
 
-const Block = styled.div<DragAndDropTableStyle>`
+const Block = styled.div<DragAndDropItemStyle>`
   display: flex;
   align-items: center;
   cursor: move;
-  width: 100%;
-  height: 100%;
   background-color: ${({ color }) => color && color};
-  margin: 0 auto;
 
   &.isDropDown {
-    color: white;
-    background: white;
+    margin-top: ${({ height }) => `${height}px`};
     position: relative;
     opacity: 0.1;
-    margin-left: 1em;
-/*
-    span {
-      display: none;
-    }
-
-    p {
-      margin-left: 1em;
-    } */
+    margin-top: 1em;
   }
 `;
 

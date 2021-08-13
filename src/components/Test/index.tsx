@@ -3,18 +3,12 @@ import styled from "styled-components";
 
 import DragAndDropTable from "../DragAndDropTable";
 import StyleEditorBlock from "../StyleEditorBlock";
-import TextEditorBlock from "../TextEditorBlock";
 
 const Test: React.FC = (): React.ReactElement => {
   return (
     <Wrapper>
       <DragAndDropTable isVertical={true}>
-        <div>happy</div>
-        <div>hi</div>
-        <div>
-          <div>look at me</div>
-        </div>
-        <input type="text"></input>
+        <button>ha</button>
       </DragAndDropTable>
       <TwoColorText>
       </TwoColorText>
@@ -27,9 +21,8 @@ const Test: React.FC = (): React.ReactElement => {
           parentStyle={{ width: 500, height: 300 }}
           unit={"px"}
         >
-          {/* <TestDiv>happy</TestDiv> */}
+          <div style={{ backgroundColor: "pink", position: "absolute" }}>happy</div>
         </StyleEditorBlock>
-        <TextEditorBlock parentStyle={{ width: 500, height: 300 }} top={0} left={0} width={200} height={100} unit={"px"} initialText={"happy"} />
       </EditorWrapper>
     </Wrapper>
   );
