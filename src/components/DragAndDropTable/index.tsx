@@ -4,20 +4,19 @@ import styled from "styled-components";
 import useDragAndDrop from "../../hooks/useDragAndDrop";
 
 interface DragAndDropTableProps {
-  // items: DragAndDropItems[]
-  color?: string
-  isVertical: boolean
+  color?: string;
+  isVertical: boolean;
 }
 
 interface DragAndDropTableStyle {
-  backgroundColor?: string
-  color?: string
-  isVertical?: boolean
+  backgroundColor?: string;
+  color?: string;
+  isVertical?: boolean;
 }
 
 interface DragAndDropItemStyle extends DragAndDropTableStyle {
-  width: number
-  height: number
+  width: number;
+  height: number;
 }
 
 const DragAndDropTable: React.FC<DragAndDropTableProps> = ({

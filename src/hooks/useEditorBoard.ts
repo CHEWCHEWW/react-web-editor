@@ -3,8 +3,8 @@ import { useCallback, useState } from "react";
 import { ComponentStyle } from "../types/ui";
 
 interface UseEditorBoardReturns {
-  measuredRef: (node: HTMLDivElement) => void
-  editorBoardStyle: ComponentStyle
+  measuredRef: (node: HTMLDivElement) => void;
+  editorBoardStyle: ComponentStyle;
 }
 
 const useEditorBoard = (): UseEditorBoardReturns => {
@@ -31,7 +31,7 @@ const useEditorBoard = (): UseEditorBoardReturns => {
       }));
     }
   }, []);
-  
+
   return {
     measuredRef,
     editorBoardStyle,

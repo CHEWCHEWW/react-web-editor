@@ -5,15 +5,15 @@ import { ComponentStyle } from "../../types/ui";
 import { calculateCenter ,isLocatedCenter } from "../../utils/ui";
 
 interface LineProps {
-  left?: number
-  top?: number
-  height?: number
-  width?: number
+  left?: number;
+  top?: number;
+  height?: number;
+  width?: number;
 }
 
 interface GuideLine extends ComponentStyle {
-  boardWidth?: number
-  boardHeight?: number
+  boardWidth?: number;
+  boardHeight?: number;
 }
 
 const GuideLine: React.FC<GuideLine> = ({
@@ -26,13 +26,13 @@ const GuideLine: React.FC<GuideLine> = ({
 }): React.ReactElement => {
   const { centerX, centerY } = calculateCenter(width, height, top, left);
   const { isCenterX, isCenterY } = isLocatedCenter(width, height, top, left);
-  
+
   return (
     <>
-      {isCenterX && 
+      {isCenterX &&
         <Line left={centerX} height={boardHeight} />
       }
-      {isCenterY && 
+      {isCenterY &&
         <Line top={centerY} width={boardWidth} />
       }
     </>

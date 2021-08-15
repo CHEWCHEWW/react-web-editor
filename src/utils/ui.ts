@@ -2,30 +2,30 @@ import { DIRECTION } from "../constants/location";
 import { ComponentLocation, ComponentSize, ComponentStyle, DragAndDropItem } from "../types/ui";
 
 interface NewComponentStyle {
-  newLeft: number
-  newTop: number
-  newWidth: number
-  newHeight: number
+  newLeft: number;
+  newTop: number;
+  newWidth: number;
+  newHeight: number;
 }
 
 interface ComponentCenter {
-  centerX: number
-  centerY: number
+  centerX: number;
+  centerY: number;
 }
 
 interface ClientLocation {
-  clientX: number
-  clientY: number
+  clientX: number;
+  clientY: number;
 }
 
 interface ComponentLocatedCenter {
-  isCenterX: boolean
-  isCenterY: boolean
+  isCenterX: boolean;
+  isCenterY: boolean;
 }
 
 interface ComponentPosition extends ComponentLocation {
-  bottom: number
-  right: number
+  bottom: number;
+  right: number;
 }
 
 const getBoundingZone = ({

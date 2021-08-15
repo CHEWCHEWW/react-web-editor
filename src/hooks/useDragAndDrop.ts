@@ -4,28 +4,28 @@ import { ComponentSize, DragAndDropItem } from "../types/ui";
 import { generateDraggedList } from "../utils/ui";
 
 interface DragListInformation {
-  startPoint: number | null
-  endPoint: number | null
-  isDragging: boolean
-  originalOrder: DragAndDropItem[]
-  updatedOrder: DragAndDropItem[]
-  componentSize: ComponentSize
+  startPoint: number | null;
+  endPoint: number | null;
+  isDragging: boolean;
+  originalOrder: DragAndDropItem[];
+  updatedOrder: DragAndDropItem[];
+  componentSize: ComponentSize;
 }
 
 interface UseDragAndDropProps {
-  items: DragAndDropItem[]
+  items: DragAndDropItem[];
 }
 
 interface UseDragAndDropReturns {
-  handleDragStart: (ev: React.MouseEvent<HTMLDivElement>) => void
-  handleDragOver: (ev: React.MouseEvent<HTMLDivElement>) => void
-  handleDropDown: () => void
-  handleDragLeave: () => void
-  dragList: DragAndDropItem[]
-  endPoint: number | null
-  startPoint: number | null
-  componentSize: ComponentSize
-  isDragging: boolean
+  handleDragStart: (ev: React.MouseEvent<HTMLDivElement>) => void;
+  handleDragOver: (ev: React.MouseEvent<HTMLDivElement>) => void;
+  handleDropDown: () => void;
+  handleDragLeave: () => void;
+  dragList: DragAndDropItem[];
+  endPoint: number | null;
+  startPoint: number | null;
+  componentSize: ComponentSize;
+  isDragging: boolean;
 }
 
 const useDragAndDrop = ({ items }: UseDragAndDropProps): UseDragAndDropReturns => {

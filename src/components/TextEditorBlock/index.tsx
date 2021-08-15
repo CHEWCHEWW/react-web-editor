@@ -23,11 +23,11 @@ import useText from "../../hooks/useText";
 import TextEditor from "../TextEditor";
 
 interface TextEditorBlockProps extends EditorProps {
-  initialFontSize?: number
-  initialFontColor?: string
-  initialFontStyle?: string
-  initialText?: string
-  initialFontName?: string
+  initialFontSize?: number;
+  initialFontColor?: string;
+  initialFontStyle?: string;
+  initialText?: string;
+  initialFontName?: string;
 }
 
 const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
@@ -72,8 +72,8 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
     handleEditingMode,
     isEditing,
     fontStyle,
-    handleStyleChange,
-    handleFontStyleClick,
+    handleStyleButtonClick,
+    handleFontButtonClick,
     fontName,
   } = useText({
     html,
@@ -162,8 +162,8 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
         sliderRef={sliderRef}
         sliderValue={value}
         onSliderChange={handleValueChange}
-        onClick={handleStyleChange}
-        onFontClick={handleFontStyleClick}
+        onStyleButtonClick={handleStyleButtonClick}
+        onFontButtonClick={handleFontButtonClick}
         fontName={fontName}
         color={color}
       />

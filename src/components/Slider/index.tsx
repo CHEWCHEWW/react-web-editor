@@ -2,32 +2,33 @@ import React from "react";
 import styled from "styled-components";
 
 import { SLIDER_MAX, SLIDER_MIN } from "../../constants/ui";
+import { BoxInnerShadow } from "../../theme/BoxInnerShadow";
 
 interface SliderProps {
-  min?: number
-  max?: number
-  value: number
-  onChange: () => void
-  sliderRef: React.Ref<HTMLInputElement>
+  min?: number;
+  max?: number;
+  value: number;
+  onChange: () => void;
+  sliderRef: React.Ref<HTMLInputElement>;
 }
 
-const Slider: React.FC<SliderProps> = ({ 
-  min = SLIDER_MIN, 
-  max = SLIDER_MAX, 
+const Slider: React.FC<SliderProps> = ({
+  min = SLIDER_MIN,
+  max = SLIDER_MAX,
   sliderRef,
   value,
   onChange,
 }): React.ReactElement => {
   return (
     <SliderBar>
-      <Range 
-        ref={sliderRef} 
-        type="range" 
-        onChange={onChange} 
-        value={value} 
-        min={min} 
-        max={max} 
-        step={max / 100} 
+      <Range
+        ref={sliderRef}
+        type="range"
+        onChange={onChange}
+        value={value}
+        min={min}
+        max={max}
+        step={max / 100}
       />
       <ProgressBar value={value} />
     </SliderBar>
@@ -75,12 +76,12 @@ const ProgressBar = styled.progress`
   z-index: -1;
   background-color: #d7d7d7;
 
-  ::-webkit-progress-value { 
-    background-color: #007aff; 
+  ::-webkit-progress-value {
+    background: linear-gradient(-1deg, #FC70A3 0%, #FB99BC 50%, #FFE6EF 100%);
   }
 
   ::-webkit-progress-bar {
-    background-color: #b6b6b6;
+    ${BoxInnerShadow};
     border-radius: 1.5px;
     overflow: hidden
   }

@@ -1,11 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+
+import MenuButton from "../shared/MenuButton";
 
 interface EditorButtonProps {
-  name: string
-  isShowing: boolean
-  value?: string
-  onChange?: (ev: React.ChangeEvent<HTMLInputElement>) => void
+  name: string;
+  isShowing: boolean;
+  value?: string;
+  onChange?: (ev: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const EditorButton: React.FC<EditorButtonProps> = ({
@@ -16,29 +17,15 @@ const EditorButton: React.FC<EditorButtonProps> = ({
 }): React.ReactElement => {
   const handleTextStyleChange = (ev: React.MouseEvent<HTMLDivElement>) => {
     ev.preventDefault();
-    
+
     document.execCommand(name, isShowing, value);
   };
 
   return (
-    <Button onMouseDown={handleTextStyleChange}>
+    <MenuButton onMouseDown={handleTextStyleChange}>
       {children}
-    </Button>
+    </MenuButton>
   );
 };
-
-const Button = styled.div`
-  display: flex;
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0.2rem 0.1rem;
-  color: #6c9eeb;
-  align-items: center;
-  justify-content: center;
-
-  :hover {
-    background-color: #f3f0f0;
-  }
-`;
 
 export default EditorButton;

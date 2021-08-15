@@ -4,21 +4,21 @@ import { convertPointsByUnit, getBoundPosition } from "../utils/ui";
 import { ComponentSize, ComponentStyle, Dispatcher } from "../types/ui";
 
 interface UseDraggableProps extends ComponentStyle {
-  onDrag: Dispatcher<ComponentStyle>
-  dragBoardOption?: ComponentSize
-  unit: string
+  onDrag: Dispatcher<ComponentStyle>;
+  dragBoardOption?: ComponentSize;
+  unit: string;
 }
 
 interface ComponentInfomation {
-  currentX: number
-  currentY: number
-  isDragging: boolean
+  currentX: number;
+  currentY: number;
+  isDragging: boolean;
 }
 
 interface UseDraggableReturns {
-  handleDragEnd: () => void
-  handleDragStart: (ev: React.MouseEvent<HTMLDivElement>) => void
-  isDragging: boolean,
+  handleDragEnd: () => void;
+  handleDragStart: (ev: React.MouseEvent<HTMLDivElement>) => void;
+  isDragging: boolean;
 }
 
 const useDraggable = ({

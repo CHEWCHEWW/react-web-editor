@@ -1,16 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { ThemeProvider } from "styled-components";
 import App from "./App";
-import GlobalStyle from "./theme/GlobalStyle";
-import { theme } from "./theme/theme";
 ReactDOM.render(
-  <>
-    <GlobalStyle />
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-  </>,
+  <App />,
   document.getElementById("root")
 );
 
@@ -26,3 +18,7 @@ export { default as EditorBlock } from "./components/EditorBlock";
 export { default as DragAndDropTable } from "./components/DragAndDropTable";
 export { default as StyleEditorBlock } from "./components/StyleEditorBlock";
 export { default as TextEditorBlock } from "./components/TextEditorBlock";
+
+export { default as EditorBlockWrapper } from "./components/shared/EditorBlockWrapper";
+export { default as ResizeHandlerWrapper } from "./components/shared/ResizeHandlerWrapper";
+export { default as DraggableHandler } from "./components/shared/DraggableHandler";

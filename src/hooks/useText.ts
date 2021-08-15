@@ -5,23 +5,23 @@ import { INITIAL_TEXT, SANITIZE_CONFIGURATION } from "../constants/ui";
 import { Dispatcher, InnerHTML } from "../types/ui";
 
 interface UseTextProps {
-  onChange: Dispatcher<string>
-  html: string
-  initialFontName?: string
-  initialFontStyle?: string
-  initialText?: string
+  onChange: Dispatcher<string>;
+  html: string;
+  initialFontName?: string;
+  initialFontStyle?: string;
+  initialText?: string;
 }
 
 interface UseTextReturns {
-  textRef: React.Ref<HTMLDivElement>
-  innerHTML: InnerHTML
-  handleInputChange: () => void
-  handleEditingMode: () => void
-  isEditing: boolean
-  fontName: string
-  handleStyleChange: (ev: React.MouseEvent<HTMLButtonElement>) => void
-  fontStyle: string
-  handleFontStyleClick: (ev: React.MouseEvent<HTMLDivElement>) => void
+  textRef: React.Ref<HTMLDivElement>;
+  innerHTML: InnerHTML;
+  handleInputChange: () => void;
+  handleEditingMode: () => void;
+  isEditing: boolean;
+  fontName: string;
+  handleStyleButtonClick: (ev: React.MouseEvent<HTMLButtonElement>) => void;
+  fontStyle: string;
+  handleFontButtonClick: (ev: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const useText = ({
@@ -57,13 +57,13 @@ const useText = ({
     setIsEditing((prev) => !prev);
   };
 
-  const handleStyleChange = (ev: React.MouseEvent<HTMLButtonElement>): void => {
+  const handleStyleButtonClick = (ev: React.MouseEvent<HTMLButtonElement>): void => {
     const targetName = ev.currentTarget.name;
 
     setFontStyle(targetName);
   };
 
-  const handleFontStyleClick = (ev: React.MouseEvent<HTMLDivElement>): void => {
+  const handleFontButtonClick = (ev: React.MouseEvent<HTMLDivElement>): void => {
     const targetName = ev.currentTarget.id;
 
     setFontName(targetName);
@@ -76,8 +76,8 @@ const useText = ({
     handleEditingMode,
     isEditing,
     fontStyle,
-    handleStyleChange,
-    handleFontStyleClick,
+    handleStyleButtonClick,
+    handleFontButtonClick,
     fontName,
   };
 };

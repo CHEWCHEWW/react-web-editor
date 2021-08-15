@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 interface EditableBoard {
-  width: number
-  height: number
-  left?: number
-  top?: number
-  backgroundColor: string
-  unit: string
+  width: number;
+  height: number;
+  left?: number;
+  top?: number;
+  backgroundColor: string;
+  unit: string;
 }
 
 const EditableBoard: React.FC<EditableBoard> = ({
@@ -20,18 +20,16 @@ const EditableBoard: React.FC<EditableBoard> = ({
   unit,
 }): React.ReactElement => {
   return (
-    <>
-      <Board
-        width={width}
-        height={height}
-        backgroundColor={backgroundColor}
-        unit={unit}
-        left={left}
-        top={top}
-      >
-        {children}
-      </Board>
-    </>
+    <Board
+      width={width}
+      height={height}
+      backgroundColor={backgroundColor}
+      unit={unit}
+      left={left}
+      top={top}
+    >
+      {children}
+    </Board>
   );
 };
 
