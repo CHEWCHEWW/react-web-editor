@@ -33,8 +33,8 @@ const useText = ({
 }: UseTextProps): UseTextReturns => {
   const [savedHtml, setSavedHtml] = useState<string>(initialText || INITIAL_TEXT);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  const [fontStyle, setFontStyle] = useState<string>(initialFontStyle);
   const [fontName, setFontName] = useState<string>(initialFontName);
+  const [fontStyle, setFontStyle] = useState<string>(initialFontStyle);
 
   const textRef = useRef<HTMLDivElement>(null);
 
@@ -59,6 +59,12 @@ const useText = ({
 
   const handleStyleButtonClick = (ev: React.MouseEvent<HTMLButtonElement>): void => {
     const targetName = ev.currentTarget.name;
+
+    if (targetName === fontStyle) {
+      setFontStyle("");
+
+      return;
+    }
 
     setFontStyle(targetName);
   };

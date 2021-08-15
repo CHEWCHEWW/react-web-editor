@@ -67,6 +67,7 @@ const TextEditor: React.FC<TextEditorProps> = ({
             sliderValue={sliderValue}
             onStyleButtonClick={onStyleButtonClick}
             onFontButtonClick={onFontButtonClick}
+            fontStyle={fontStyle}
           />
         )}
       </FontStyle>

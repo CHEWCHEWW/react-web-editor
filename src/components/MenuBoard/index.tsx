@@ -13,18 +13,24 @@ import Slider from "../Slider";
 import { BoxShadow } from "../../theme/BoxShadow";
 import { BoxInnerShadow } from "../../theme/BoxInnerShadow";
 
+interface TextButtonProps {
+  isClicked: boolean;
+}
+
 interface MenuBoardProps {
   color?: string;
   onColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
   onSliderChange: () => void;
   sliderRef: React.Ref<HTMLInputElement>;
   sliderValue: number;
+  fontStyle: string;
   onStyleButtonClick: (ev: React.MouseEvent<HTMLButtonElement>) => void;
   onFontButtonClick: (ev: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 const MenuBoard: React.FC<MenuBoardProps> = ({
   sliderRef,
+  fontStyle,
   onColorChange,
   onSliderChange,
   sliderValue,
@@ -33,9 +39,6 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
 }): React.ReactElement => {
   return (
     <Board>
-      {/* <MenuHeader>
-        Setting
-      </MenuHeader> */}
       <MenuOption name={"font"}>
         <DropDown items={FONT_STYLES} onClick={onFontButtonClick} />
       </MenuOption>
@@ -78,6 +81,7 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
             key={item}
             className={item}
             name={item}
+            isClicked={item === fontStyle ? true : false}
             onClick={onStyleButtonClick}
           >
             A
@@ -92,7 +96,7 @@ const Board = styled.div`
   display: flex;
   flex-direction: column;
   width: 12rem;
-  height: 13rem;
+  height: 16.5rem;
   top: -2rem;
   right: -15rem;
   padding: 0.5rem;
@@ -112,7 +116,7 @@ const Input = styled.input`
   opacity: 0;
 `;
 
-const TextButton = styled.button`
+const TextButton = styled.button<TextButtonProps>`
   display: flex;
   width: 2rem;
   height: 2rem;
@@ -127,13 +131,13 @@ const TextButton = styled.button`
   font-size: 21px;
   border: 0px;
   background-color: transparent;
-  ${BoxShadow}
+  ${({ isClicked }) => isClicked ? BoxInnerShadow : BoxShadow};
 
-  :active {
+  :hover {
     background-color: #f3f0f0;
   }
 
-  :hover {
+  :active {
     ${BoxInnerShadow};
     color: #FC70A3;
   }

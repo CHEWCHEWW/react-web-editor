@@ -58,7 +58,7 @@ const DropDown: React.FC<DropDownProps> = ({
 };
 
 const DropDownBoard = styled.div`
-  width: 8rem;
+  width: 10rem;
   border-radius: 5px;
   background-color: #f8f8f6;
   font-size: 0.8rem;
@@ -67,7 +67,9 @@ const DropDownBoard = styled.div`
 
 const DropDownHeader = styled.div`
   display: flex;
-  height: 2rem;
+  width: 10rem;
+  height: 1.8rem;
+  margin: 0.2rem 0 0 0;
   align-items: center;
   justify-content: center;
   cursor: pointer;
@@ -82,6 +84,7 @@ const DropDownList = styled.div<DropDownStyleProps>`
   background-color: #fdfdfd;
   box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+  position: absolute;
 `;
 
 const DropDownIcon = styled.div<DropDownStyleProps>`
