@@ -62,9 +62,8 @@ const HorizontalLine = styled.span<LineProps>`
   top: ${({ top, unit }) => top ? `${top}${unit}` : 0};
   left: ${({ left, unit }) => left ? `${-left}${unit}` : 0};
   width: ${({ width, unit }) => width ? `${width}${unit}` : 0};
-  border-top: 1px solid red;
+  border-top: 1px solid #FB99BC;
   position: absolute;
-  opacity: 0.5;
   z-index: 10;
 `;
 
@@ -72,9 +71,8 @@ const VerticalLine = styled.span<LineProps>`
   top: ${({ top, unit }) => top ? `${-top}${unit}` : 0};
   left: ${({ left, unit }) => left ? `${left}${unit}` : 0};
   height: ${({ height, unit }) => height ? `${height}${unit}` : 0};
-  border-left: 1px solid red;
+  border-left: 1px solid #FB99BC;
   position: absolute;
-  opacity: 0.5;
   z-index: 10;
 `;
 

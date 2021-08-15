@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { BoxInnerShadow } from "../../theme/BoxInnerShadow";
 
 interface IconProps {
   top?: number;
