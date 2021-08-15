@@ -39,17 +39,17 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
 }): React.ReactElement => {
   return (
     <Board>
-      <MenuOption name={"font"}>
+      <MenuOption name={"Font"}>
         <DropDown items={FONT_STYLES} onClick={onFontButtonClick} />
       </MenuOption>
-      <MenuOption name={"size"}>
+      <MenuOption name={"Size"}>
         <Slider
           onChange={onSliderChange}
           sliderRef={sliderRef}
           value={sliderValue}
         />
       </MenuOption>
-      <MenuOption name={"option"}>
+      <MenuOption name={"Option"}>
         <EditorButton name={"bold"} isShowing={false}>
           <FaBold />
         </EditorButton>
@@ -58,13 +58,13 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
         </EditorButton>
         <MenuButton>
           <IoIosColorPalette />
-          <Input type="color" onChange={onColorChange} />
+          <Input type="Color" onChange={onColorChange} />
         </MenuButton>
         <EditorButton name={"underline"} isShowing={false}>
           <FaUnderline />
         </EditorButton>
       </MenuOption>
-      <MenuOption name={"sort"}>
+      <MenuOption name={"Sort"}>
         <EditorButton name={"justifyLeft"} isShowing={false}>
           <AiOutlineAlignLeft />
         </EditorButton>
@@ -75,7 +75,7 @@ const MenuBoard: React.FC<MenuBoardProps> = ({
           <AiOutlineAlignRight />
         </EditorButton>
       </MenuOption>
-      <MenuOption name={"effect"}>
+      <MenuOption name={"Effect"}>
         {TEXT_STYLES.map((item) => (
           <TextButton
             key={item}

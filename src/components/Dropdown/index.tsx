@@ -11,7 +11,7 @@ interface DropDownStyleProps {
   isDropDownOpen: boolean;
 }
 
-interface DropDownMarkProps {
+interface DropDownItemProps {
   isSelected: boolean;
 }
 
@@ -47,6 +47,7 @@ const DropDown: React.FC<DropDownProps> = ({
             id={item.id}
             key={item.id}
             className={item.id}
+            isSelected={item.id === selectedItem.id}
           >
             <DropDownItemDot isSelected={item.id === selectedItem.id}>•</DropDownItemDot>
             {item.label}
@@ -93,20 +94,24 @@ const DropDownIcon = styled.div<DropDownStyleProps>`
   transition: all .2s ease-in-out;
 `;
 
-const DropDownItem = styled.div`
+const DropDownItem = styled.div<DropDownItemProps>`
   padding: 10px;
   font-weight: 1000;
   font-size: 25px;
+  border-radius: 10px;
+  ${({ isSelected }) => isSelected && BoxInnerShadow};
 
   :hover {
     cursor: pointer;
+    ${BoxInnerShadow};
   }
 `;
 
-const DropDownItemDot = styled.span<DropDownMarkProps>`
+const DropDownItemDot = styled.span<DropDownItemProps>`
   padding-right: 5px;
   opacity: ${({ isSelected }) => isSelected ? 1 : 0};
-  color: #91A5BE;
+  font-family: "roboto", serif !important;
+  color: #fac9db;
   transition: all .2s ease-in-out;
 `;
 

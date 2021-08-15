@@ -21,7 +21,7 @@ const CoordinatesTag: React.FC<CoordinatesTagProps> = ({
 
 const Tag = styled.div`
   min-width: 90px;
-  height: 20px;
+  max-height: 20px;
   top: -25px;
   left: -25px;
   display: flex;

@@ -44,10 +44,10 @@ const IconBackground = styled.div<IconProps>`
   right: ${({ right }) => right && `${right}px`};
   left: ${({ left }) => left && `${left}px`};
   bottom: ${({ bottom }) => bottom && `${bottom}px`};
-  background-color: #f8f8f6;
+  background-color: #FBFBF9;
   position: absolute;
   border-radius: 1px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.082), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   z-index: 10;
 `;
