@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import DragAndDropTable from "../DragAndDropTable";
+import EditableBoard from "../EditableBoard";
 // import StyleEditorBlock from "../StyleEditorBlock";
 import TextEditorBlock from "../TextEditorBlock";
 
@@ -13,7 +14,12 @@ const Test: React.FC = (): React.ReactElement => {
       </DragAndDropTable>
       <TwoColorText>
       </TwoColorText>
-      <EditorWrapper>
+      <EditableBoard
+        width={500}
+        height={300}
+        unit={"px"}
+        backgroundColor={"pink"}
+      >
         <TextEditorBlock
           width={100}
           height={100}
@@ -43,7 +49,7 @@ const Test: React.FC = (): React.ReactElement => {
           unit={"px"}
         >
         </StyleEditorBlock> */}
-      </EditorWrapper>
+      </EditableBoard>
     </Wrapper>
   );
 };
@@ -58,15 +64,6 @@ const TwoColorText = styled.div`
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
-`;
-
-const EditorWrapper = styled.div`
-  width: 500px;
-  height: 300px;
-  left: 200px;
-  top: 200px;
-  background: #84bdec;
-  position: fixed;
 `;
 
 export default Test;

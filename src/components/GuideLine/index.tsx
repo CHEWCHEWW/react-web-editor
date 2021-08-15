@@ -9,11 +9,13 @@ interface LineProps {
   top?: number;
   height?: number;
   width?: number;
+  unit: string;
 }
 
 interface GuideLine extends ComponentStyle {
   boardWidth?: number;
   boardHeight?: number;
+  unit: string;
 }
 
 const GuideLine: React.FC<GuideLine> = ({
@@ -23,31 +25,58 @@ const GuideLine: React.FC<GuideLine> = ({
   height,
   boardWidth = window.screen.width,
   boardHeight = window.screen.height,
+  unit,
 }): React.ReactElement => {
-  const { centerX, centerY } = calculateCenter(width, height, top, left);
+  const { centerX, centerY } = calculateCenter(width, height);
   const { isCenterX, isCenterY } = isLocatedCenter(width, height, top, left, boardWidth, boardHeight);
 
+  console.log(left, top);
   return (
-    <>
+    <Wrapper>
       {isCenterX &&
-        <Line left={centerX} height={boardHeight} />
+        <VerticalLine
+          top={top}
+          left={centerX}
+          height={boardHeight}
+          unit={unit}
+        />
       }
       {isCenterY &&
-        <Line top={centerY} width={boardWidth} />
+        <HorizontalLine
+          top={centerY}
+          left={left}
+          width={boardWidth}
+          unit={unit}
+        />
       }
-    </>
+    </Wrapper>
   );
 };
 
-const Line = styled.div<LineProps>`
-  top: ${({ top }) => top ? `${top}px` : 0};
-  left: ${({ left }) => left ? `${left}px` : 0};
-  width: ${({ width }) => width ? `${width}px` : 0};
-  height: ${({ height }) => height ? `${height}px` : 0};
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
   position: absolute;
-  border: 1px solid red;
-  z-index: 100;
+`;
+
+const HorizontalLine = styled.span<LineProps>`
+  top: ${({ top, unit }) => top ? `${top}${unit}` : 0};
+  left: ${({ left, unit }) => left ? `${-left}${unit}` : 0};
+  width: ${({ width, unit }) => width ? `${width}${unit}` : 0};
+  border-top: 1px solid red;
+  position: absolute;
   opacity: 0.5;
+  z-index: 10;
+`;
+
+const VerticalLine = styled.span<LineProps>`
+  top: ${({ top, unit }) => top ? `${-top}${unit}` : 0};
+  left: ${({ left, unit }) => left ? `${left}${unit}` : 0};
+  height: ${({ height, unit }) => height ? `${height}${unit}` : 0};
+  border-left: 1px solid red;
+  position: absolute;
+  opacity: 0.5;
+  z-index: 10;
 `;
 
 export default GuideLine;

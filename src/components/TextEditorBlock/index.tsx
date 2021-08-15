@@ -151,6 +151,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
             left={componentStyle.left}
             boardWidth={parentStyle && parentStyle.width}
             boardHeight={parentStyle && parentStyle.height}
+            unit={unit}
           />
         </>
       }
