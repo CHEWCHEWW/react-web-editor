@@ -30,7 +30,6 @@ const GuideLine: React.FC<GuideLine> = ({
   const { centerX, centerY } = calculateCenter(width, height);
   const { isCenterX, isCenterY } = isLocatedCenter(width, height, top, left, boardWidth, boardHeight);
 
-  console.log(left, top);
   return (
     <Wrapper>
       {isCenterX &&

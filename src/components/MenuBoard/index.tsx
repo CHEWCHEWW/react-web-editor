@@ -107,7 +107,7 @@ const Board = styled.div`
   box-shadow: 1px 1px 7px #E0D9DC, -2px -2px 1px #FFFFFF;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   font-size: small;
-  z-index: 10;
+  z-index: 11;
 `;
 
 const Input = styled.input`
