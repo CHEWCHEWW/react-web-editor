@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import DragAndDropTable from "../DragAndDropTable";
-import StyleEditorBlock from "../StyleEditorBlock";
+// import StyleEditorBlock from "../StyleEditorBlock";
 import TextEditorBlock from "../TextEditorBlock";
 
 const Test: React.FC = (): React.ReactElement => {

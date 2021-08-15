@@ -25,16 +25,14 @@ const MenuRow = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 2.5rem;
-  /* max-width: 5rem; */
-  /* max-height: 2.5rem; */
+  margin: 0.05rem 0;
   color: #555550;
 `;
 
 const ManuNameTag = styled.div`
   display: flex;
   align-items: center;
-  margin: auto 0.5rem;
+  margin: 0.2rem;
   color: #9c9393;
   font-weight: 600;
   font-size: 0.7rem;
