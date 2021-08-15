@@ -26,10 +26,12 @@ const ResizeHandlersWrapper = styled.div`
   }
 
   > * {
-    width: 3px;
-    height: 3px;
-    border: 1px solid gray;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
     position: absolute;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, -.15), 0 1px 1px rgba(0, 0, 0, 0.16), 0 3px 1px rgba(0, 0, 0, 0.1);
     z-index: 10;
   }
 `;

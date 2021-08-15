@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { BoxInnerShadow } from "../../theme/BoxInnerShadow";
 
 import { convertPointsToPixel } from "../../utils/ui";
 
@@ -20,7 +21,7 @@ const CoordinatesTag: React.FC<CoordinatesTagProps> = ({
 };
 
 const Tag = styled.div`
-  min-width: 90px;
+  min-width: 110px;
   max-height: 20px;
   top: -25px;
   left: -25px;
@@ -28,13 +29,13 @@ const Tag = styled.div`
   align-items: center;
   justify-content: center;
   position: absolute;
-  background-color: #a29d98;
-  color: white;
+  background-color: #ffffff;
+  color: #c2b5b5;
   font-size: 0.8rem;
   font-weight: bold;
   border-radius: 5px;
-  opacity: 0.8;
   z-index: 5;
+  ${BoxInnerShadow};
 `;
 
 export default CoordinatesTag;

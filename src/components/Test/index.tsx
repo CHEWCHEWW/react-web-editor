@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import DragAndDropTable from "../DragAndDropTable";
 import EditableBoard from "../EditableBoard";
-// import StyleEditorBlock from "../StyleEditorBlock";
+import StyleEditorBlock from "../StyleEditorBlock";
 import TextEditorBlock from "../TextEditorBlock";
 
 const Test: React.FC = (): React.ReactElement => {
@@ -15,40 +15,40 @@ const Test: React.FC = (): React.ReactElement => {
       <TwoColorText>
       </TwoColorText>
       <EditableBoard
-        width={500}
-        height={300}
-        unit={"px"}
-        backgroundColor={"pink"}
+        width={20}
+        height={20}
+        unit={"rem"}
+        backgroundColor={"#FFFFFF"}
       >
         <TextEditorBlock
-          width={100}
-          height={100}
-          top={5}
-          left={5}
-          parentStyle={{ width: 500, height: 300 }}
-          unit={"px"}
+          width={5}
+          height={5}
+          top={2}
+          left={2}
+          parentStyle={{ width: 20, height: 20 }}
+          unit={"rem"}
           initialText={"sad"}
           initialFontColor={"black"}
         />
-        {/* <StyleEditorBlock
-          width={100}
-          height={100}
+        <StyleEditorBlock
+          width={10}
+          height={10}
           top={1}
           left={1}
-          parentStyle={{ width: 500, height: 300 }}
-          unit={"px"}
+          parentStyle={{ width: 20, height: 20 }}
+          unit={"rem"}
         >
           <div style={{ zIndex: 3, backgroundColor: "pink", position: "absolute" }}>happy</div>
         </StyleEditorBlock>
         <StyleEditorBlock
-          width={100}
-          height={100}
-          top={1}
-          left={1}
-          parentStyle={{ width: 500, height: 300 }}
-          unit={"px"}
+          width={5}
+          height={5}
+          top={15}
+          left={15}
+          parentStyle={{ width: 20, height: 20 }}
+          unit={"rem"}
         >
-        </StyleEditorBlock> */}
+        </StyleEditorBlock>
       </EditableBoard>
     </Wrapper>
   );
