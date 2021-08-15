@@ -181,11 +181,19 @@ export const changeComponentLocationByHandler = (
 export const calculateCenter = (
   width: number,
   height: number,
-  top: number,
-  left: number,
+  top?: number,
+  left?: number,
 ): ComponentCenter => {
-  const centerX = left + (width / 2);
-  const centerY = top + (height / 2);
+  let centerX: number = width / 2;
+  let centerY: number = height / 2;
+
+  if (left) {
+    centerX += left;
+  }
+
+  if (top) {
+    centerY += top;
+  }
 
   return {
     centerX,
