@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 
 import CoordinatesTag from "../CoordinatesTag";
 import { DIRECTIIONS } from "../../constants/location";
+import DraggableHandler from "../shared/DraggableHandler";
 import EditorBlockWrapper from "../shared/EditorBlockWrapper";
 import { ComponentStyle, EditorBlockProps } from "../../types/ui";
 import GuideLine from "../GuideLine";
@@ -89,14 +89,5 @@ const Editor: React.FC<EditorBlockProps> = ({
     </EditorBlockWrapper>
   );
 };
-
-const DraggableHandler = styled.div`
-  width: 100%;
-  height: 100%;
-  border: 1px solid gray;
-  position: absolute;
-  cursor: move;
-  z-index: 9;
-`;
 
 export default Editor;

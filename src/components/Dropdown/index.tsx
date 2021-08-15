@@ -5,16 +5,17 @@ import { BiChevronRight } from "react-icons/bi";
 import { DEFAULT_DROP_DOWN_MESSAGE } from "../../constants/ui";
 import { DropDownProps } from "../../types/ui";
 import useDropDown from "../../hooks/useDropDown";
+import { BoxInnerShadow } from "../../theme/BoxInnerShadow";
 
 interface DropDownStyleProps {
-  isDropDownOpen: boolean
+  isDropDownOpen: boolean;
 }
 
 interface DropDownMarkProps {
-  isSelected: boolean
+  isSelected: boolean;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ 
+const DropDown: React.FC<DropDownProps> = ({
   items,
   onClick,
 }): React.ReactElement => {
@@ -41,10 +42,10 @@ const DropDown: React.FC<DropDownProps> = ({
       </DropDownHeader>
       <DropDownList isDropDownOpen={isDropDownOpen}>
         {items.map((item) => (
-          <DropDownItem 
-            onClick={handleDropDownListClick} 
-            id={item.id} 
-            key={item.id} 
+          <DropDownItem
+            onClick={handleDropDownListClick}
+            id={item.id}
+            key={item.id}
             className={item.id}
           >
             <DropDownItemDot isSelected={item.id === selectedItem.id}>•</DropDownItemDot>
@@ -70,6 +71,8 @@ const DropDownHeader = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  border-radius: 10px;
+  ${BoxInnerShadow};
 `;
 
 const DropDownList = styled.div<DropDownStyleProps>`
@@ -77,7 +80,7 @@ const DropDownList = styled.div<DropDownStyleProps>`
   display: ${({ isDropDownOpen }) => isDropDownOpen ? "block" : "none"};
   padding: 5px;
   background-color: #fdfdfd;
-  box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.1);  
+  box-shadow: 0 10px 10px -5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 `;
 

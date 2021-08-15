@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import DragAndDropTable from "../DragAndDropTable";
 import StyleEditorBlock from "../StyleEditorBlock";
+import TextEditorBlock from "../TextEditorBlock";
 
 const Test: React.FC = (): React.ReactElement => {
   return (
@@ -13,7 +14,17 @@ const Test: React.FC = (): React.ReactElement => {
       <TwoColorText>
       </TwoColorText>
       <EditorWrapper>
-        <StyleEditorBlock
+        <TextEditorBlock
+          width={100}
+          height={100}
+          top={5}
+          left={5}
+          parentStyle={{ width: 500, height: 300 }}
+          unit={"px"}
+          initialText={"sad"}
+          initialFontColor={"black"}
+        />
+        {/* <StyleEditorBlock
           width={100}
           height={100}
           top={1}
@@ -31,7 +42,7 @@ const Test: React.FC = (): React.ReactElement => {
           parentStyle={{ width: 500, height: 300 }}
           unit={"px"}
         >
-        </StyleEditorBlock>
+        </StyleEditorBlock> */}
       </EditorWrapper>
     </Wrapper>
   );

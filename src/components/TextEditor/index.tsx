@@ -6,24 +6,24 @@ import { InnerHTML } from "../../types/ui";
 import MenuBoard from "../MenuBoard";
 
 interface TextEditorProps {
-  html: InnerHTML
-  isEditing: boolean
-  onChange: () => void
-  componentRef: React.Ref<HTMLDivElement>
-  sliderRef: React.Ref<HTMLInputElement>
-  onColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void
-  sliderValue: number
-  onSliderChange: () => void
-  onClick: (ev: React.MouseEvent<HTMLButtonElement>) => void
-  fontStyle: string
-  onFontClick: (ev: React.MouseEvent<HTMLDivElement>) => void
-  fontName: string
-  color?: string
+  html: InnerHTML;
+  isEditing: boolean;
+  onChange: () => void;
+  componentRef: React.Ref<HTMLDivElement>;
+  sliderRef: React.Ref<HTMLInputElement>;
+  onColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  sliderValue: number;
+  onSliderChange: () => void;
+  onStyleButtonClick: (ev: React.MouseEvent<HTMLButtonElement>) => void;
+  fontStyle: string;
+  onFontButtonClick: (ev: React.MouseEvent<HTMLDivElement>) => void;
+  fontName: string;
+  color?: string;
 }
 
 interface TextBoardStyle {
-  fontSize: number
-  fontName?: string
+  fontSize: number;
+  fontName?: string;
 }
 
 const TextEditor: React.FC<TextEditorProps> = ({
@@ -35,9 +35,9 @@ const TextEditor: React.FC<TextEditorProps> = ({
   onColorChange,
   sliderValue,
   onSliderChange,
-  onClick,
+  onStyleButtonClick,
   fontStyle,
-  onFontClick,
+  onFontButtonClick,
   fontName,
   color,
 }): React.ReactElement => {
@@ -65,8 +65,8 @@ const TextEditor: React.FC<TextEditorProps> = ({
             onColorChange={onColorChange}
             onSliderChange={onSliderChange}
             sliderValue={sliderValue}
-            onClick={onClick}
-            onFontClick={onFontClick}
+            onStyleButtonClick={onStyleButtonClick}
+            onFontButtonClick={onFontButtonClick}
           />
         )}
       </FontStyle>
@@ -75,15 +75,15 @@ const TextEditor: React.FC<TextEditorProps> = ({
 };
 
 const TextBoard = styled.div.attrs<TextBoardStyle>(
-  ({ fontSize }) => ({
+  ({ fontSize, color }) => ({
     style: {
       fontSize: fontSize && `${fontSize * 100}px`,
+      color: color ? color : "black",
     },
   })
 )<TextBoardStyle>`
   width: 100%;
   height: 100%;
-  color: ${({ color }) => color ? color : "black"};
   position: absolute;
   padding: 0;
 
@@ -101,7 +101,6 @@ const FontStyle = styled.span`
   }
 
   .box-text {
-    border-radius: 8px;
     text-shadow: rgb(238, 235, 84) 3px 3px 0px, rgba(0, 0, 0, 0.2) 3px 3px 0px;
     border: none;
     outline: none;
@@ -109,9 +108,6 @@ const FontStyle = styled.span`
   }
 
   .down-side-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     font-weight: 600;
     text-shadow:
       0px 4px 3px rgba(0,0,0,0.4),
@@ -128,7 +124,6 @@ const FontStyle = styled.span`
   .bubble-shadow-text {
     font-weight: 600;
     text-shadow: 0 4px 8.896px #247aca, 0 -2px 1px #6499fd;
-    color: #5fb4e6;
   }
 
   .andada-pro {

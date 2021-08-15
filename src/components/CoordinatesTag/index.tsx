@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { convertPointsToPixel } from "../../utils/ui";
 
 interface CoordinatesTagProps {
-  left: number
-  top: number
-  unit: string
+  left: number;
+  top: number;
+  unit: string;
 }
 
 const CoordinatesTag: React.FC<CoordinatesTagProps> = ({

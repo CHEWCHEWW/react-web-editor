@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 interface MenuOptionProps {
-  name: string
+  name: string;
 }
 
-const MenuOption: React.FC<MenuOptionProps> = ({ 
-  name, 
-  children 
+const MenuOption: React.FC<MenuOptionProps> = ({
+  name,
+  children
 }): React.ReactElement => {
   return (
     <MenuRow>
@@ -23,9 +23,11 @@ const MenuOption: React.FC<MenuOptionProps> = ({
 
 const MenuRow = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
-  max-height: 2rem;
-  border-bottom: 1px solid #D8D8D6;
+  height: 2.5rem;
+  /* max-width: 5rem; */
+  /* max-height: 2.5rem; */
   color: #555550;
 `;
 
@@ -42,7 +44,7 @@ const ManuRowContent = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: auto;
+  width: 100%;
 `;
 
 export default MenuOption;

@@ -5,21 +5,21 @@ import { ComponentSize, ComponentStyle, Dispatcher, ResizeProps } from "../types
 import { MIN_HEIGHT, MIN_WIDTH } from "../constants/ui";
 
 interface ComponentInformation {
-  isResizing: boolean
-  direction: string
-  currentX: number
-  currentY: number
+  isResizing: boolean;
+  direction: string;
+  currentX: number;
+  currentY: number;
 }
 
 interface UseResizeProps extends ComponentStyle {
-  onResize: Dispatcher<ResizeProps>
-  resizeBoardOption?: ComponentSize
-  unit: string
+  onResize: Dispatcher<ResizeProps>;
+  resizeBoardOption?: ComponentSize;
+  unit: string;
 }
 
 interface UseResizeReturns {
-  handleMouseDown: (ev: React.MouseEvent<HTMLDivElement>) => void
-  isResizing: boolean
+  handleMouseDown: (ev: React.MouseEvent<HTMLDivElement>) => void;
+  isResizing: boolean;
 }
 
 const useResize = ({

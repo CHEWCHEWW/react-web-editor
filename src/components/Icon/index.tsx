@@ -2,27 +2,27 @@ import React from "react";
 import styled from "styled-components";
 
 interface IconProps {
-  top?: number
-  right?: number
-  left?: number
-  bottom?: number
-  onClick?: (ev: React.MouseEvent) => void
-  onMouseDown?: (ev: React.MouseEvent<HTMLDivElement>) => void
-  onMouseUp?: () => void
+  top?: number;
+  right?: number;
+  left?: number;
+  bottom?: number;
+  onClick?: (ev: React.MouseEvent) => void;
+  onMouseDown?: (ev: React.MouseEvent<HTMLDivElement>) => void;
+  onMouseUp?: () => void;
 }
 
-const Icon: React.FC<IconProps> = ({ 
-  children, 
-  top, 
+const Icon: React.FC<IconProps> = ({
+  children,
+  top,
   right,
   onClick,
   onMouseDown,
   onMouseUp,
 }): React.ReactElement => {
   return (
-    <IconBackground 
-      top={top} 
-      right={right} 
+    <IconBackground
+      top={top}
+      right={right}
       onClick={onClick}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}

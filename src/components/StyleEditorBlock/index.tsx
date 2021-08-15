@@ -11,8 +11,8 @@ import useImage from "../../hooks/useImage";
 import useMouseEvent from "../../hooks/useMouseEvent";
 
 interface StyleEditorBlockProps extends EditorProps {
-  initialColor?: string
-  initialImage?: string
+  initialColor?: string;
+  initialImage?: string;
 }
 
 const StyleEditorBlock: React.FC<StyleEditorBlockProps> = ({
