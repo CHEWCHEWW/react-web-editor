@@ -198,9 +198,11 @@ export const isLocatedCenter = (
   height: number,
   top: number,
   left: number,
+  boardWidth?: number,
+  boardHeight?: number,
 ): ComponentLocatedCenter => {
-  const screenWidth = window.screen.width;
-  const screenHeight = window.screen.height;
+  const screenWidth = boardWidth || window.screen.width;
+  const screenHeight = boardHeight || window.screen.height;
 
   const { centerX, centerY } = calculateCenter(width, height, top, left);
 

@@ -82,6 +82,8 @@ const Editor: React.FC<EditorBlockProps> = ({
             height={componentStyle.height}
             top={componentStyle.top}
             left={componentStyle.left}
+            boardWidth={parentStyle && parentStyle.width}
+            boardHeight={parentStyle && parentStyle.height}
           />
         </>
       )}

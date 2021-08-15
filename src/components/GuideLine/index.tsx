@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { ComponentStyle } from "../../types/ui";
-import { calculateCenter ,isLocatedCenter } from "../../utils/ui";
+import { calculateCenter, isLocatedCenter } from "../../utils/ui";
 
 interface LineProps {
   left?: number;
@@ -25,7 +25,7 @@ const GuideLine: React.FC<GuideLine> = ({
   boardHeight = window.screen.height,
 }): React.ReactElement => {
   const { centerX, centerY } = calculateCenter(width, height, top, left);
-  const { isCenterX, isCenterY } = isLocatedCenter(width, height, top, left);
+  const { isCenterX, isCenterY } = isLocatedCenter(width, height, top, left, boardWidth, boardHeight);
 
   return (
     <>
@@ -40,11 +40,11 @@ const GuideLine: React.FC<GuideLine> = ({
 };
 
 const Line = styled.div<LineProps>`
-  top: ${({ top }) => top ? top : 0}px;;
-  left: ${({ left }) => left ? left : 0}px;
-  width: ${({ width }) => width ? width : 0}px;
-  height: ${({ height }) => height ? height: 0}px;
-  position: fixed;
+  top: ${({ top }) => top ? `${top}px` : 0};
+  left: ${({ left }) => left ? `${left}px` : 0};
+  width: ${({ width }) => width ? `${width}px` : 0};
+  height: ${({ height }) => height ? `${height}px` : 0};
+  position: absolute;
   border: 1px solid red;
   z-index: 100;
   opacity: 0.5;
