@@ -96,7 +96,7 @@ const TextEditorBlock: React.FC<TextEditorBlockProps> = ({
   const {
     handleFontColorChange,
     color,
-  } = useColor(initialFontColor);
+  } = useColor({ initialColor: initialFontColor});
 
   const {
     sliderRef,

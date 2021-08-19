@@ -26,8 +26,8 @@ const StyleEditorBlock: React.FC<StyleEditorBlockProps> = ({
   initialColor,
   initialImage,
 }): React.ReactElement => {
-  const { imageSrc, handleFileChange } = useImage(initialImage);
-  const { color, handleColorChange } = useColor(initialColor);
+  const { imageSrc, handleFileChange } = useImage({ initialImage });
+  const { color, handleColorChange } = useColor({ initialColor });
 
   const {
     isClicked,
