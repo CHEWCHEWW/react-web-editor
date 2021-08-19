@@ -61,12 +61,16 @@ const DragAndDropTable: React.FC<DragAndDropTableProps> = ({
 
 const Wrapper = styled.div<DragAndDropTableStyle>`
   display: flex;
+  width: 100%;
+  height: 100%;
   flex-direction: ${({ isVertical }) => isVertical && "column"};
   background-color: ${({ backgroundColor }) => backgroundColor && backgroundColor};
 `;
 
 const Block = styled.div<DragAndDropItemStyle>`
   display: flex;
+  width: 100%;
+  height: 100%;
   align-items: center;
   cursor: move;
   background-color: ${({ color }) => color && color};
