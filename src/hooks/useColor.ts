@@ -2,13 +2,17 @@ import React, { useState } from "react";
 
 import { ColorProps } from "../types/ui";
 
+interface UseColorProps {
+  initialColor?: string;
+}
+
 interface UseColorReturns extends ColorProps {
   color: string;
   handleColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
   handleFontColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const useColor = (initialColor?: string): UseColorReturns => {
+const useColor = ({ initialColor }: UseColorProps): UseColorReturns => {
   const [color, setColor] = useState(initialColor || "#00ff0000");
 
   const handleColorChange = (ev: React.ChangeEvent<HTMLInputElement>) => {

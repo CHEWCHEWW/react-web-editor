@@ -10,7 +10,7 @@ import ResizeHandlersWrapper from "../shared/ResizeHandlerWrapper";
 import useDraggable from "../../hooks/useDraggable";
 import useResize from "../../hooks/useResize";
 
-const Editor: React.FC<EditorBlockProps> = ({
+const EditorBlock: React.FC<EditorBlockProps> = ({
   width,
   height,
   top,
@@ -93,4 +93,4 @@ const Editor: React.FC<EditorBlockProps> = ({
   );
 };
 
-export default Editor;
+export default EditorBlock;
