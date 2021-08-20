@@ -3,17 +3,39 @@
 ## A Simple **WYSIWYG** editor for react users
 <p></p>
 
+<img src="https://drive.google.com/file/d/11zbcKjowailmDhLqmRATeOkguVjtBCGj/view?usp=sharing" alt="demo gif image" >
+
 ### You can test library features on the website.
 [Visit My Website!](https://www.reactwebeditor.com)
 [CodeSandBox](https://codesandbox.io/s/react-web-editor-my626?file=/src/App.js)
 
-# What is React Web Editor
+## Table of contents
+1. [What is React Web Editor](#what-is-react-web-editor)
+2. [Core characteristics](#core-characteristics)
+3. [get started](#get-started)
+4. [Version up log](#version-up-log)
+5. [Documents](#Documents)
+    - [Block Components](#block-components)
+      - [Style Editor Block](#style-editor-block)
+      - [Text Editor Block](#text-editor-block)
+      - [Drag and Drop Table](#drag-and-drop-table)
+    - [Hooks](#hooks)
+      - [useDraggable](#useDraggable)
+      - [useResize](#useResize)
+      - [useImage](#useImage)
+      - [useColor](#useColor)
+    - [Helper Components](#helper-components)
+      - [Editable Board](#editable-board)
+      - [EditorBlockWrapper](#editorblockwrapper)
+      - [ResizeHandlerWrapper](#resizehandlerwrapper)
+
+## What is React Web Editor
 - React Web editor는 ui를 동적으로 변경할 수 있는 component의 및 훅들을 제공하는 라이브러리입니다.
 - Resizing, Draggable, Drag and Drop 등의 기능을 지원하고, 또한 동적으로 이미지를 업로드하거나, component의 색상과 텍스트를 스타일링 할 수 있습니다.
 - 보조적으로, 현재 component의 위치를 알 수 있는 coordinates tag, 그리고 현재 component가 중앙 정렬 되었는지를 알려주는 guide line이 block 형식의 컴포넌트에 내장되어 있습니다.
 - 궁극적으로, 사용자가 동적으로 웹의 ui를 변경할 수 있는 editor page를 제작할 수 있습니다.
 
-# Core characteristics
+## Core characteristics
 - 사용자 친화적으로 제작한 라이브러리로, 사용하기 쉽습니다.
   - core 기능은 hook을 이용해 제작 했지만, 이를 최대한 단순하게 사용할 수 있도록 block component로 래핑했습니다. 따라서 간단하게 사용하고 싶은 사용자들은 block component를 import한 후 props에 원하는 값을 대입하면 됩니다.
 - 무겁지 않게 만들기 위해 노력했습니다.
@@ -22,8 +44,9 @@
   - core한 기능들은 모두 hook으로 구현되어 있습니다. 사용자는 hook을 이용하여 자신들만의 component 및 library를 제작할 수 있습니다.
 - customize를 위한 도구들이 존재합니다.
   - styled component들을 import하여 새로 component를 확장할 수 있도록 지원하고 있습니다.
+- custom 설정으로 configuration 관리 및 프로젝트 확장을 온전히 제어 할 수 있도록 webpack을 이용해 빌드했습니다.
 
-# Get started
+## Get started
 
 ### installing
 ```
@@ -40,7 +63,7 @@ or You can also import like this.
 ```
 import ReactWebEditor from "react-web-editor";
 ```
-# Version up log
+## Version up log
 
 |Version     | Log|
 |------------|--------------|
@@ -57,10 +80,10 @@ import ReactWebEditor from "react-web-editor";
 
 ------
 
-# Document
+# Documents
 
-## Easy to use component
-These components are already designed for users. It only needs some props to use.
+## Block components
+These components are already designed easy to use for users.It only needs some props to use.
 <p></p>
 
 ### Style Editor Block
@@ -367,7 +390,7 @@ const { color, handleColorChange } = useColor({ initialColor });
 | handleColorChange | onChangeHandler of InputElement |
 ------
 
-## Helper Component
+## Helper Components
 
 These components help you to customize component. It makes easy to handle editor component and hooks.
 
@@ -416,56 +439,6 @@ These components help you to customize component. It makes easy to handle editor
         />
       </EditableBoard>
     );
-```
-
-### EditorBlockWrapper
-The Editor Block Wrapper is a style component. The size and location of the component are received in props. It changes dynamically by props.
-It can be used with useResize and useDraggable
-
-- props
-```
-type EditorBlockWrapperProps {
-  width: number;
-  height: number;
-  left: number;
-  top: number;
-}
-```
-
-- Usage Example
-
-```
-import { useState } from "react";
-import { EditorBlockWrapper, useDraggable } from "react-web-editor";
-
-const [componentStyle, setComponentStyle] = useState({
-  width: 20,
-  height: 40,
-  top: 40,
-  left: 40,
-});
-// this state can be used for your own component.
-const {
-  handleDragEnd, // onMouseUp handler
-  handleDragStart, // onMouseDown handler
-} = useDraggable({
-  ...componentStyle,
-  onDrag: setComponentStyle,
-  unit: "px",
-});
-
-return (
-  <EditorBlockWrapper
-    width={componentStyle.width}
-    height={componentStyle.height}
-    top={componentStyle.top}
-    left={componentStyle.left}
-    onMouseDown={handleDragStart}
-    onMouseUp={handleDragEnd}
-  >
-    <YourOwnComponent style={{ position: "absolute" }}>
-  </EditorBlcokWrapper> // now, This component dynamically change location.
-);
 ```
 
 ### EditorBlockWrapper

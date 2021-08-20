@@ -8,6 +8,7 @@
     "build": "webpack --config webpack.prod.config.ts && tsc",
     "prepare": "npm run build"
   },
+  "homepage": "https://www.reactwebeditor.com",
   "repository": {
     "type": "git",
     "url": "https://github.com/CHEWCHEWW/react-editable"
