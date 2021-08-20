@@ -1,13 +1,18 @@
 <h1 align="center">react-beautiful-dnd</h1>
 
+<div align="center">
+
 ## A Simple **WYSIWYG** editor for react users
 <p></p>
 
-<img src="https://drive.google.com/file/d/11zbcKjowailmDhLqmRATeOkguVjtBCGj/view?usp=sharing" alt="demo gif image" >
+<img src="https://drive.google.com/uc?id=11zbcKjowailmDhLqmRATeOkguVjtBCGj" alt="demo gif image" >
 
 ### You can test library features on the website.
 [Visit My Website!](https://www.reactwebeditor.com)
 [CodeSandBox](https://codesandbox.io/s/react-web-editor-my626?file=/src/App.js)
+</div>
+
+<p></p>
 
 ## Table of contents
 1. [What is React Web Editor](#what-is-react-web-editor)
@@ -28,6 +33,7 @@
       - [Editable Board](#editable-board)
       - [EditorBlockWrapper](#editorblockwrapper)
       - [ResizeHandlerWrapper](#resizehandlerwrapper)
+---
 
 ## What is React Web Editor
 - React Web editor는 ui를 동적으로 변경할 수 있는 component의 및 훅들을 제공하는 라이브러리입니다.
