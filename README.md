@@ -7,14 +7,14 @@
 
 <img src="https://drive.google.com/uc?id=11zbcKjowailmDhLqmRATeOkguVjtBCGj" alt="demo gif image" >
 
-### You can test library features on the website.
-[Visit My Website!](https://www.reactwebeditor.com)
-[CodeSandBox](https://codesandbox.io/s/react-web-editor-my626?file=/src/App.js)
+### You can test library features on the website. [Visit My Website!](https://www.reactwebeditor.com)
+
+### You can also try on CodeSandBox [CodeSandBox](https://codesandbox.io/s/react-web-editor-my626?file=/src/App.js)
 </div>
 
 <p></p>
 
-## Table of contents
+## 🗂️ Table of contents
 1. [What is React Web Editor](#what-is-react-web-editor)
 2. [Core characteristics](#core-characteristics)
 3. [get started](#get-started)
@@ -35,13 +35,13 @@
       - [ResizeHandlerWrapper](#resizehandlerwrapper)
 ---
 
-## What is React Web Editor
+## 🎨 What is React Web Editor
 - React Web editor는 ui를 동적으로 변경할 수 있는 component의 및 훅들을 제공하는 라이브러리입니다.
 - Resizing, Draggable, Drag and Drop 등의 기능을 지원하고, 또한 동적으로 이미지를 업로드하거나, component의 색상과 텍스트를 스타일링 할 수 있습니다.
 - 보조적으로, 현재 component의 위치를 알 수 있는 coordinates tag, 그리고 현재 component가 중앙 정렬 되었는지를 알려주는 guide line이 block 형식의 컴포넌트에 내장되어 있습니다.
 - 궁극적으로, 사용자가 동적으로 웹의 ui를 변경할 수 있는 editor page를 제작할 수 있습니다.
 
-## Core characteristics
+## 💭 Core characteristics
 - 사용자 친화적으로 제작한 라이브러리로, 사용하기 쉽습니다.
   - core 기능은 hook을 이용해 제작 했지만, 이를 최대한 단순하게 사용할 수 있도록 block component로 래핑했습니다. 따라서 간단하게 사용하고 싶은 사용자들은 block component를 import한 후 props에 원하는 값을 대입하면 됩니다.
 - 무겁지 않게 만들기 위해 노력했습니다.
@@ -52,7 +52,7 @@
   - styled component들을 import하여 새로 component를 확장할 수 있도록 지원하고 있습니다.
 - custom 설정으로 configuration 관리 및 프로젝트 확장을 온전히 제어 할 수 있도록 webpack을 이용해 빌드했습니다.
 
-## Get started
+## 💁 Get started
 
 ### installing
 ```
@@ -69,7 +69,7 @@ or You can also import like this.
 ```
 import ReactWebEditor from "react-web-editor";
 ```
-## Version up log
+## 🔥 Version up log
 
 |Version     | Log|
 |------------|--------------|
@@ -86,7 +86,7 @@ import ReactWebEditor from "react-web-editor";
 
 ------
 
-# Documents
+# 📃 Documents
 
 ## Block components
 These components are already designed easy to use for users.It only needs some props to use.
