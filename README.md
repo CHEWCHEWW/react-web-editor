@@ -1,15 +1,17 @@
-<h1 align="center">react-beautiful-dnd</h1>
 
 <div align="center">
 
-## A Simple **WYSIWYG** editor for react users
-<p></p>
+# react-web-editor
+<p><p>
+
+### A Simple **WYSIWYG** editor for react users
 
 <img src="https://drive.google.com/uc?id=11zbcKjowailmDhLqmRATeOkguVjtBCGj" alt="demo gif image" >
 
 ### You can test library features on the website. [Visit My Website!](https://www.reactwebeditor.com)
 
 ### You can also try on CodeSandBox [CodeSandBox](https://codesandbox.io/s/react-web-editor-my626?file=/src/App.js)
+
 </div>
 
 <p></p>
