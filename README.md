@@ -4,7 +4,7 @@
 # react-web-editor
 <p><p>
 
-### A Simple **WYSIWYG** editor for react users
+### A Simple **WYSIWYG** editor for react users which inclueds rich text editor.
 
 <img src="https://drive.google.com/uc?id=11zbcKjowailmDhLqmRATeOkguVjtBCGj" alt="demo gif image" >
 
@@ -91,7 +91,7 @@ import ReactWebEditor from "react-web-editor";
 # 📃 Documents
 
 ## Block components
-These components are already designed easy to use for users.It only needs some props to use.
+These components are already designed easy to use for users. It only needs some props to use.
 <p></p>
 
 ### Style Editor Block
@@ -99,11 +99,11 @@ These components are already designed easy to use for users.It only needs some p
   - What is?
   <p></p>
 
-  The Style Editor Component is a block component which is handle resize and drag. It can also upload image. If you put your component to children and set css property
-  **position: absolute**,
-  You can change your component width, height, and location dynamically. If you won't to use this component without Your Own Component, just use this component alone.
+  The Style Editor Component is a block component which can change component's size and location. It has powerful features too - uploading image on the screen and changing component's background color. If you put your component to children and set css property
+  **position: absolute**, You can change your own component's width, height, and location dynamically.
+  This component also can be used without children.
   <p></p>
-  If you hover your cursor to this component, Two tabs will appear on the screen. First tab is a image upload tab, which is help you add an image. Second tab is a color handler. It can change components's background color.
+  If you hover your cursor to this component, Two tabs will appear on the screen. The First tab is a uploading image tab, which is help you add an image. The Second tab is a color handler. It changes component's background color.
   <p></p>
 
   - Props
@@ -146,9 +146,9 @@ These components are already designed easy to use for users.It only needs some p
 
   - What is?
   <p></p>
-  The Text Editor Component is a block component. A settings window is built in this component. You can type message using this component, and change style by using settings window.
+  The Text Editor Component is a block component. This component is a simple rich text editor. Basically, you can type a text. Another feature is text styler. settings window is built in this component. It makes you can change style by using settings window.
   <p></p>
-  If you hover your cursor to this compoenent, then two tabs appear on the screen. First tab is a drag handler. It helps you change component location. Second tab is a Setting window handler. If you put your cursor to second tab, this window will be appear on the screen.
+  If you hover your cursor to this compoenent, then two tabs appear on the screen. The First tab is a drag handler. It helps you change component's location. The Second tab is a Setting window handler. If you put your cursor to second tab, this window will appears on the screen.
   <p></p>
 
   - Props
@@ -199,7 +199,7 @@ These components are already designed easy to use for users.It only needs some p
 
   - What is?
   <p></p>
-  The Drag and Drop Table component makes all children component can drag and drop. You just have to put your own component to Drag and Drop table component's children.
+  The Drag and Drop Table component makes all children components can drag and drop. You just have to put your own component's code to Drag and Drop table's children.
 
   - Props
 ```
@@ -229,9 +229,10 @@ These components are already designed easy to use for users.It only needs some p
 
 ## Hooks
 
-Our library made by "hooks" friendly. Each hook has only one feature. If you want to make custom component or just use only one feature, You can use hook.
+Our library structured with "hooks" friendly. Each hook has only one feature. If you want to make custom component or just use only one feature, You can use hook.
 <p></p>
-These need a more precise use. So If you want to use it simply, We recommend using block components.
+You can generate your editor page, or library using our library.
+These need a more precise usage. So If you want to use our library's features simply, We recommend using block components.
 
 ### useDraggable
 - props
@@ -290,10 +291,12 @@ These need a more precise use. So If you want to use it simply, We recommend usi
 |handleDragStart      | onMouseDown handler |
 |handleDragEnd    | onMouseUp handler |
 ------
-This component can use with DraggableHandler, and EditorBlockWrapper.
+This component can be used with DraggableHandler, and EditorBlockWrapper.
 
 ### useResize
-It returns resize handler. It can be used with "ResizeHandlerWrapper", The helper component to resizing.
+
+It returns resize handlers. It can be used with "ResizeHandlerWrapper", The helper component to resizing.
+
 - props
 ```
   type useResizeProps {
@@ -346,10 +349,10 @@ It returns resize handler. It can be used with "ResizeHandlerWrapper", The helpe
 |------------|--------------|
 |handleMouseDown      | onMouseDown handler |
 ------
-This component can use with ResizeHandlerWrapper, and EditorBlockWrapper.
+This component can be used with ResizeHandlerWrapper and EditorBlockWrapper.
 
 ### useImage
-The UseImage hook helps upload image file.
+The UseImage hook helps upload image file and shows image on the screen.
 
 - props
 ```
@@ -400,13 +403,13 @@ const { color, handleColorChange } = useColor({ initialColor });
 
 ## Helper Components
 
-These components help you to customize component. It makes easy to handle editor component and hooks.
+These components help you to customize and generate your own component. You can make your own library too! It makes easy to handle editor component and hooks.
 
 ### Editable Board
 
   - What is?
   <p></p>
-    The Editable Board component is a helper component. If you put a block component (like StyleEditorBlock, or TextEditorBlock) to this component's children and define parentStyle, Children components will bound in the Editable board area.
+    The Editable Board component is a helper component. If you put a block component (like StyleEditorBlock, or TextEditorBlock) to this component's children and define parentStyle, the children components will bound in the Editable board area.
 
   - Props
 ```
@@ -450,8 +453,9 @@ These components help you to customize component. It makes easy to handle editor
 ```
 
 ### EditorBlockWrapper
-The Editor Block Wrapper is a style component. The size and location of the component are received in props. It changes dynamically by props.
-It can be used with useResize and useDraggable
+
+The Editor Block Wrapper is a styled component. The Size and location of the Component are received in props. It changes style dynamically by props.
+It can be used with useResize and useDraggable.
 
 - props
 ```
@@ -500,7 +504,7 @@ return (
 ```
 
 ### ResizeHandlerWrapper
-This component is specilized for useResize. It generates vertexes at the 4 direction of the component.
+This component is specialized for useResize. It generates vertexes at the 4 direction of the component.
 
 - Usage Example
 
