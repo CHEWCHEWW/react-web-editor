@@ -4,13 +4,15 @@
 # react-web-editor
 <p><p>
 
-### A Simple **WYSIWYG** editor for react users which inclueds rich text editor.
+### A Simple **WYSIWYG** editor for react users
+#### You can make your own editor using our library
+<p></p>
 
 <img src="https://drive.google.com/uc?id=11zbcKjowailmDhLqmRATeOkguVjtBCGj" alt="demo gif image" >
 
-### You can test library features on the website. [Visit My Website!](https://www.reactwebeditor.com)
+### You can explore various features on the website. [Visit My Website!](https://www.reactwebeditor.com)
 
-### You can also try on CodeSandBox [CodeSandBox](https://codesandbox.io/s/react-web-editor-my626?file=/src/App.js)
+### You can also try on CodeSandBox. [CodeSandBox](https://codesandbox.io/s/react-web-editor-my626?file=/src/App.js)
 
 </div>
 
@@ -39,13 +41,21 @@
 
 ## 🎨 What is React Web Editor
 - React Web editor는 ui를 동적으로 변경할 수 있는 component의 및 훅들을 제공하는 라이브러리입니다.
+<p></p>
+
 - Resizing, Draggable, Drag and Drop 등의 기능을 지원하고, 또한 동적으로 이미지를 업로드하거나, component의 색상과 텍스트를 스타일링 할 수 있습니다.
+<p></p>
+
 - 보조적으로, 현재 component의 위치를 알 수 있는 coordinates tag, 그리고 현재 component가 중앙 정렬 되었는지를 알려주는 guide line이 block 형식의 컴포넌트에 내장되어 있습니다.
+<p></p>
+
 - 궁극적으로, 사용자가 동적으로 웹의 ui를 변경할 수 있는 editor page를 제작할 수 있습니다.
 
 ## 💭 Core characteristics
 - 사용자 친화적으로 제작한 라이브러리로, 사용하기 쉽습니다.
   - core 기능은 hook을 이용해 제작 했지만, 이를 최대한 단순하게 사용할 수 있도록 block component로 래핑했습니다. 따라서 간단하게 사용하고 싶은 사용자들은 block component를 import한 후 props에 원하는 값을 대입하면 됩니다.
+  <p></p>
+
 - 무겁지 않게 만들기 위해 노력했습니다.
   - 간단하고 가볍게 제작 하는 것을 제일의 목표로 삼았기에, component의 무게를 가볍게 만들기 위해 노력했습니다. 따라서 필수적인 library를 제외하고는 최소한의 dependency를 가지고 있습니다.
 - hook 친화적으로 만든 library로, 사용자가 최근의 react style을 이용하여 커스터마이징 할 수 있습니다.
@@ -54,7 +64,7 @@
   - styled component들을 import하여 새로 component를 확장할 수 있도록 지원하고 있습니다.
 - custom 설정으로 configuration 관리 및 프로젝트 확장을 온전히 제어 할 수 있도록 webpack을 이용해 빌드했습니다.
 
-## 💁 Get started
+## 💁 Getting started
 
 ### installing
 ```
@@ -66,7 +76,7 @@ npm -i react-web-editor
 import { StyleEditorBlock, TextEditorBlock, ... } from "react-web-editor;
 ```
 
-or You can also import like this.
+or you can import as below
 
 ```
 import ReactWebEditor from "react-web-editor";
@@ -91,20 +101,15 @@ import ReactWebEditor from "react-web-editor";
 # 📃 Documents
 
 ## Block components
-These components are already designed easy to use for users. It only needs some props to use.
+These components are designed to be user friendly. Easily control components using no more than props.
 <p></p>
 
 ### Style Editor Block
-
-  - What is?
   <p></p>
 
-  The Style Editor Component is a block component which can change component's size and location. It has powerful features too - uploading image on the screen and changing component's background color. If you put your component to children and set css property
-  **position: absolute**, You can change your own component's width, height, and location dynamically.
-  This component also can be used without children.
-  <p></p>
-  If you hover your cursor to this component, Two tabs will appear on the screen. The First tab is a uploading image tab, which is help you add an image. The Second tab is a color handler. It changes component's background color.
-  <p></p>
+  The Style Editor Component(SEC) is a block component which can change size and location of components. Another powerful usage of The SEC is uploading images on the screen or changing a component's background color. By wrapping a component with the SEC and setting the position of the component ‘absolute’, the component becomes editable on an website. This component also can be used without your own component.
+
+  Two tabs will appear on the screen when you hover a cursor on the component. The First tab is a uploading image tab, which is help you add an image. The Second tab is a color handler. It changes component's background color.
 
   - Props
 ```
@@ -143,13 +148,11 @@ These components are already designed easy to use for users. It only needs some 
     );
 ```
 ### Text Editor Block
-
-  - What is?
   <p></p>
-  The Text Editor Component is a block component. This component is a simple rich text editor. Basically, you can type a text. Another feature is text styler. settings window is built in this component. It makes you can change style by using settings window.
+  The Text Editor Component(TEC) is a block component. This component has a simple rich text editor features.
+  TEC has two functions. It enables you to type and change the style of it using the settings window.
   <p></p>
-  If you hover your cursor to this compoenent, then two tabs appear on the screen. The First tab is a drag handler. It helps you change component's location. The Second tab is a Setting window handler. If you put your cursor to second tab, this window will appears on the screen.
-  <p></p>
+  Two tabs will appear on the screen when you hover a cursor on the component. It helps you change a location of components. The second tab is the Settings window handler. The window will appear on the screen when you click the second tab.
 
   - Props
 ```
@@ -196,10 +199,8 @@ These components are already designed easy to use for users. It only needs some 
 ```
 
 ### Drag and Drop Table
-
-  - What is?
   <p></p>
-  The Drag and Drop Table component makes all children components can drag and drop. You just have to put your own component's code to Drag and Drop table's children.
+  The Drag and Drop Table(DNDT) component makes all child components draggable within the DNDT area. You can use the DNDT by wrapping your components that you desire to be draggable.
 
   - Props
 ```
@@ -228,10 +229,10 @@ These components are already designed easy to use for users. It only needs some 
 ```
 
 ## Hooks
-
-Our library structured with "hooks" friendly. Each hook has only one feature. If you want to make custom component or just use only one feature, You can use hook.
 <p></p>
-You can generate your editor page, or library using our library.
+Our library structured with "hooks" friendly. Use the hook when you need a single feature from hooks or when you want to make a custom component.
+<p></p>
+With the React-Web-Editor you can generate editor pages and your own library.
 These need a more precise usage. So If you want to use our library's features simply, We recommend using block components.
 
 ### useDraggable
@@ -294,9 +295,7 @@ These need a more precise usage. So If you want to use our library's features si
 This component can be used with DraggableHandler, and EditorBlockWrapper.
 
 ### useResize
-
-It returns resize handlers. It can be used with "ResizeHandlerWrapper", The helper component to resizing.
-
+It returns Resize handlers. It can be used with "ResizeHandlerWrapper", The helper component to resize.
 - props
 ```
   type useResizeProps {
@@ -352,7 +351,7 @@ It returns resize handlers. It can be used with "ResizeHandlerWrapper", The help
 This component can be used with ResizeHandlerWrapper and EditorBlockWrapper.
 
 ### useImage
-The UseImage hook helps upload image file and shows image on the screen.
+The UseImage hook helps upload and display images on the screen.
 
 - props
 ```
@@ -403,11 +402,9 @@ const { color, handleColorChange } = useColor({ initialColor });
 
 ## Helper Components
 
-These components help you to customize and generate your own component. You can make your own library too! It makes easy to handle editor component and hooks.
+These components help you customize and generate your own component. You can make your own library using this feature. It lets you easily handle hooks and editor components.
 
 ### Editable Board
-
-  - What is?
   <p></p>
     The Editable Board component is a helper component. If you put a block component (like StyleEditorBlock, or TextEditorBlock) to this component's children and define parentStyle, the children components will bound in the Editable board area.
 
@@ -453,9 +450,8 @@ These components help you to customize and generate your own component. You can 
 ```
 
 ### EditorBlockWrapper
-
-The Editor Block Wrapper is a styled component. The Size and location of the Component are received in props. It changes style dynamically by props.
-It can be used with useResize and useDraggable.
+The Editor Block Wrapper is a style component. The size and location of the component are received in props. It changes style dynamically with these props.
+It can be used with useResize and useDraggable
 
 - props
 ```
@@ -504,7 +500,7 @@ return (
 ```
 
 ### ResizeHandlerWrapper
-This component is specialized for useResize. It generates vertexes at the 4 direction of the component.
+This component is specialized for the useResize hook. It generates vertices in the four directions of the component.
 
 - Usage Example
 

@@ -1,8 +1,9 @@
 {
   "name": "react-web-editor",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "private": false,
   "author": "chewchewchew3@gmail.com",
+  "description": "A Simple WYSIWYG editor for react users, includes simple rich text editor",
   "scripts": {
     "start": "webpack serve --config webpack.dev.config.ts",
     "build": "webpack --config webpack.prod.config.ts && tsc",
