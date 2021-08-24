@@ -18,28 +18,19 @@
 
 <p></p>
 
-## 🗂️ Table of contents
+## 🗂️Table of contents
+
 1. [What is React Web Editor](#what-is-react-web-editor)
 2. [Core characteristics](#core-characteristics)
-3. [get started](#get-started)
+3. [Getting started](#getting-started)
 4. [Version up log](#version-up-log)
-5. [Documents](#Documents)
+5. [Documents](#documents)
     - [Block Components](#block-components)
-      - [Style Editor Block](#style-editor-block)
-      - [Text Editor Block](#text-editor-block)
-      - [Drag and Drop Table](#drag-and-drop-table)
     - [Hooks](#hooks)
-      - [useDraggable](#useDraggable)
-      - [useResize](#useResize)
-      - [useImage](#useImage)
-      - [useColor](#useColor)
     - [Helper Components](#helper-components)
-      - [Editable Board](#editable-board)
-      - [EditorBlockWrapper](#editorblockwrapper)
-      - [ResizeHandlerWrapper](#resizehandlerwrapper)
 ---
 
-## 🎨 What is React Web Editor
+## 🎨What is React Web Editor
 - React Web editor는 ui를 동적으로 변경할 수 있는 component의 및 훅들을 제공하는 라이브러리입니다.
 <p></p>
 
@@ -51,7 +42,7 @@
 
 - 궁극적으로, 사용자가 동적으로 웹의 ui를 변경할 수 있는 editor page를 제작할 수 있습니다.
 
-## 💭 Core characteristics
+## 💭Core characteristics
 - 사용자 친화적으로 제작한 라이브러리로, 사용하기 쉽습니다.
   - core 기능은 hook을 이용해 제작 했지만, 이를 최대한 단순하게 사용할 수 있도록 block component로 래핑했습니다. 따라서 간단하게 사용하고 싶은 사용자들은 block component를 import한 후 props에 원하는 값을 대입하면 됩니다.
   <p></p>
@@ -64,24 +55,24 @@
   - styled component들을 import하여 새로 component를 확장할 수 있도록 지원하고 있습니다.
 - custom 설정으로 configuration 관리 및 프로젝트 확장을 온전히 제어 할 수 있도록 webpack을 이용해 빌드했습니다.
 
-## 💁 Getting started
+## 💁Getting started
 
 ### installing
-```
+```js
 npm -i react-web-editor
 ```
 
 ### import
-```
+```js
 import { StyleEditorBlock, TextEditorBlock, ... } from "react-web-editor;
 ```
 
 or you can import as below
 
-```
+```js
 import ReactWebEditor from "react-web-editor";
 ```
-## 🔥 Version up log
+## 🔥Version up log
 
 |Version     | Log|
 |------------|--------------|
@@ -98,7 +89,7 @@ import ReactWebEditor from "react-web-editor";
 
 ------
 
-# 📃 Documents
+## 📃Documents
 
 ## Block components
 These components are designed to be user friendly. Easily control components using no more than props.
@@ -112,7 +103,7 @@ These components are designed to be user friendly. Easily control components usi
   Two tabs will appear on the screen when you hover a cursor on the component. The First tab is a uploading image tab, which is help you add an image. The Second tab is a color handler. It changes component's background color.
 
   - Props
-```
+```js
     type StyledEditorBlockProps {
       width: number;
       height: number;
@@ -131,7 +122,7 @@ These components are designed to be user friendly. Easily control components usi
 ```
 
   - Usage
-```
+```js
     import { StyleEditorBlock } from "react-web-editor"
     ...
     return (
@@ -155,7 +146,7 @@ These components are designed to be user friendly. Easily control components usi
   Two tabs will appear on the screen when you hover a cursor on the component. It helps you change a location of components. The second tab is the Settings window handler. The window will appear on the screen when you click the second tab.
 
   - Props
-```
+```js
     type TextEditorBlockProps {
       width: number;
       height: number;
@@ -181,7 +172,7 @@ These components are designed to be user friendly. Easily control components usi
     type InitialFontName = "andada-pro" | "bebas-nenu" | "montecarlo" | "roboto" | "stix-two-text" | "style-script";
 ```
   - Usage
-```
+```js
     import { TextEditorBlock } from "react-web-editor"
 
     ...
@@ -203,14 +194,14 @@ These components are designed to be user friendly. Easily control components usi
   The Drag and Drop Table(DNDT) component makes all child components draggable within the DNDT area. You can use the DNDT by wrapping your components that you desire to be draggable.
 
   - Props
-```
+```js
     type DragAndDropTableProps {
       color?: string;
       isVertical: boolean;
     }
 ```
   - Usage
-```
+```js
     import { DragAndDropTable } from "react-web-editor"
 
     ...
@@ -237,7 +228,7 @@ These need a more precise usage. So If you want to use our library's features si
 
 ### useDraggable
 - props
-```
+```js
   type useDraggableProps {
     left: number;
     top: number;
@@ -264,7 +255,7 @@ These need a more precise usage. So If you want to use our library's features si
   // It's like a parentStyle.
 ```
 - usage
-```
+```js
   import { useState } from "react";
   import { useDraggable } from "react-web-editor";
 
@@ -297,7 +288,7 @@ This component can be used with DraggableHandler, and EditorBlockWrapper.
 ### useResize
 It returns Resize handlers. It can be used with "ResizeHandlerWrapper", The helper component to resize.
 - props
-```
+```js
   type useResizeProps {
     left: number;
     top: number;
@@ -324,7 +315,7 @@ It returns Resize handlers. It can be used with "ResizeHandlerWrapper", The help
   // It's like a parentStyle.
 ```
 - usage
-```
+```js
   import { useState } from "react";
   import { useResize, ResizeHandlerWrapper } from "react-web-editor";
 
@@ -354,14 +345,14 @@ This component can be used with ResizeHandlerWrapper and EditorBlockWrapper.
 The UseImage hook helps upload and display images on the screen.
 
 - props
-```
+```js
 type UseImageProps {
   initialImage?: string;
 }
 ```
 
 - usage
-```
+```js
 import { useImage } from "react-web-editor";
 ...
 const { imageSrc, handleImageChange } = useImage({ initialImage });
@@ -379,14 +370,14 @@ const { imageSrc, handleImageChange } = useImage({ initialImage });
 The UseColor hook returns color change handler.
 
 - props
-```
+```js
 type UseColorProps {
   initialColor?: string;
 }
 ```
 
 - usage
-```
+```js
 import { useColor } from "react-web-editor";
 ...
 const { color, handleColorChange } = useColor({ initialColor });
@@ -409,7 +400,7 @@ These components help you customize and generate your own component. You can mak
     The Editable Board component is a helper component. If you put a block component (like StyleEditorBlock, or TextEditorBlock) to this component's children and define parentStyle, the children components will bound in the Editable board area.
 
   - Props
-```
+```js
     type EditableBoardProps {
       width: number;
       height: number;
@@ -420,7 +411,7 @@ These components help you customize and generate your own component. You can mak
     }
 ```
   - Usage
-```
+```js
     import { EditableBoard, StyleEditorBlock } from "react-web-editor"
 
     ...
@@ -454,7 +445,7 @@ The Editor Block Wrapper is a style component. The size and location of the comp
 It can be used with useResize and useDraggable
 
 - props
-```
+```js
 type EditorBlockWrapperProps {
   width: number;
   height: number;
@@ -465,7 +456,7 @@ type EditorBlockWrapperProps {
 
 - Usage Example
 
-```
+```js
 import { useState } from "react";
 import { EditorBlockWrapper, useDraggable } from "react-web-editor";
 
@@ -504,7 +495,7 @@ This component is specialized for the useResize hook. It generates vertices in t
 
 - Usage Example
 
-```
+```js
 import { useState } from "react";
 import { EditorBlockWrapper, ResizeHandlerWrapper, useResize } from "react-web-editor";
 
