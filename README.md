@@ -26,8 +26,18 @@
 4. [Version up log](#version-up-log)
 5. [Documents](#documents)
     - [Block Components](#block-components)
+        - [Style Editor Block](#style-editor-block)
+        - [Text Editor Block](#text-editor-block)
+        - [Drag and Drop Table](#drag-and-drop-table)
     - [Hooks](#hooks)
+        - [useDraggable](#usedraggable)
+        - [useResize](#useresize)
+        - [useImage](#useimage)
+        - [useColor](#usecolor)
     - [Helper Components](#helper-components)
+        - [Editable Board](#editable-board)
+        - [EditorBlockWrapper](#editorblockwrapper)
+        - [ResizeHandlerWrapper](#resizehandlerwrapper)
 ---
 
 ## 🎨What is React Web Editor
