@@ -25,11 +25,7 @@ export interface ComponentSize {
   height: number;
 }
 
-export interface EditorProps {
-  width: number;
-  height: number;
-  top: number;
-  left: number;
+export interface EditorProps extends ComponentStyle {
   parentStyle?: ComponentSize;
   unit: string;
 }
