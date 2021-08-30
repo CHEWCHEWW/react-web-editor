@@ -8,7 +8,7 @@
 #### You can make your own editor using our library
 <p></p>
 
-<img src="https://drive.google.com/uc?id=11zbcKjowailmDhLqmRATeOkguVjtBCGj" alt="demo gif image" >
+<img src="https://drive.google.com/uc?id=11zbcKjowailmDhLqmRATeOkguVjtBCGj" alt="demo gif image" />
 
 ### You can explore various features on the website. [Visit My Website!](https://www.reactwebeditor.com)
 
@@ -41,29 +41,30 @@
 ---
 
 ## 🎨What is React Web Editor
-- React Web editor는 ui를 동적으로 변경할 수 있는 component의 및 훅들을 제공하는 라이브러리입니다.
+- The React Web editor is a library that provides and hooks of components that can dynamically change ui.
 <p></p>
 
-- Resizing, Draggable, Drag and Drop 등의 기능을 지원하고, 또한 동적으로 이미지를 업로드하거나, component의 색상과 텍스트를 스타일링 할 수 있습니다.
+- It supports features like Resizing, Draggable, and Drag and Drop, You can also upload a image dynamically, and styling component's color and text.
 <p></p>
 
-- 보조적으로, 현재 component의 위치를 알 수 있는 coordinates tag, 그리고 현재 component가 중앙 정렬 되었는지를 알려주는 guide line이 block 형식의 컴포넌트에 내장되어 있습니다.
+- The coordinates tag, which shows where the current components are located, and the guide line, which tells you if the current components are centralized, are built into the block-type components.
 <p></p>
 
-- 궁극적으로, 사용자가 동적으로 웹의 ui를 변경할 수 있는 editor page를 제작할 수 있습니다.
+- Ultimatly, You can make a editor page which can change web's UI dynamically.
 
 ## 💭Core characteristics
-- 사용자 친화적으로 제작한 라이브러리로, 사용하기 쉽습니다.
-  - core 기능은 hook을 이용해 제작 했지만, 이를 최대한 단순하게 사용할 수 있도록 block component로 래핑했습니다. 따라서 간단하게 사용하고 싶은 사용자들은 block component를 import한 후 props에 원하는 값을 대입하면 됩니다.
+- The react-web-editor is easy to use. It is designed user friendly!
+  - The core features were created using hook, but it was wrapped with block component to make it easy to use as simple as possible. Therefore, Users who want to use simply can import block components and put your code.
   <p></p>
 
-- 무겁지 않게 만들기 위해 노력했습니다.
-  - 간단하고 가볍게 제작 하는 것을 제일의 목표로 삼았기에, component의 무게를 가볍게 만들기 위해 노력했습니다. 따라서 필수적인 library를 제외하고는 최소한의 dependency를 가지고 있습니다.
-- hook 친화적으로 만든 library로, 사용자가 최근의 react style을 이용하여 커스터마이징 할 수 있습니다.
-  - core한 기능들은 모두 hook으로 구현되어 있습니다. 사용자는 hook을 이용하여 자신들만의 component 및 library를 제작할 수 있습니다.
-- customize를 위한 도구들이 존재합니다.
-  - styled component들을 import하여 새로 component를 확장할 수 있도록 지원하고 있습니다.
-- custom 설정으로 configuration 관리 및 프로젝트 확장을 온전히 제어 할 수 있도록 webpack을 이용해 빌드했습니다.
+- The react-web-editor is light and simple.
+  - The goal was to make react-web-editor simple and light. Therefore, it has minimal dependency except for the essential library.
+
+- The react-web-editor is react-friendly. You can use hooks for your own component.
+
+- The react-web-editor has a tools for customizing.
+  - The style component is supported. It makes you easy to expand for new features.
+- It was built using webpack so that you can fully control configuration management and project extension with custom settings.
 
 ## 💁Getting started
 
