@@ -16,11 +16,11 @@ const useDropDown = ({ items }: DropDownProps): UseDropDownReturns => {
     label: "",
   });
 
-  const handleDropDownClick = () => {
+  const handleDropDownClick = (): void => {
     setIsDropDownOpen((prev) => !prev);
   };
 
-  const handleItemClick = (ev: React.MouseEvent<HTMLDivElement>) => {
+  const handleItemClick = (ev: React.MouseEvent<HTMLDivElement>): void => {
     const id = ev.currentTarget.id;
     const item = items.find((item) => item.id === id);
 

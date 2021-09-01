@@ -41,7 +41,7 @@ const useDraggable = ({
       return;
     }
 
-    const handleDragMove = (ev: MouseEvent) => {
+    const handleDragMove = (ev: MouseEvent): void => {
       const { currentX, currentY, isDragging } = componentInfomation;
 
       if (!isDragging || !currentX || !currentY) {

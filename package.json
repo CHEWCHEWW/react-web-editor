@@ -1,12 +1,12 @@
 {
   "name": "react-web-editor",
-  "version": "2.2.3",
+  "version": "2.2.6",
   "private": false,
   "author": "chewchewchew3@gmail.com",
   "description": "A Simple WYSIWYG editor for react users, includes simple rich text editor",
   "scripts": {
     "start": "webpack serve --config webpack.dev.config.ts",
-    "build": "webpack --config webpack.prod.config.ts",
+    "build": "webpack --config webpack.prod.config.ts && tsc",
     "prepare": "npm run build"
   },
   "homepage": "https://www.reactwebeditor.com",
@@ -14,8 +14,8 @@
     "type": "git",
     "url": "https://github.com/CHEWCHEWW/react-editable"
   },
-  "main": "dist/main.js",
-  "types": "typings/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.js",
   "dependencies": {
     "react": "^17.0.2",
     "react-helmet-async": "^1.0.9",

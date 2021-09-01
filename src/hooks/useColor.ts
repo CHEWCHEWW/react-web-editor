@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 
-import { ColorProps } from "../types/ui";
-
 interface UseColorProps {
   initialColor?: string;
 }
 
-interface UseColorReturns extends ColorProps {
+interface UseColorReturns {
   color: string;
   handleColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;
   handleFontColorChange: (ev: React.ChangeEvent<HTMLInputElement>) => void;

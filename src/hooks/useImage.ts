@@ -12,7 +12,7 @@ interface UseImageReturns {
 const useImage = ({ initialImage }: UseImageProps): UseImageReturns => {
   const [imageSrc, setImageSrc] = useState<string>(initialImage || "");
 
-  const handleFileChange = (ev: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (ev: React.ChangeEvent<HTMLInputElement>): void => {
     const { files } = ev.target;
 
     if (!files) {

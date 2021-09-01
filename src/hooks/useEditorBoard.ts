@@ -15,7 +15,7 @@ const useEditorBoard = (): UseEditorBoardReturns => {
     top: 0,
   });
 
-  const measuredRef = useCallback((node: HTMLDivElement) => {
+  const measuredRef = useCallback((node: HTMLDivElement): void => {
     if (node !== null) {
       const currentLocation = node.getBoundingClientRect();
 
