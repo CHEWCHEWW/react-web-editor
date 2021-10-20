@@ -18,13 +18,13 @@
 
 <p></p>
 
-## 🗂️ Table of contents
+## 🗂️Table of contents
 
-1. [What is React Web Editor](# what-is-react-web-editor)
-2. [Core characteristics](# core-characteristics)
-3. [Getting started](# getting-started)
-4. [Version up log](# version-up-log)
-5. [Documents](# documents)
+1. [What is React Web Editor](#what-is-react-web-editor)
+2. [Core characteristics](#core-characteristics)
+3. [Getting started](#getting-started)
+4. [Version up log](#version-up-log)
+5. [Documents](#documents)
     - [Block Components](#block-components)
         - [Style Editor Block](#style-editor-block)
         - [Text Editor Block](#text-editor-block)
@@ -40,7 +40,7 @@
         - [ResizeHandlerWrapper](#resizehandlerwrapper)
 ---
 
-## 🎨 What is React Web Editor
+## 🎨What is React Web Editor
 - The React Web editor is a library that provides and hooks of components that can dynamically change ui.
 <p></p>
 
@@ -52,7 +52,7 @@
 
 - Ultimatly, You can make a editor page which can change web's UI dynamically.
 
-## 💭 Core characteristics
+## 💭Core characteristics
 - The react-web-editor is easy to use. It is designed user friendly!
   - The core features were created using hook, but it was wrapped with block component to make it easy to use as simple as possible. Therefore, Users who want to use simply can import block components and put your code.
   <p></p>
@@ -66,7 +66,7 @@
   - The style component is supported. It makes you easy to expand for new features.
 - It was built using webpack so that you can fully control configuration management and project extension with custom settings.
 
-## 💁 Getting started
+## 💁Getting started
 
 ### installing
 ```js
@@ -83,7 +83,7 @@ or you can import as below
 ```js
 import ReactWebEditor from "react-web-editor";
 ```
-## 🔥 Version up log
+## 🔥Version up log
 
 |Version     | Log|
 |------------|--------------|
@@ -100,7 +100,7 @@ import ReactWebEditor from "react-web-editor";
 
 ------
 
-## 📃 Documents
+## 📃Documents
 
 ## Block components
 These components are designed to be user friendly. Easily control components using no more than props.
