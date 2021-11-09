@@ -41,7 +41,7 @@
 ---
 
 ## 🎨What is React Web Editor
-- The React Web editor is a library that provides and hooks of components that can dynamically change ui.
+- The React Web editor is a library that provides blockComponents and hooks of components that can dynamically change ui.
 <p></p>
 
 - It supports features like Resizing, Draggable, and Drag and Drop, You can also upload a image dynamically, and styling component's color and text.
