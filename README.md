@@ -530,11 +530,11 @@ return (
     top={componentStyle.top}
     left={componentStyle.left}
   >
-    <ResizeHandlersWrapper>
+    <ResizeHandlerWrapper>
       {DIRECTIIONS.map((item) => (
         <div key={item} className={item} onMouseDown={handleMouseDown} />
       ))}
-    </ResizeHandlersWrapper>
+    </ResizeHandlerWrapper>
   </EditorBlcokWrapper> // Now, This component can change size.
 );
 ```
