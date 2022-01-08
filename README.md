@@ -337,7 +337,7 @@ It returns Resize handlers. It can be used with "ResizeHandlerWrapper", The help
     left: 40,
   });
 
-  const { handleMouseDown } = useDraggable({
+  const { handleMouseDown } = useResize({
     ...componentStyle,
     onResize: setComponentStyle,
     unit: "px",
@@ -434,7 +434,7 @@ These components help you customize and generate your own component. You can mak
       <EditableBoard
         width={boardWidth}
         height={boardHeight}
-        backgroundColor={boardStyleUnit}
+        unit={boardStyleUnit}
         color={"pink"}
         left={20}
         top={20}
@@ -517,7 +517,7 @@ const [componentStyle, setComponentStyle] = useState({
   left: 40,
 });
 // this state can be used for your own component.
-const { handleMouseDown } = useDraggable({
+const { handleMouseDown } = useResize({
   ...componentStyle,
   onResize: setComponentStyle,
   unit: "px",
@@ -530,11 +530,11 @@ return (
     top={componentStyle.top}
     left={componentStyle.left}
   >
-    <ResizeHandlersWrapper>
+    <ResizeHandlerWrapper>
       {DIRECTIIONS.map((item) => (
         <div key={item} className={item} onMouseDown={handleMouseDown} />
       ))}
-    </ResizeHandlersWrapper>
+    </ResizeHandlerWrapper>
   </EditorBlcokWrapper> // Now, This component can change size.
 );
 ```
