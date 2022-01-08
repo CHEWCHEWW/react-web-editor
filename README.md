@@ -517,7 +517,7 @@ const [componentStyle, setComponentStyle] = useState({
   left: 40,
 });
 // this state can be used for your own component.
-const { handleMouseDown } = useDraggable({
+const { handleMouseDown } = useResize({
   ...componentStyle,
   onResize: setComponentStyle,
   unit: "px",
