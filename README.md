@@ -337,7 +337,7 @@ It returns Resize handlers. It can be used with "ResizeHandlerWrapper", The help
     left: 40,
   });
 
-  const { handleMouseDown } = useDraggable({
+  const { handleMouseDown } = useResize({
     ...componentStyle,
     onResize: setComponentStyle,
     unit: "px",
