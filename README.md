@@ -434,7 +434,7 @@ These components help you customize and generate your own component. You can mak
       <EditableBoard
         width={boardWidth}
         height={boardHeight}
-        backgroundColor={boardStyleUnit}
+        unit={boardStyleUnit}
         color={"pink"}
         left={20}
         top={20}
