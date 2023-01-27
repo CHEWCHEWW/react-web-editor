@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React, { Children, ReactNode } from "react";
 import styled from "styled-components";
 
 import useDragAndDrop from "../../hooks/useDragAndDrop";
@@ -6,6 +6,7 @@ import useDragAndDrop from "../../hooks/useDragAndDrop";
 interface DragAndDropTableProps {
   color?: string;
   isVertical: boolean;
+  children?: ReactNode;
 }
 
 interface DragAndDropTableStyle {
@@ -35,10 +36,7 @@ const DragAndDropTable: React.FC<DragAndDropTableProps> = ({
   } = useDragAndDrop({ items: Children.toArray(children) });
 
   return (
-    <Wrapper
-      backgroundColor={color}
-      isVertical={isVertical}
-    >
+    <Wrapper backgroundColor={color} isVertical={isVertical}>
       {dragList.map((item, index) => (
         <Block
           key={index}
@@ -64,7 +62,8 @@ const Wrapper = styled.div<DragAndDropTableStyle>`
   width: 100%;
   height: 100%;
   flex-direction: ${({ isVertical }) => isVertical && "column"};
-  background-color: ${({ backgroundColor }) => backgroundColor && backgroundColor};
+  background-color: ${({ backgroundColor }) =>
+    backgroundColor && backgroundColor};
 `;
 
 const Block = styled.div<DragAndDropItemStyle>`

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 export interface ComponentLocation {
   left: number;
@@ -28,14 +28,15 @@ export interface ComponentSize {
 export interface EditorProps extends ComponentStyle {
   parentStyle?: ComponentSize;
   unit: string;
+  children?: ReactNode;
 }
 
 export interface EditorBlockProps extends EditorProps {
   isMouseOver: boolean;
   isClicked: boolean;
-  onMouseClick: ()=> void;
-  onMouseOver: ()=> void;
-  onMouseLeave: ()=> void;
+  onMouseClick: () => void;
+  onMouseOver: () => void;
+  onMouseLeave: () => void;
   componentRef: React.Ref<HTMLDivElement>;
 }
 

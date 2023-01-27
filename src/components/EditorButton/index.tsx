@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import MenuButton from "../shared/MenuButton";
 
@@ -7,6 +7,7 @@ interface EditorButtonProps {
   isShowing: boolean;
   value?: string;
   onChange?: (ev: React.ChangeEvent<HTMLInputElement>) => void;
+  children?: ReactNode;
 }
 
 const EditorButton: React.FC<EditorButtonProps> = ({
@@ -22,9 +23,7 @@ const EditorButton: React.FC<EditorButtonProps> = ({
   };
 
   return (
-    <MenuButton onMouseDown={handleTextStyleChange}>
-      {children}
-    </MenuButton>
+    <MenuButton onMouseDown={handleTextStyleChange}>{children}</MenuButton>
   );
 };
 
