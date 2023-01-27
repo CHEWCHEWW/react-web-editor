@@ -1,22 +1,19 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 
 interface MenuOptionProps {
   name: string;
+  children?: ReactNode;
 }
 
 const MenuOption: React.FC<MenuOptionProps> = ({
   name,
-  children
+  children,
 }): React.ReactElement => {
   return (
     <MenuRow>
-      <ManuNameTag>
-        {name}
-      </ManuNameTag>
-      <ManuRowContent>
-        {children}
-      </ManuRowContent>
+      <ManuNameTag>{name}</ManuNameTag>
+      <ManuRowContent>{children}</ManuRowContent>
     </MenuRow>
   );
 };

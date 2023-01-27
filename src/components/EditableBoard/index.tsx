@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 
 interface EditableBoard {
@@ -8,6 +8,7 @@ interface EditableBoard {
   top?: number;
   backgroundColor: string;
   unit: string;
+  children?: ReactNode;
 }
 
 const EditableBoard: React.FC<EditableBoard> = ({

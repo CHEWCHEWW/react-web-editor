@@ -4,7 +4,11 @@ import styled from "styled-components";
 import ColorPicker from "../ColorPicker";
 import { ColorProps, EditorProps } from "../../types/ui";
 import EditorBlock from "../EditorBlock";
-import { EDITOR_ICON_RIGHT, FIRST_EDITOR_ICON_TOP, SECOND_EDITOR_ICON_TOP } from "../../constants/ui";
+import {
+  EDITOR_ICON_RIGHT,
+  FIRST_EDITOR_ICON_TOP,
+  SECOND_EDITOR_ICON_TOP,
+} from "../../constants/ui";
 import ImageUploader from "../ImageUploader";
 import useColor from "../../hooks/useColor";
 import useImage from "../../hooks/useImage";
@@ -53,7 +57,7 @@ const StyleEditorBlock: React.FC<StyleEditorBlockProps> = ({
       isMouseOver={isMouseOver}
       isClicked={isClicked}
     >
-      {isMouseOver &&
+      {isMouseOver && (
         <>
           <ImageUploader
             onChange={handleFileChange}
@@ -67,22 +71,18 @@ const StyleEditorBlock: React.FC<StyleEditorBlockProps> = ({
             value={color}
           />
         </>
-      }
+      )}
       {imageSrc && <UploadedImage src={imageSrc} />}
-      <CustomBlock color={color}>
-        {children && children}
-      </CustomBlock>
+      <CustomBlock color={color}>{children && children}</CustomBlock>
     </EditorBlock>
   );
 };
 
-const CustomBlock = styled.div.attrs<ColorProps>(
-  ({ color }) => ({
-    style: {
-      backgroundColor: color.length !== 0 && color,
-    },
-  })
-)<ColorProps>`
+const CustomBlock = styled.div.attrs<ColorProps>(({ color }) => ({
+  style: {
+    backgroundColor: color.length !== 0 && color,
+  },
+}))<ColorProps>`
   width: 100%;
   height: 100%;
   position: absolute;
